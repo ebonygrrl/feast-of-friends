@@ -2,7 +2,14 @@ const { Dishes } = require('../models');
 
 const dishesData = [
   {
-    dish_name: 'Poundcake',
+    dishname: 'Poundcake',
+    preparedby: '1',
+    eventid: '1'
+  },
+  {
+    dishname: 'Poundcake',
+    preparedby: '2',
+    eventid: '1'
   },
  
 ];
