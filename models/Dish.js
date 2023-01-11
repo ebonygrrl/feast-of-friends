@@ -23,7 +23,7 @@ Dish.init(
         },
     },
     eventid: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       references: {
         model: 'event',
         key: 'id',
