@@ -6,27 +6,26 @@ class Dish extends Model {}
 Dish.init(
   {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
-    theme: {
+    dishname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    eventDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
+    preparedby: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
     },
-    where: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    organizer: {
+    eventid: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'event',
         key: 'id',
       },
     },
@@ -35,8 +34,8 @@ Dish.init(
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    modelName: 'event',
+    modelName: 'dish',
   }
 );
 
-module.exports = Event;
+module.exports = Dish;
