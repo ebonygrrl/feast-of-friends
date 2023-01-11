@@ -1,3 +1,7 @@
+const Sequelize = require('sequelize');
+require('dotenv').config();
+
+//needed for Heroku - DO NOT DELETE!
 let sequelize;
 
 if (process.env.JAWSDB_URL) {
@@ -14,3 +18,6 @@ if (process.env.JAWSDB_URL) {
     },
   );
 }
+
+
+module.exports = sequelize;

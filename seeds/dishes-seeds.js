@@ -1,4 +1,4 @@
-const { Dishes } = require('../models');
+const { Dish } = require('../models/Dish');
 
 const dishesData = [
   {
@@ -14,6 +14,6 @@ const dishesData = [
  
 ];
 
-const seedDishes = () => Dishes.bulkCreate(dishesData);
+const seedDishes = () => Dish.bulkCreate(dishesData);
 
 module.exports = seedDishes;
