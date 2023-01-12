@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Dish extends Model {}
+class Event extends Model {}
 
-Dish.init(
+Event.init(
   {
     id: {
       type: DataTypes.UUID,

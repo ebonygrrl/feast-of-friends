@@ -16,6 +16,7 @@ Combo.init(
         references: {
           model: 'user',
           key: 'id',
+          unique: false
         },
     },
     dishID: {
@@ -23,13 +24,15 @@ Combo.init(
         references: {
           model: 'dish',
           key: 'id',
+          unique: false
         },
     },
     eventID: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
           model: 'event',
           key: 'id',
+          unique: false
         },
     },
   },

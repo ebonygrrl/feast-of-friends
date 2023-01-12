@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const { User } = require('../models');
 
 const userData = [
   {
@@ -10,12 +10,12 @@ const userData = [
     fdish: 'quesadilla'
   },
   {
-    firstname: 'Fiama',
+    firstname: 'Fi',
     lastname: 'Gaitan',
     email: 'fiamag@yahoo.com',
     password: 'lovmefat',
     allergy: 'peanut',
-    fdish: 'quesadilla'
+    fdish: 'queso'
   },
 ];
 
