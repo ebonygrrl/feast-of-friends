@@ -18,13 +18,11 @@ User.init(
     },
     firstname: {
       type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: 'Hey'
+      allowNull: false,
     },
     lastname: {
         type: DataTypes.STRING,
-        allowNull: true,
-        defaultValue: 'Howdy'
+        allowNull: false,
     },
     email: {
       type: DataTypes.STRING,

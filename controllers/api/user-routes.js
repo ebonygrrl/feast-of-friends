@@ -8,9 +8,11 @@ router.post('/', async (req, res) => {
 
     // console.log(dbUserData);
     // res.status(200).json(dbUserData);
-
+    console.log(req.body);
     try {
         const dbUserData = await User.create({
+            firstname: req.body.firstName,
+            lastname: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
         });
