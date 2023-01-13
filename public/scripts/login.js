@@ -26,6 +26,7 @@
     const lastName = document.querySelector('#signup-lname').value.trim();
     const email = document.querySelector('#signup-email').value.trim();
     const password = document.querySelector('#signup-password').value.trim();
+
     const allergies = document.querySelectorAll('querySelectorAll');
     let allergiesList = [];
 
