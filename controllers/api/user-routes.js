@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const { User } = require('../../models');
 
+
 // CREATE new user
 router.post('/', async (req, res) => {
     // dbUserData = `User sign up route activated. 
@@ -67,5 +68,9 @@ router.post('/', async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
+
+//route to dashboard
+
+
 
 module.exports = router;
