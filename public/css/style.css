@@ -38,8 +38,8 @@ h1 {
 header {
     background-color: #e31d27;
     color: #fff;
-    height: 100px;
-    margin-bottom: 30px;
+    height: 125px;
+    /* margin-bottom: 30px; */
     padding: 1px;
 }
 
