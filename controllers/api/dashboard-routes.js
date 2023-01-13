@@ -8,7 +8,7 @@ var helpers = require('handlebars-helpers')();
 //in the future to personalize it with user id use session that stores the user_id of user
 //1/13 future todo: add withAuth
 router.get('/',  async (req,res)=>{
-    try{
+    // try{
         console.log('line 12 at dashboard-routes');
         // console.log('line 12 at dashboard-routes : '+req.session.user_id);
         //get user id from sessions make sure it is stored in the log in
@@ -16,7 +16,7 @@ router.get('/',  async (req,res)=>{
         // const dummyID=1;
         //get data from database
         await Event.findAll({
-            // where:{organizer:1},
+            where:{organizer:1},
             attributes: [
                 'id',
                 'theme',
@@ -42,10 +42,10 @@ router.get('/',  async (req,res)=>{
         });
     
         
-    } 
-    catch (err) {
-        res.status(500).json(err);
-    }
+    // } 
+    // catch (err) {
+    //     res.status(500).json(err);
+    // }
 
 });
 
