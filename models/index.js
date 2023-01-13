@@ -1,5 +1,5 @@
 const User = require('./User');
-const Event = require('./Event');
+const Event = require('./event');
 const Dish = require('./Dish');
 const Combo = require('./Combo');
 
