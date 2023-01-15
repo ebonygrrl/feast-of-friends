@@ -1,15 +1,9 @@
 const router = require('express').Router();
-
 const { User } = require('../../models');
 
-
-// CREATE new user
+// create new user
 router.post('/', async (req, res) => {
-    // dbUserData = `User sign up route activated. 
-    // ${req.body.email} ${req.body.password}`;
 
-    // console.log(dbUserData);
-    // res.status(200).json(dbUserData);
     console.log(req.body);
     try {
         const dbUserData = await User.create({
@@ -19,11 +13,16 @@ router.post('/', async (req, res) => {
             password: req.body.password,
         });
 
-        // req.session.save(() => {
-        //     req.session.loggedIn = true;
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res.status(200).json(dbUserData);
+        });
 
-        //     res.status(200).json(dbUserData);
-        // });
+        // Next page
+        // res.statusCode = 200;
+        // res.setHeader('Content-Type', 'text/html');
+        // res.end('<h1>Hello World</h1>');
+
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

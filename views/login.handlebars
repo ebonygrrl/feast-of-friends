@@ -1,118 +1,15 @@
-<link rel="stylesheet" href="./css/normalize.css" />
-<link rel="stylesheet" href="./css/style.css" />
-<div class="container">
-
-    <h1 style="text-align: center;">Sign Up</h1>
+    <h1 style="text-align: center;">Login</h1>
 
     <form class="form signup-form">
         <div class="form-group">
-            <label for="fname">First Name:</label>
-            <input class="form-control" id="signup-fname" type="text" name="fname">
-        </div>
-        <div class="form-group">
-            <label for="lname">Last Name:</label>
-            <input class="form-control" id="signup-lname" type="text" name="lname">
-        </div>
-        <div class="form-group">
             <label for="email">Email:</label>
-            <input class="form-control" id="signup-email" type="text" name="email" placeholder="name@example.com">
+            <input class="form-control" id="login-email" type="text" name="email" placeholder="name@example.com">
         </div>
         <div class="form-group">
             <label for="password">Password:</label><br>
-            <input class="form-control" id="signup-password" type="password" name="password"><br>
+            <input class="form-control" id="login-password" type="password" name="password"><br>
         </div>
-
-        <h3>Allergies</h3>
-
-        <div class="form-check form-check-inline">
-
-            <input class="form-check-input signup-allergies" type="checkbox" name="eggs" value="Eggs">
-            <label class="form-check-label" for="eggs">Eggs</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="milk-dairy" value="Milk/Dairy">
-            <label class="form-check-label" for="milk-dairy">Milk/Dairy</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="peanuts" value="Peanuts">
-            <label class="form-check-label" for="peanuts">Peanuts</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="eggs" value="Eggs">
-            <label class="form-check-label" for="eggs"><span style="white-space: nowrap">Tree Nuts</span></label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="milk-dairy" value="Milk/Dairy">
-            <label class="form-check-label" for="milk-dairy">Fish</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="peanuts" value="Peanuts">
-            <label class="form-check-label" for="peanuts">Shellfish</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="eggs" value="Eggs">
-            <label class="form-check-label" for="eggs">Wheat</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="milk-dairy" value="Milk/Dairy">
-            <label class="form-check-label" for="milk-dairy">Soy</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input signup-allergies" type="checkbox" name="peanuts" value="Peanuts">
-            <label class="form-check-label" for="peanuts">Sesame</label>
-        </div>
-        <br><br>
-        <div class="form-group">
-            <label for="allergies">Famous Dish</label>
-            <input class="form-control" id="signup-favdish" type="text" name="favdish">
-        </div>
-        <div class="form-group">
-            <label for="profile-img">Profile image</label>
-            <input class="form-control-file" id="profile-img" type="file">
-            </div>
         <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
-
-    <div style="display: none;">
-    <nav>Main Menu</nav>
-    <a href="">Organize Potluck</a>
-    <a href="">Join Potluck</a>
-
-    Organize Potluck
-    <form>
-        <label for="date">Date:</label> 
-        <input type="text" id="date" name="date">
-
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location">
-
-        <label for="theme">Theme:</label>
-        <input type="text" id="theme" name="theme">
-    </form>
-
-
-    Join Potluck
-    <form>
-
-        <label for="date">Name of dish:</label> 
-        <input type="text" id="date" name="date">
-        <div class="form-group">
-            <label for="food-allergens">Dishes Allergens:</label>
-            <select multiple class="form-control" id="food-allergens">
-                <option>Eggs</option>
-                <option>Milk/Dairy</option>
-                <option>Peanuts</option>
-                <option>Tree Nuts</option>
-                <option>Fish</option>
-                <option>Shellfish</option>
-                <option>Wheat</option>
-                <option>Soy</option>
-                <option>Sesame</option>
-            </select>
-            </div>
-    </form>
-    </div>
-   
-</div>
 
 <script src="./scripts/login.js"></script>
