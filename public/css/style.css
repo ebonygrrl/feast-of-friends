@@ -1,11 +1,27 @@
+/* variables */
+:root {
+    --spanishorange: #EB6F22;
+    --selectiveyellow: #FAB501;
+    --viridian: #36846B;
+    --darklava: #3D322C;
+    --black: #222;
+    }
+
+
 /* element styles */
 html,body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Manrope', sans-serif;
 }
 
 aside, main {
@@ -24,22 +40,45 @@ button {
 }
 
 footer {
-    background-color: #888;
+    background-color: #3d322c;
     color: #fff;
     flex-shrink: 0;
     font-size: 12px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #FAB501;
+}
+
+h1, h2 {    
+    font-family: 'Yellowtail', cursive;
+    /* font-family: 'Pacifico', cursive; */
     text-align: center;
 }
 
 h1 {
+    font-size: 55px;
+    line-height: normal;
+}
+
+h2 {
+    font-size: 46px;
+    line-height: normal;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: normal;
     text-align: center;
 }
 
 header {
-    background-color: #e31d27;
+    background-color: #36846b;
     color: #fff;
-    height: 125px;
-    /* margin-bottom: 30px; */
+    height: 150px;
+    margin-bottom: 30px;
     padding: 1px;
 }
 
@@ -57,52 +96,37 @@ input:outline, input:focus, input:focus-visible {
     border-color: lightgreen;
 }
 
+main {
+    flex: 1 0 auto;
+    margin-bottom: 30px;
+}
+
+nav a {
+    color: #fff;
+}
+
+nav a:hover {
+    color: var(--black);
+    text-decoration: none;
+}
+
 /* oo classes */
+
+.btn-fof-primary {
+    background-color: var(--spanishorange);
+    color: var(--black);
+    font-weight: bold;
+    padding: 15px;
+    text-transform: uppercase;
+}
 
 .container {
     margin-bottom: 30px;
     width: 1000px;
 }
 
-.employee-block {
-    margin-bottom: 30px;
-}
-
-.employee-header {
-    background-color: #0077f7;
-    color: #fff;
-    padding: 20px;
-}
-
-.employee-header h2 {
-    margin-top: 0;
-}
-
-.employee-header h3 {
-    margin-bottom: 0;
-}
-
-.employee-details-wrap {
-    background-color: #f7f7f9;
-    padding: 30px 20px;
-}
-
-.employee-details {
-    background-color: #fff;
-}
-
-.employee-details div {
-    border-bottom: 1px solid #333;
-    padding: 15px;
-}
-
-.employee-details div:last-child {
-    border-bottom: none;
-}
-
-.main {
-    margin: 0 auto;
-    min-height: 83vh;
+.logo {
+    margin-top: -18px;
 }
 
 .row {

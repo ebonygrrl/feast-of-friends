@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-// required for user login/logout
+// api routes
+
 const userRoutes = require('./user-routes');
 router.use('/users', userRoutes);
 
@@ -13,7 +14,4 @@ router.use('/event', eventRoutes);
 const dishRoutes = require('./dish-routes');
 router.use('/dish', dishRoutes);
 
-
-
 module.exports = router;
-

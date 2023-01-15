@@ -1,23 +1,37 @@
-const sequelize = require('../config/connection');
 const router = require('express').Router();
-// const path = require('path');
+const withAuth = require('../utils/auth');
+
 // only show welcome message on home page
-router.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, './public/index.html'))
+router.get('/', async (req, res) => {
+  // If a session exists, redirect the request to the dashboard
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+  
+    res.render('homepage', { loggedIn: req.session.loggedIn });
+});
+
+// sign up route
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
+// // login route
+router.get('/login', (req, res) => {
+  // If a session exists, redirect the request to the dashboard
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+
   res.render('login');
 });
 
-
-
-
-// login route
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('login');
-// });
+// logout route - WORKS!
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 module.exports = router;

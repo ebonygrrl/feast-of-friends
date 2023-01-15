@@ -2,8 +2,8 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
-// // const session = require('express-session');
-// // const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // routes / database
 const routes = require('./controllers');
@@ -14,7 +14,17 @@ const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// session info here //
+const sess = {
+  secret: 'Super secret secret',
+  cookie: { secure: true },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
 
 // format time for handlebars
 //const helpers = require('./utils/helpers'); 
@@ -31,6 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 // points to public/index.html
 app.use(express.static(path.join(__dirname, 'public')));
 
+// controllers
 app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
@@ -39,18 +50,3 @@ sequelize.sync({ force: false }).then(() => {
     console.log(`App listening on port ${PORT}!`);
   });
 });
-
-// // HEROKU DEPLOYMENT SAMPLE
-
-// // const http = require('http');
-// // const port = process.env.PORT || 3000;
-
-// // const server = http.createServer((req, res) => {
-// //   res.statusCode = 200;
-// //   res.setHeader('Content-Type', 'text/html');
-// //   res.end('<h1>Hello World</h1>');
-// // });
-
-// // server.listen(port,() => {
-// //   console.log(`Server running at port `+ port);
-// // });
