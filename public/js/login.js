@@ -16,6 +16,8 @@ const loginFormHandler = async (event) => {
       } else {
         alert('Failed to log in.');
       }
+
+      console.log('response: ', response, email, password);
     }
   };
   

@@ -1,5 +1,4 @@
-<!-- events landing page -->
-<h2>DASHBOARD</h2>
+<h1>Dashboard</h1>
 <div id="eventInput ">
     <form class="form join event form">
         <div class="form-group d-flex justify-content-center">
@@ -25,7 +24,7 @@
     {{#each events as |event|}}
     <div class="card">
         <div class="card-header">
-        <h5><a class="link" href="">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
+        {{!-- <h5><a class="link" href="">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5> --}}
             <p>Organized by {{user.firstname}} {{user.lastname}}</p>
         </div>
     </div>

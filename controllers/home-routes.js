@@ -1,28 +1,15 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
-const Event = require('../models/Event');
 
 // only show welcome message on home page
-router.get('/', (req, res) => {
-    res.render('homepage');
-});
-
-// user dashboard 
-router.get('/dashboard', withAuth, async (req,res)=>{
-  const allEvents = await Event.findAll().catch(err => {
-    res.json(err);
-  })
-
-  const dashEvent = allEvents.map(events => events.get({ plain: true }));
-
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    res.render('dashboard', {
-      dashEvent,
-      loggedIn: req.session.loggedIn
-    });
+router.get('/', async (req, res) => {
+  // If a session exists, redirect the request to the dashboard
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
   }
+  
+    res.render('homepage', { loggedIn: req.session.loggedIn });
 });
 
 // sign up route
@@ -30,20 +17,21 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-// login route
+// // login route
 router.get('/login', (req, res) => {
-  res.render('login');
-});
-
-// logout route
-router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+  // If a session exists, redirect the request to the dashboard
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
   res.render('login');
+});
+
+// logout route - WORKS!
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;

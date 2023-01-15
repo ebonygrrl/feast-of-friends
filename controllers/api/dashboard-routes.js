@@ -1,8 +1,6 @@
-const sequelize = require('../../config/connection');
 const router = require('express').Router();
 const { Event, User, Combo } = require('../../models');
 const withAuth = require('../../utils/auth');
-var helpers = require('handlebars-helpers')();
 
 //route for viewing dashboard and one's own posts
 //in the future to personalize it with user id use session that stores the user_id of user
@@ -46,11 +44,11 @@ router.get('/', async (req,res)=>{
 
 });
 
-router.get('*', withAuth, async (req,res) => {
-    res.render('homepage', {
-        dashboard,
-        loggedIn: req.session.loggedIn
-    });
-});
+// router.get('*', withAuth, async (req,res) => {
+//     res.render('homepage', {
+//         dashboard,
+//         loggedIn: req.session.loggedIn
+//     });
+// });
 
 module.exports = router;
