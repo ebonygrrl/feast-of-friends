@@ -1,23 +1,26 @@
-// const sequelize = require('../config/connection');
 const router = require('express').Router();
-// const path = require('path');
 
 // only show welcome message on home page
 router.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, './public/index.html'))
-  //res.render('login');
+    res.render('homepage');
 });
 
-router.get('/dashboard', (req,res)=>{
-  res.render('dashboard')
-})
+// user dashboard 
+// router.get('/', withAuth, (req,res)=>{
+//   if (!req.session.loggedIn) {
+//     res.redirect('/login');
+//   } else {
+//     res.render('dashboard', {
+//         dashboard,
+//         loggedIn: req.session.loggedIn
+//     });
+//   }
+// });
 
 // sign up route
-router.get('/sign-up', (req, res) => {
-
+router.get('/signup', (req, res) => {
   res.render('signup');
 });
-
 
 // login route
 router.get('/login', (req, res) => {

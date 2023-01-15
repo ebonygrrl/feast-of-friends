@@ -4,6 +4,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const passport = require('passport');
 
 // routes / database
 const routes = require('./controllers');
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 // points to public/index.html
 app.use(express.static(path.join(__dirname, 'public')));
 
+// controllers
 app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
@@ -49,3 +51,7 @@ sequelize.sync({ force: false }).then(() => {
     console.log(`App listening on port ${PORT}!`);
   });
 });
+
+// middleware
+app.use(passport.initialize());
+app.use(passport.session());

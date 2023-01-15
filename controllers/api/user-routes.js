@@ -1,14 +1,14 @@
 const router = require('express').Router();
+const passport = require('passport');
 const { User } = require('../../models');
 
 // create new user
-router.post('/', async (req, res) => {
-
-    console.log(req.body);
+router.post('/signup', async (req, res) => {
+  
     try {
         const dbUserData = await User.create({
-            firstname: req.body.firstName,
-            lastname: req.body.lastName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
         });
@@ -27,11 +27,14 @@ router.post('/', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-
 });
 
-// // Login
+// Login
+router.post('/login'), passport.authenticate('local'), () => {
+  res.send(200);
+}
 // router.post('/login', async (req, res) => {
+  
 //   try {
 //     const dbUserData = await User.findOne({
 //       where: {
@@ -46,7 +49,7 @@ router.post('/', async (req, res) => {
 //       return;
 //     }
 
-//     const validPassword = await dbUserData.checkPassword(req.body.password);
+//     const validPassword = dbUserData.checkPassword(req.body.password);
 
 //     if (!validPassword) {
 //       res
@@ -58,18 +61,24 @@ router.post('/', async (req, res) => {
 //     req.session.save(() => {
 //       req.session.loggedIn = true;
 
-//       res
-//         .status(200)
-//         .json({ user: dbUserData, message: 'You are now logged in!' });
+//       res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
 //     });
+    
 //   } catch (err) {
 //     console.log(err);
 //     res.status(500).json(err);
 //   }
 // });
 
-//route to dashboard
-
-
+// Logout
+router.get('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+});
 
 module.exports = router;
