@@ -1,11 +1,9 @@
 const router = require('express').Router();
 
-// required for user login/logout
-const authRoute = require('./user-routes');
-router.use('/auth', authRoute);
+// api routes
 
-// const userRoutes = require('./user-routes');
-// router.use('/users', userRoutes);
+const userRoutes = require('./user-routes');
+router.use('/users', userRoutes);
 
 const dashboardRoutes = require('./dashboard-routes');
 router.use('/dashboard', dashboardRoutes);

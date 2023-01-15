@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const passport = require('passport');
 
 const apiRoutes = require('./api');
 const homeRoutes = require('./home-routes');
@@ -9,8 +8,10 @@ const dashboardRoutes = require('./api/dashboard-routes');
 
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-router.use('/api/dish-routes', dishRoutes);
-router.use('/api/event-routes', eventRoutes);
-router.use('/api/dashboard', dashboardRoutes);
+router.use('/dish', dishRoutes);
+router.use('/event', eventRoutes);
+router.use('/dashboard', dashboardRoutes);
+
+
 
 module.exports = router;

@@ -22,15 +22,16 @@
         <h4>Events</h4>
     </div>
     <!-- close upcoming Events -->
-    {{!-- {{#each events as |event|}}
+    {{#each events as |event|}}
     <div class="card">
         <div class="card-header">
         <h5><a class="link" href="">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
             <p>Organized by {{user.firstname}} {{user.lastname}}</p>
         </div>
     </div>
-    {{/each}} --}}
-    {{!-- <div class="container" id="pastEvents">
+    {{/each}} 
+
+    <div class="container" id="pastEvents">
         <h4>Past Events</h4>
     </div>
     <!-- close past events -->
@@ -40,7 +41,7 @@
         <h5><a class="link" href="">Event Name Here on Event Date</a></h5>
             <p>Organized by {{user.username}}</p>
         </div>
-    </div> --}}
+    </div>
     
 
 </div>

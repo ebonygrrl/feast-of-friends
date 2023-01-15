@@ -7,7 +7,7 @@ var helpers = require('handlebars-helpers')();
 //route for viewing dashboard and one's own posts
 //in the future to personalize it with user id use session that stores the user_id of user
 //1/13 future todo: add withAuth
-router.get('/', withAuth, async (req,res)=>{
+router.get('/', async (req,res)=>{
     try {
         console.log('line 12 at dashboard-routes');
         // console.log('line 12 at dashboard-routes : '+req.session.user_id);
@@ -46,11 +46,11 @@ router.get('/', withAuth, async (req,res)=>{
 
 });
 
-// router.get('*', withAuth, async (req,res) => {
-//     res.render('homepage', {
-//         dashboard,
-//         loggedIn: req.session.loggedIn
-//     });
-// });
+router.get('*', withAuth, async (req,res) => {
+    res.render('homepage', {
+        dashboard,
+        loggedIn: req.session.loggedIn
+    });
+});
 
 module.exports = router;
