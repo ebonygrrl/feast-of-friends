@@ -1,4 +1,4 @@
 const router = require('express').Router();
-const { Event } = require('../../models');
+const { Event } = require('../../models/Event');
 
 module.exports = router;

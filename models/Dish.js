@@ -29,6 +29,9 @@ Dish.init(
         key: 'id',
       },
     },
+    // nuts: {
+    //   type: DataTypes.BOOLEAN
+    // }
   },
   {
     sequelize,
