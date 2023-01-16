@@ -1,6 +1,4 @@
 const router = require('express').Router();
-//const { Home } = require('../controllers/');
-//const withAuth = require('../utils/auth');
 
 // only show welcome message on home page
 router.get('/', async (req, res) => {
