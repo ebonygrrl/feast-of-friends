@@ -1,0 +1,60 @@
+
+<div class=" container jumbotron theme-title">
+<h3 id="eventTheme">{{event.theme}}</h3>
+<p><span>Invite Code: </span><span id="event-id">{{event.id}}</span></p>
+<p><span>Date:</span><span id="event-date">{{event.eventDate}}</span></p>
+<p><span>Location:</span><span id="event-location">{{event.where}}</span></p>
+<p><span>Total Attendees:</span><span id="event-attendee">Use combo to find total number</span></p>
+<p><span>Group Allergen Profile:</span><span id="event-attendee">Use combo and user to find allergens</span></p>
+<p><span>Potluck Profile:</span><span id="event-food">Use combo to find how many starters, entree, dessert and drinks</span></p>
+
+</div>
+
+<div id="dishForm">
+    <div class="form-group d-flex justify-content-center">
+        <button class="btn btn-info" type="submit" id="addDish"><a href=""><h3>Dish +</h3></a></button>
+    </div>  
+</div>
+<!--close div event input  -->
+<div class="container" id="dishSummary">
+    
+    <div class="container" id="summaryTitle">
+        <h4>Food Signed Up</h4>
+    </div>
+    <!-- close dish summary title -->
+
+    <div class="card">
+        <div class="row ">
+            <div class="col-sm-9">
+                <div class="card-header" style="height:200px">
+                    <h5><a class="link" href="">Food Name Here</a></h5>
+                        <p>Contributed by {{user.firstName}} {{user.lastName}}</p>
+                        <p>Food Description: ingredients and allergens here</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card-img no-gutters text-center align-middle " style="height:200px">
+                    <img class=" rounded-circle img-thumbnail img-fluid " style="width: auto; height: 175px;" id="{{user.email}}"src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" alt="picture of {{user.firstName}}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="row ">
+            <div class="col-sm-9">
+                <div class="card-header" style="height:200px">
+                    <h5><a class="link" href="">Food Name Here</a></h5>
+                        <p>Contributed by {{user.username}}</p>
+                        <p>Food Description: ingredients and allergens here</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card-img no-gutters text-center" style="height:200px">
+                    <img class=" rounded-circle img-thumbnail img-fluid " style="width: auto; height: 175px;" id="{{user.email}}"src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="picture of {{user.firstName}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

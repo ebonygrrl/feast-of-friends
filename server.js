@@ -16,7 +16,10 @@ const PORT = process.env.PORT || 3000;
 
 const sess = {
   secret: 'Super secret secret',
-  cookie: { secure: true },
+  cookie: { secure: false,
+            maxAge: 36000000,
+            httpOnly: false 
+          },
   resave: false,
   saveUninitialized: false,
   store: new SequelizeStore({
@@ -42,7 +45,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // controllers
-app.use(routes);
+// app.use(routes);
+app.use(require('./controllers'));
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {
