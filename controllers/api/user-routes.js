@@ -50,9 +50,9 @@ router.post('/login', async (req, res) => {
 
   console.log('line 48 user-routes', req.body);
   // try {
-    const dbUserData = await User.findOne({ where: { email: req.body.email } });   
+    const dbUserData = await User.findOne({ where: { email: req.body.email } }); 
 
-    console.log('line 55 user-routes',dbUserData);
+    console.log('line 59 user-routes',dbUserData);
 
 
     if(!dbUserData) {
@@ -69,18 +69,26 @@ router.post('/login', async (req, res) => {
       return;
     }   
     
-    console.log('line 71 user-routes');
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.userID=dbUserData.dataValues.id;
-      req.session.userName=dbUserData.dataValues.firstName;
+    console.log('line 71 user-routes', dbUserData.dataValues.id);
+    
+    req.session.loggedIn = true;
+    req.session.userID=dbUserData.dataValues.id;
+    req.session.userName=dbUserData.dataValues.firstName;
+    req.session.save();
+    // req.session.save(function () {
+    //   req.session.loggedIn = true;
+    //   req.session.userID=dbUserData.dataValues.id;
+    //   req.session.userName=dbUserData.dataValues.firstName;
+    // })
 
+    console.log('line 80',req.session);
+      console.log('line 79 user-routes',req.session.loggedIn, req.session.userID, req.session.userName);
+      res.status(200).json(dbUserData);
+ 
 
-    }); 
+    
 
-    console.log('line 79 user-routes',req.session.loggedIn, req.session.userID, req.session.userName);
-
-    res.status(200).json(dbUserData);
+    
     
     // redirect in login.js
 
