@@ -33,7 +33,7 @@ router.get('/:id', async (req,res)=>{
             //check
             console.log('line 34 at event-routes ',viewEvent);
 
-            res.render('event',{event,loggedIn: req.session.loggedIn});
+            res.render('event',{event,loggedIn: req.session.loggedIn, userName: req.session.userName});
             //check
             console.log('line 38 at event-routes');
 

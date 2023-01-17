@@ -42,17 +42,17 @@ router.get('/', async (req,res)=>{
         //if data is empty
         //render dashboard with no Events
         if (result.length==0){
-            console.log('line 32 dashboard-routes')
+            console.log('line 45 dashboard-routes')
             res.render('dashboard');
         } else{
             const events = result.map(event => event.get({plain: true}));
             const view = JSON.stringify(result);
             //check
-            console.log('line 38 at dashboardRoutes ', view);
+            console.log('line 51 at dashboardRoutes ', view);
 
             //toDo withAut 1/13: 
             // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            res.render('dashboard', {events});
+            res.render('dashboard', {events, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
             res.status(200);
         }
