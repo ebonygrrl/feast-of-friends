@@ -8,8 +8,8 @@ const dashboardRoutes = require('./api/dashboard-routes');
 
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-router.use('/api/dish', dishRoutes);
-router.use('/api/event', eventRoutes);
-router.use('/api/dashboard', dashboardRoutes);
+router.use('/dish', dishRoutes);
+router.use('/event', eventRoutes);
+router.use('/dashboard', dashboardRoutes);
 
 module.exports = router;
