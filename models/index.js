@@ -61,6 +61,11 @@ User.hasMany(Combo,{
     foreignKey:'userID'
 });
 
+//each combo entry has one dish
+Combo.belongsTo(Dish,{
+    foreignKey:'dishID'
+});
+
 
 
 module.exports={User,Event,Dish,Combo};

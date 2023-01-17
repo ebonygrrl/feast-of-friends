@@ -22,13 +22,15 @@
         <h4>Food Signed Up</h4>
     </div>
     <!-- close dish summary title -->
+    {{#each dishes as |dishe|}}
 
     <div class="card">
         <div class="row ">
             <div class="col-sm-9">
                 <div class="card-header" style="height:200px">
-                    <h5><a class="link" href="">Food Name Here</a></h5>
-                        <p>Contributed by {{user.firstName}} {{user.lastName}}</p>
+                    <h5><a class="link" href="">{{dish.dishname}}</a></h5>
+                        <p>Contributed by {{dish.user.firstName}} {{dish.user.lastName}}</p>
+                        <p>Food Type: {{dish.dishtype}}</p>
                         <p>Food Description: ingredients and allergens here</p>
                 </div>
             </div>
@@ -39,22 +41,8 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="row ">
-            <div class="col-sm-9">
-                <div class="card-header" style="height:200px">
-                    <h5><a class="link" href="">Food Name Here</a></h5>
-                        <p>Contributed by {{user.username}}</p>
-                        <p>Food Description: ingredients and allergens here</p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card-img no-gutters text-center" style="height:200px">
-                    <img class=" rounded-circle img-thumbnail img-fluid " style="width: auto; height: 175px;" id="{{user.email}}"src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="picture of {{user.firstName}}">
-                </div>
-            </div>
-        </div>
-    </div>
+
+    {{/each}}
 
 </div>
 

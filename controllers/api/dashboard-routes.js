@@ -6,16 +6,16 @@ const withAuth = require('../../utils/auth');
 //in the future to personalize it with user id use session that stores the user_id of user
 //1/13 future todo: add withAuth
 router.get('/',withAuth, async (req,res)=>{
-    // try {
+    try {
         console.log('line 10 at dashboard-routes');
         // console.log('line 12 at dashboard-routes : '+req.session.user_id);
         //get user id from sessions make sure it is stored in the log in
-        const userID = req.session.userID;
+        const user_id = req.session.userID;
         console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
         // const dummyID=1;
         //get data from database of user organized events
         const result=await Event.findAll({
-            where:{organizer:userID},
+            where:{organizer:user_id},
             attributes: [
                 'id',
                 'theme',
@@ -26,61 +26,52 @@ router.get('/',withAuth, async (req,res)=>{
             include: User,
         });
         //find data of events where user is part of
-        const result2=await Event.findAll({
-            through:{model:Combo,
-                organizer:userID},
-            attributes: [
-                'id',
-                'theme',
-                'eventDate',
-                'where',
-                'organizer'
-            ],
-            include: User,
+        const result2=await Combo.findAll({
+            where:{userID:user_id},
+            include: [{
+                model: Event,
+                include: User
+            }]
         });
+
 
         //if data is empty
         //render dashboard with no Events
-        if (result.length==0){
+        if (result.length==0 && result2.length==0){
             console.log('line 45 dashboard-routes')
             res.render('dashboard');
-        } else{
-            const events = result.map(event => event.get({plain: true}));
+        }
+        //dashboard with one organized event
+        else if(result.length && result2.length==0 ){
+            const event1 = result.map(event => event.get({plain: true}));
+            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
+
+        }
+        //dashboard with one participating event
+        else if(result.length==0 && result2.length){
+            const event2 = result2.map(event => event.get({plain: true}));
+            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+
+        }
+        else{
+            const event1 = result.map(event => event.get({plain: true}));
+            const event2 = result2.map(event => event.get({plain: true}));
             const view = JSON.stringify(result);
+            const view2 = JSON.stringify(result2);
             //check
-            console.log('line 51 at dashboardRoutes ', view);
+            console.log('line 51 at dashboardRoutes ', view, view2);
 
             //toDo withAut 1/13: 
             // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            res.render('dashboard', {events, loggedIn: req.session.loggedIn, userName: req.session.userName});
+            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
             res.status(200);
         }
-        
-            // if data is empty
-            // render dashboard with no Events
-            // if(data===undefined || data.length==0 || !data){
-
-            //     console.log('line 33 dashboard-routes')
-            //     res.render('dashboard');
-            // }
-        
-            // console.log('line 37 at dashboard-routes ',req.session.user_id);
-            
-            // const events = data.map(event => event.get({plain: true}));
-            // const view = JSON.stringify(data);
-            // //check
-            // console.log('line 42 at dashboardRoutes ', view);
-
-            // //toDo withAut 1/13: 
-            // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            // //res.render('dashboard', {events});
-
-            // res.status(200);
-        // });       
-    // } catch (err) {
-    //     res.status(500).json(err);
-    // }
+ 
+   
+    } catch (err) {
+        res.status(500).json(err);
+    }
 
 });
 
