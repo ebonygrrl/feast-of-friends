@@ -5,14 +5,16 @@ const dishesData = [
   {
     dishname: 'Poundcake',
     preparedby: '1',
-    eventid: uuidValue
+    eventid: uuidValue,
     //nuts: true
+    dishtype: "dessert"
   },
   {
     dishname: 'Chips and Salsa',
     preparedby: '2',
-    eventid: uuidValue
+    eventid: uuidValue,
     //nuts: false
+    dishtype: "appetizer"
   },
  
 ];

@@ -29,6 +29,11 @@ Dish.init(
         key: 'id',
       },
     },
+      dishtype: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
+    
     // nuts: {
     //   type: DataTypes.BOOLEAN
     // }
