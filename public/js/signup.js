@@ -45,17 +45,20 @@ const signupFormHandler = async (event) => {
     //   allergiesList.push(checkboxValue);
     // });
     //console.log(allergiesList);   
+    console.log('line 48 sigunup.js',firstName, lastName, email, password);
 
     if (firstName && lastName && email && password) {
       //console.log(JSON.stringify({ firstName, lastName, email, password, allergiesList, favDish }))
-      const response = await fetch('/api/users/signup', {
+      const result = await fetch('/api/user/signup', {
         method: 'POST',
         body: JSON.stringify({ firstName, lastName, email, password }),
         headers: { 'Content-Type': 'application/json' },
       });
 
-      if (response.ok) {
-        document.location.replace('/dashboard');
+      console.log(result);
+
+      if (result.ok) {
+        document.location.replace('/api/dashboard');
       } else {
         alert('Failed to sign up.');
       }
@@ -64,4 +67,4 @@ const signupFormHandler = async (event) => {
 
   document
     .querySelector('#signUpBtn')
-    .addEventListener('submit', signupFormHandler);
+    .addEventListener('click', signupFormHandler);

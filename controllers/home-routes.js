@@ -6,11 +6,11 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   // If a session exists, redirect the request to the dashboard
   if (req.session.loggedIn) {
-    res.redirect('/dashboard');
+    res.redirect('api/dashboard');
     return;
   }
-  
-    res.render('homepage', { loggedIn: req.session.loggedIn });
+  res.render('homepage');
+    // res.render('homepage', { loggedIn: req.session.loggedIn });
 });
 
 // sign up route
@@ -21,12 +21,19 @@ router.get('/signup', (req, res) => {
 // // login route
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the dashboard
-  if (req.session.loggedIn) {
-    res.redirect('/dashboard');
-    return;
-  }
+  // if (req.session.loggedIn) {
+  //   res.redirect('/dashboard');
+  //   return;
+  // }
 
   res.render('login');
+});
+
+//create event
+//create potluck route
+router.get('/create',withAuth,(req, res) => {
+
+  res.render('create-event');
 });
 
 // logout route - WORKS!
@@ -35,9 +42,6 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-//create potluck route
-router.get('/create-potluck', (req, res) => {
-  res.render('create-potluck');
-});
+
 
 module.exports = router;

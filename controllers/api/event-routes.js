@@ -33,7 +33,7 @@ router.get('/:id', async (req,res)=>{
             //check
             console.log('line 34 at event-routes ',viewEvent);
 
-            res.render('event',{event,logged_in: req.session.logged_in});
+            res.render('event',{event,loggedIn: req.session.loggedIn});
             //check
             console.log('line 38 at event-routes');
 
@@ -44,6 +44,39 @@ router.get('/:id', async (req,res)=>{
     }
 });
 
+//navigate to create event page
+//create potluck route
+// router.get('/create',(req, res) => {
+
+//     res.render('create-event');
+// });
+
 //create event
-router.post
+router.post('/', (req,res)=>{
+   try{
+    //check
+    console.log('line 50 at event-route');
+
+    //create new Event
+    Event.create({
+        theme: req.body.theme,
+        eventDate: req.body.eventDate,
+        where: req.body.location,
+        organizer: req.session.userID,
+        // organizer: 1
+    }).then(data=>{
+        
+        const  event= data.get({plain:true});
+        const eventJSON=JSON.stringify(data);
+        console.log(data);
+        res.render('event',{event,loggedIn: req.session.loggedIn})
+       
+        // res.render('event',{event,logged_in: req.session.logged_in});
+    })
+   } catch (err) {
+    res.status(400).json(err);
+  }
+    
+
+})
 module.exports = router;

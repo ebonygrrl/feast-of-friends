@@ -26,6 +26,7 @@ Combo.init(
           key: 'id',
           unique: false
         },
+        allowNull: true,
     },
     eventID: {
         type: DataTypes.UUID,
