@@ -4,21 +4,21 @@ const { Dish } = require('../../models/Dish');
 //const sequelize = require('../config/connection');
 //const Dish = require('../../models/Dish');
 
-const dishData = require('../../seeds/dishes-seeds');
+const dishesData = require('../../seeds/dishes-seeds');
 
 // get all dishes
-// router.get('/', async (req, res) => {
-//     res.render('all', { Dish });
-//   });
+router.get('/dish', async (req, res) => {
+    res.render('all', { Dish });
+  });
   
 //route to get all dishes
-router.get('/', async (req, res) => {
-    const dishData = await Dish.findAll().catch((err) => { 
-        res.json(err);
-      });
-        const dish = dishData.map((dish) => dish.get({ plain: true }));
-        res.render('all', { Dish });
-      });
+// router.get('/dish', async (req, res) => {
+//     const dishData = await Dish.findAll().catch((err) => { 
+//         res.json(err);
+//       });
+//         const dishe = dishData.map((dishe) => dishe.get({ plain: true }));
+//         res.render('all', { Dish });
+//       });
 
   // get one dish
   // router.get('/dish/:num', async (req, res) => {
@@ -26,19 +26,19 @@ router.get('/', async (req, res) => {
   // });
   
 // route to get one dish
-router.get('/dish/:id', async (req, res) => {
-    try{ 
-        const disheData = await Dish.findByPk(req.params.id);
-        if(!disheData) {
-            res.status(404).json({message: 'No dish with this id!'});
-            return;
-        }
-        const dish = dishData.get({ plain: true });
-        res.render('dish', dish);
-      } catch (err) {
-          res.status(500).json(err);
-      };     
-  });
+// router.get('/dish/:id', async (req, res) => {
+//     try{ 
+//         const disheData = await Dish.findByPk(req.params.id);
+//         if(!disheData) {
+//             res.status(404).json({message: 'No dish with this id!'});
+//             return;
+//         }
+//         const dish = dishData.get({ plain: true });
+//         res.render('dish', dish);
+//       } catch (err) {
+//           res.status(500).json(err);
+//       };     
+//   });
   
 //--------------------------------------------------------------------------------//
 // get one dish without serializing data
@@ -70,20 +70,20 @@ router.get('/dish/:id', async (req, res) => {
   //------------------------------------------------------------------------------------//
 
   // route to create/add a dish using async/await
-router.post('/', async (req, res) => {
-    try { 
-      const dishesData = await Dish.create({
-      dishname: req.body.dishname,
-      preparedby: req.body.preparedby,
-      eventid: req.body.eventid,
-      //nuts: req.body.nuts,
-    });
-    // if the dish is successfully created, the new response will be returned as json
-    res.status(200).json(dishesData)
-  } catch (err) {
-    res.status(400).json(err);
-  }
-  });
+// router.post('/', async (req, res) => {
+//     try { 
+//       const dishesData = await Dish.create({
+//       dishname: req.body.dishname,
+//       preparedby: req.body.preparedby,
+//       eventid: req.body.eventid,
+//       //nuts: req.body.nuts,
+//     });
+//     // if the dish is successfully created, the new response will be returned as json
+//     res.status(200).json(dishesData)
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+//   });
 
 
 module.exports = router;
