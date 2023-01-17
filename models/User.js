@@ -19,10 +19,12 @@ User.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'Tori'
     },
     lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: 'Baker'
     },
     email: {
       type: DataTypes.STRING,

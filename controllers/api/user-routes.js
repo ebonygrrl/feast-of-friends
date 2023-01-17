@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { User } = require('../../models/User');
+const { User } = require('../../models');
 
 // create new user
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', async (req, res) => {
   
   try {
     const dbUserData = await User.create({
@@ -12,17 +12,17 @@ router.post('/signup', async (req, res, next) => {
         password: req.body.password,
     });
 
-    console.log(dbUserData);
-
     req.session.save(() => {
         req.session.loggedIn = true;
-        //res.redirect('/dashboard');
     });
-    next();
+
+    res.status(200).json(dbUserData);
+
+    // redirect in signup.js
 
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.redirect('/');
   }
 });
 
@@ -46,17 +46,16 @@ router.post('/login', async (req, res) => {
     
     req.session.save(() => {
       req.session.loggedIn = true;
-      // res.status(200)
-      // .json({ user: dbUserData, message: 'You are now logged in!' });
-      //res.render('dashboard');
     }); 
+
+    res.status(200).json(dbUserData);
     
-    
+    // redirect in login.js
 
   } catch (err) {
 
     console.log(err);
-    res.status(500).json(err);
+    res.redirect('/');
   }
 });
 
