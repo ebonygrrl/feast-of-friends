@@ -53,9 +53,6 @@ router.post('/login', async (req, res) => {
     const dbUserData = await User.findOne({ where: { email: req.body.email } });   
 
     console.log('line 55 user-routes',dbUserData);
-    //get plain
-    const userPlain=dbUserData.get({plain:true});
-    console.log('line 58 user-routes',userPlain);
 
 
     if(!dbUserData) {
@@ -75,8 +72,8 @@ router.post('/login', async (req, res) => {
     console.log('line 71 user-routes');
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.userID=userPlain.id;
-      req.session.userName=userPlain.firstName;
+      req.session.userID=dbUserData.dataValues.id;
+      req.session.userName=dbUserData.dataValues.firstName;
 
 
     }); 

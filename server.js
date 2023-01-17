@@ -18,7 +18,7 @@ const sess = {
   secret: 'Super secret secret',
   cookie: { secure: false,
             maxAge: 36000000,
-            httpOnly: false 
+            httpOnly: true 
           },
   resave: false,
   saveUninitialized: false,

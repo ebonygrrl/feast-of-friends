@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400&family=Pacifico&family=Yellowtail&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Feast of Friends | The Ultimate Potluck Organizer</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <div class="col-md-4">
                     <nav>
                         {{#if loggedIn}}
-                            <span>Welcome, NAME!</span> &nbsp;&nbsp; | &nbsp;&nbsp; <a id="logout" href="/logout">Logout</a>
+                            <span>Welcome, {{userName}}!</span> &nbsp;&nbsp; | &nbsp;&nbsp; <a id="logout" href="/logout">Logout</a>
                         {{else}}
                             <a href="/login">Log In</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="/signup">Sign Up</a> 
                         {{/if}}

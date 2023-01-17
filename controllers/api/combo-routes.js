@@ -23,6 +23,21 @@ router.post('/',(req,res)=>{
     } catch (err) {
     res.status(400).json(err);
   }
-})
+});
+
+//router get all combo
+router.get('/', async (req,res)=>{
+    const comboData= await Combo.findAll().catch((err)=>{
+        res.json(err)
+    });
+
+    comboView=comboData.get({plain:true});
+
+    console.log(comboView);
+
+    res.json(comboData);
+
+});
+
 
 module.exports=router;
