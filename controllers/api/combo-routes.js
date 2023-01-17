@@ -3,10 +3,10 @@ const { Dish, Event, User, Combo } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //add user to event via combo
-router.post('/',(req,res)=>{
-    try{
+router.post('/',withAuth,(req,res)=>{
+    // try{
          //check
-        console.log('line 8 at combo-route');
+        console.log('line 8 at combo-route', req.body);
 
         //create combo
         Combo.create({
@@ -20,9 +20,9 @@ router.post('/',(req,res)=>{
 
         })
 
-    } catch (err) {
-    res.status(400).json(err);
-  }
+    // } catch (err) {
+    // res.status(400).json(err);
+//   }
 });
 
 //router get all combo

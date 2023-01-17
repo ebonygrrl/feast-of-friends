@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Combo, Event, User } = require('../../models');
+const { Combo, Event, User, Dish } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //shows the event when user redirected to event page
 //need to make sure user is member of this event
-router.get('/:id', async (req,res)=>{
+router.get('/:id',withAuth, async (req,res)=>{
     //get event info from database
 
     try{
@@ -18,26 +18,44 @@ router.get('/:id', async (req,res)=>{
                 'where',
                 'organizer',
             ],
-            include: [Combo,{
+            include: [
+                Combo,{
                 model: User,
                 attributes: ['id','firstName','lastName','email','allergy','fdish'],
                 }],
-        }).then(data=>{
-            
-            //check
-            console.log('line 28 at event-routes ');
-            
-            const  event= data.get({plain:true});
-            const viewEvent= JSON.stringify(data);
-
-            //check
-            console.log('line 34 at event-routes ',viewEvent);
-
-            res.render('event',{event,loggedIn: req.session.loggedIn, userName: req.session.userName});
-            //check
-            console.log('line 38 at event-routes');
-
         });
+        
+        const comboData = await Combo.findAll({
+            where: {eventID:req.params.id},
+            include: [{
+                model:Dish,
+                include: User
+            }]
+        })
+        //if data is empty
+        //render dashboard with no Events
+        if (eventData.length==0 && comboData.length==0){
+            console.log('line 38 event-routes')
+            res.redirect('/api/dashboard')
+        }
+        //dashboard with event data but no participants
+        else if(eventData.length && result2.length==0 ){
+            const event = eventData.map(events => events.get({plain: true}));
+            res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName});
+
+        }
+        else{
+            const event = eventData.get({plain: true});
+            const dishes = comboData.map(dish => dish.get({plain: true}));
+            const view = JSON.stringify(eventData);
+            const view2 = JSON.stringify(comboData);
+
+            //check
+            console.log('line 54 at event-routes ', view, view2);
+
+            res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName});
+             
+        }
         
     }catch (err) {
         res.status(500).json(err);
@@ -52,7 +70,7 @@ router.get('/:id', async (req,res)=>{
 // });
 
 //create event
-router.post('/', (req,res)=>{
+router.post('/', withAuth,(req,res)=>{
    try{
     //check
     console.log('line 50 at event-route');

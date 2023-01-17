@@ -3,6 +3,8 @@
 const createPotluckFormHandler = async (event) => {
     event.preventDefault();
 
+    //CHECK
+    console.log('line 7 in dashboard.js');
     //navigate to create Potluck Page
     document.location.replace('/create');
   };
@@ -10,12 +12,17 @@ const createPotluckFormHandler = async (event) => {
   const signupBtn=document.getElementById("createPotluck");
   signupBtn.addEventListener("click", createPotluckFormHandler);
 
+
+
   //join potluck
   const joinPotluckFormHandler = async (event) => {
     event.preventDefault();
 
+      //CHECK
+    console.log('line 22 in dashboard.js'); 
     //get code data from document
-    const eventCode=document.getElementById("event-code").ariaValueMax.trim();
+    const eventCode=document.getElementById("event-code").value.trim();
+    console.log('line 25 at dashboard.js ', eventCode );
     
     if (eventCode){
       const response=await fetch('/api/combo',{
@@ -31,11 +38,9 @@ const createPotluckFormHandler = async (event) => {
         alert('Failed to create event.');
       }
 
-
     }
-
    
   };
   
-  const joinBtn=document.getElementById("joinPotluck");
-  signupBtn.addEventListener("click", joinPotluckFormHandler);
+const joinBtn=document.querySelector(".join-event");
+joinBtn.addEventListener("submit", joinPotluckFormHandler);

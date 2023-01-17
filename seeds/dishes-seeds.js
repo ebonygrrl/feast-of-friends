@@ -1,4 +1,4 @@
-const { Dish } = require('../models/Dish');
+const { Dish } = require('../models/');
 const { uuidValue } = require('./uuid-seeds');
 
 const dishesData = [
@@ -19,6 +19,6 @@ const dishesData = [
  
 ];
 
-const seedDishes = () => Dish.bulkCreate(dishesData);
+const seedDishes = () => Dish.bulkCreate(dishesData,  {individualHooks: true});
 
 module.exports = seedDishes;
