@@ -14,11 +14,11 @@ router.post('/signup', async (req, res) => {
 
     req.session.save(() => {
         req.session.loggedIn = true;
+        req.session.userID=dbUserData.id;
+        req.session.userName=dbUserData.firstName;
+        //res.redirect('/dashboard');
     });
-
-    res.status(200).json(dbUserData);
-
-    // redirect in signup.js
+    document.location.replace('/api/dashboard')
 
   } catch (err) {
     console.log(err);
@@ -46,6 +46,10 @@ router.post('/login', async (req, res) => {
     
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.loggedIn = true;
+      req.session.userID=dbUserData.id;
+      req.session.userName=dbUserData.firstName;
+  
     }); 
 
     res.status(200).json(dbUserData);

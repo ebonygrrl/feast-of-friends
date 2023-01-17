@@ -1,4 +1,6 @@
 const router = require('express').Router();
+//const { Home } = require('../controllers/');
+const withAuth = require('../utils/auth');
 
 // only show welcome message on home page
 router.get('/', async (req, res) => {
@@ -31,6 +33,11 @@ router.get('/login', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
+});
+
+//create potluck route
+router.get('/create-potluck', (req, res) => {
+  res.render('create-potluck');
 });
 
 module.exports = router;

@@ -133,6 +133,33 @@ nav a:hover {
     justify-content: center;
 }
 
+/* input form for address */
+
+#inputStreet {
+    width: 100%;
+  }
+  
+  #inputCity {
+    width: 50%;
+  }
+  
+  #inputState {
+    width: 15%;
+  }
+  
+  #inputZip {
+    width: 28%;
+  }
+  
+  #inputCounty {
+    width: 45%;
+  }
+  
+  #inputCountry {
+    width: 50%;
+  }
+  
+
 
 /* media queries */
 @media screen and (max-width: 375px) {

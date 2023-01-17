@@ -24,7 +24,7 @@
     {{#each events as |event|}}
     <div class="card">
         <div class="card-header">
-        {{!-- <h5><a class="link" href="">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5> --}}
+        <h5><a class="link" href="/api/event/{{id}}">{{theme}} on {{eventDate}}</a></h5>
             <p>Organized by {{user.firstname}} {{user.lastname}}</p>
         </div>
     </div>

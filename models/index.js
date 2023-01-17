@@ -41,5 +41,26 @@ Event.hasMany(Dish,{
     foreignKey:'eventid'
 });
 
+//combo id is linked to one event
+Combo.belongsTo(Event,{
+    foreignKey:'eventID'
+});
+
+//Event has many combo ids
+Event.hasMany(Combo,{
+    foreignKey:'eventID'
+});
+
+//each Combo id belongs to a user
+Combo.belongsTo(User,{
+    foreignKey:'userID'
+});
+
+//user can have have many combo ID
+User.hasMany(Combo,{
+    foreignKey:'userID'
+});
+
+
 
 module.exports={User,Event,Dish,Combo};
