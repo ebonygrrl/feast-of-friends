@@ -51,7 +51,9 @@ const signupFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (result.ok) {
+
       document.location.replace('/dashboard');
+
     } else {
       alert('Failed to sign up.');
     }
