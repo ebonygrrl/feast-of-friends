@@ -63,7 +63,8 @@ User.hasMany(Combo,{
 
 //each combo entry has one dish
 Combo.belongsTo(Dish,{
-    foreignKey:'dishID'
+    constraints: false,
+    foreignKey:'dishID',
 });
 
 

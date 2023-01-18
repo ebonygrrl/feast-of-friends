@@ -18,22 +18,20 @@ const eventFormHandler=async(event)=>{
     const location = document.querySelector('#event-location').value.trim();
     
     if(theme && eventDate && location){
-      const response = await fetch('/event/', {
+      const response = await fetch('/api/event', {
         method: 'POST',
         body: JSON.stringify({ theme, eventDate, location }),
         headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/api/dashboard/');
-      } else {
-        alert('Failed to create event.');
-      }
+      }).then((data)=>data.json()).then((info)=>{
+        
+        console.log('line 25',info);
+        document.location.replace(`/event/${info.id}`);
+      }).catch((err)=>alert('Failed to create potluck.', err));
     }
 };
 
 const createBtn=document.getElementById("create-potluck");
-createBtn.addEventListener("click",eventFormHandler)
+createBtn.addEventListener("click",eventFormHandler);
 
 
 

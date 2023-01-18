@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Dish, Event, User, Combo } = require('../../models');
+const { Combo } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //add user to event via combo
 router.post('/',withAuth,(req,res)=>{
-    // try{
+    try{
          //check
         console.log('line 8 at combo-route', req.body);
 
@@ -14,30 +14,29 @@ router.post('/',withAuth,(req,res)=>{
             // dishID may not be necessary
             eventID: req.body.eventCode
         }).then(data=>{
-            const combo=data.get({plain:true});
-            console.log(combo);
-            res.redirect('/api/dashboard');
+
+            res.status(200).json(data);
 
         })
 
-    // } catch (err) {
-    // res.status(400).json(err);
-//   }
+    } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 //router get all combo
-router.get('/', async (req,res)=>{
-    const comboData= await Combo.findAll().catch((err)=>{
-        res.json(err)
-    });
+// router.get('/', async (req,res)=>{
+//     const comboData= await Combo.findAll().catch((err)=>{
+//         res.json(err)
+//     });
 
-    comboView=comboData.get({plain:true});
+//     comboView=comboData.get({plain:true});
 
-    console.log(comboView);
+//     console.log(comboView);
 
-    res.json(comboData);
+//     res.json(comboData);
 
-});
+// });
 
 
 module.exports=router;
