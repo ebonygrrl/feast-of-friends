@@ -15,7 +15,7 @@ const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const expiryDate = new Date(Date.now + 60 * 60 * 100)
+const expiryDate = new Date(Date.now + 60 * 60 * 100);
 
 const sess = {
   secret: '6iNIbx$t2i}n[{B)1.|W',
@@ -25,7 +25,7 @@ const sess = {
     maxAge: 36000000,
     httpOnly: false 
   },
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   store: new SequelizeStore({
     db: sequelize,
@@ -35,10 +35,10 @@ const sess = {
 app.use(session(sess));
 
 // format time for handlebars
-const helpers = require('./utils/helpers'); 
+// const helpers1 = require('./utils/helpers'); 
 
 // get handlebars
-const hbs = exphbs.create({ helpers }); // { helpers }
+const hbs = exphbs.create({}); // { helpers }
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
