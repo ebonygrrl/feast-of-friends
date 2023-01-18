@@ -36,21 +36,27 @@ router.post('/login', async (req, res) => {
       return;
     } 
 
-    const validPassword = dbUserData.checkPassword(req.body.password);
+    // const validPassword = dbUserData.checkPassword(req.body.password);
+    const validPassword = await dbUserData.checkPassword(req.body.password);
     
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect email or password. Please try again!' });  
       return;
     } 
     
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      req.session.userID = dbUserData.id;
-      req.session.userName = dbUserData.firstName;
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
-    });
+    req.session.loggedIn = true;
+    req.session.userID=dbUserData.dataValues.id;
+    req.session.userName=dbUserData.dataValues.firstName;
+    req.session.save();
+    
+    // req.session.save(() => {
+    //   req.session.loggedIn = true;
+    //   req.session.userID = dbUserData.dataValues.id;
+    //   req.session.userName = dbUserData.dataValues.firstName;
+    //   res.json({ user: dbUserData, message: 'You are now logged in!' });
+    // });
 
-    res.send('main', { firstName: req.session.userName });
+    // res.send('main', { firstName: req.session.userName });
 
     // req.session.loggedIn, req.session.userID, req.session.userName);
     res.status(200).json(dbUserData);
