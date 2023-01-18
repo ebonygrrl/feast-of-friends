@@ -14,13 +14,17 @@ const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const expiryDate = new Date(Date.now + 60 * 60 * 100)
+
 const sess = {
-  secret: 'Super secret secret',
-  cookie: { secure: false,
-            maxAge: 36000000,
-            httpOnly: false
-          },
-  resave: true,
+  secret: '6iNIbx$t2i}n[{B)1.|W',
+  cookie: { 
+    secure: false,
+    expires: expiryDate,
+    maxAge: 36000000,
+    httpOnly: false 
+  },
+  resave: false,
   saveUninitialized: false,
   store: new SequelizeStore({
     db: sequelize,
@@ -30,10 +34,10 @@ const sess = {
 app.use(session(sess));
 
 // format time for handlebars
-//const helpers = require('./utils/helpers'); 
+const helpers = require('./utils/helpers'); 
 
 // get handlebars
-const hbs = exphbs.create({}); // { helpers }
+const hbs = exphbs.create({ helpers }); // { helpers }
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
