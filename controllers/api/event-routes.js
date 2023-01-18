@@ -24,14 +24,27 @@ router.get('/:id',withAuth, async (req,res)=>{
                 attributes: ['id','firstName','lastName','email','allergy','fdish'],
                 }],
         });
-        
+        //find dishes committed to the event
         const comboData = await Combo.findAll({
             where: {eventID:req.params.id},
             include: [{
                 model:Dish,
                 include: User
             }]
-        })
+        });
+
+        //find number of attendees to event
+        const attendance = await Combo.count({
+            where: {
+                eventID:req.params.id
+            },
+            // attributes:['userID'],
+            // group: ['userID'],
+        });
+
+        console.log ('line 44 event-routes',attendance);
+        console.log (typeof attendance);
+
         //if data is empty
         //render dashboard with no Events
         if (eventData.length==0 && comboData.length==0){
@@ -41,7 +54,7 @@ router.get('/:id',withAuth, async (req,res)=>{
         //dashboard with event data but no participants
         else if(eventData.length && result2.length==0 ){
             const event = eventData.map(events => events.get({plain: true}));
-            res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName});
+            res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName, data:attendance});
 
         }
         else{
@@ -53,8 +66,12 @@ router.get('/:id',withAuth, async (req,res)=>{
             //check
             console.log('line 54 at event-routes ', view, view2);
 
-            res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName});
-             
+            console.log('line 70 at event-routes', attendance);
+
+            res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance});
+
+
+            
         }
         
     }catch (err) {

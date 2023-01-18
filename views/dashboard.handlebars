@@ -24,7 +24,7 @@
     {{#each event1 as |event|}}
     <div class="card">
         <div class="card-header">
-        <h5><a class="link" href="/api/event/{{id}}">{{theme}} on {{eventDate}}</a></h5>
+        <h5><a class="link" href="/api/event/{{id}}">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
             <p>Organized by {{user.firstName}} {{user.lastName}}</p>
         </div>
     </div>
@@ -41,7 +41,7 @@
     {{#each event2 as |events|}}
     <div class="card">
         <div class="card-header">
-        <h5><a class="link" href="/api/event/{{eventID}}"/a>{{event.theme}} on {{event.eventDate}}</h5>
+        <h5><a class="link" href="/api/event/{{eventID}}"/a>{{event.theme}} on {{moment event.eventDate format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
             <p>Organized by {{event.user.firstName}} {{event.user.lastName}}</p>
         </div>
     </div>
