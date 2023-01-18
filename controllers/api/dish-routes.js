@@ -6,13 +6,19 @@ const { Dish } = require('../../models');
 
 const dishData = require('../../seeds/dishes-seeds');
 
+
+//HOME ROUTES SHOULD BE THE ONLY ONE RENDERING
+//res.render - RESERVED FOR HOME ROUTES ONLY
+//API ROUTES ARE ONLY INTERFACING THROUGH DATA
+
+
 // get all dishes
 // router.get('/dish', async (req, res) => {
-//     res.render('all', { Dish });
+//     ('all', { Dish });
 //   });
   
 //route to get all dishes
-router.get('/api/dish', async (req, res) => {
+router.get('/', async (req, res) => {
   console.log(Dish, "err here");
     //const dishData = await Dish.findAll().catch((err) => { 
     const dishesData = await Dish.findAll().catch((err) => { 
