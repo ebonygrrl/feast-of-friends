@@ -5,7 +5,7 @@ const {Combo,Dish,Event,User}= require('../models');
 
 //HOMEPAGE
 // only show welcome message on home page
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   // If a session exists, redirect the request to the dashboard
   if (req.session.loggedIn) {
     res.redirect('/dashboard');
