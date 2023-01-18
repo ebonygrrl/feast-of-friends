@@ -27,44 +27,50 @@
 // };
 
 const signupFormHandler = async (event) => {
-    event.preventDefault();
-
-    const firstName = document.querySelector('#signup-fname').value.trim();
-    const lastName = document.querySelector('#signup-lname').value.trim();
-    const email = document.querySelector('#signup-email').value.trim();
-    const password = document.querySelector('#signup-password').value.trim();
-    //const favDish = document.querySelector('#signup-favdish').value.trim();
-    // const allergies = document.querySelectorAll('signup-allergies');
-    // let allergiesList = [];
-    
-    // let checkboxValue;
-    // allergies.forEach((i) => {
-    //   if (allergies[i].checked) {
-    //     checkboxValue = allergies[i].value;
-    //   } 
-    //   allergiesList.push(checkboxValue);
-    // });
-    //console.log(allergiesList);   
-    console.log('line 48 sigunup.js',firstName, lastName, email, password);
-
-    if (firstName && lastName && email && password) {
-      //console.log(JSON.stringify({ firstName, lastName, email, password, allergiesList, favDish }))
-      const result = await fetch('/api/user/signup', {
-        method: 'POST',
-        body: JSON.stringify({ firstName, lastName, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      console.log(result);
-
-      if (result.ok) {
-        document.location.replace('/api/dashboard');
-      } else {
-        alert('Failed to sign up.');
-      }
+  event.preventDefault();
+  const firstName = document.querySelector('#signup-fname').value.trim();
+  const lastName = document.querySelector('#signup-lname').value.trim();
+  const email = document.querySelector('#signup-email').value.trim();
+  const password = document.querySelector('#signup-password').value.trim();
+  const fdish = document.querySelector('#signup-favdish').value.trim();
+  const allergies = document.querySelector('.signup-allergies:checked').value;
+  let allergiesList = [];
+  let checkboxValue;
+  for (let i=0; i < allergies.length; i++) {
+    if (allergies[i].checked === true) {
+      checkboxValue += allergies[i].value;
     }
-  };
+    allergiesList.push(checkboxValue);
+  }
+  const allergy = allergiesList.toString();
+  console.log(allergy);
+  if (firstName && lastName && email && password) {
+    const result = await fetch('/api/user/signup', {
+      method: 'POST',
+      body: JSON.stringify({ firstName, lastName, email, password, allergy, fdish }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (result.ok) {
+      document.location.replace('/api/dashboard');
+    } else {
+      alert('Failed to sign up.');
+    }
+  }
+};
+document
+  .querySelector('#signUpBtn')
+  .addEventListener('click', signupFormHandler);
 
-  document
-    .querySelector('#signUpBtn')
-    .addEventListener('click', signupFormHandler);
+
+
+
+
+
+
+
+
+
+
+
+
+
