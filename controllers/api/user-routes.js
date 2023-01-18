@@ -9,7 +9,9 @@ router.post('/signup', async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      allergy: req.body.allergy,
+      fdish: req.body.fdish
     })
     .then(dbUserData => {
       //get the user logged in after sign up

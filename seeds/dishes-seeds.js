@@ -1,4 +1,4 @@
-const { Dish } = require('../models/');
+const { Dish } = require('../models');
 const { uuidValue } = require('./uuid-seeds');
 
 const dishesData = [

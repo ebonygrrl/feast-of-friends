@@ -1,24 +1,28 @@
 const router = require('express').Router();
-const { Dish } = require('../../models/Dish');
+const { Dish } = require('../../models');
 
 //const sequelize = require('../config/connection');
 //const Dish = require('../../models/Dish');
 
-const dishesData = require('../../seeds/dishes-seeds');
+const dishData = require('../../seeds/dishes-seeds');
 
 // get all dishes
-router.get('/dish', async (req, res) => {
-    res.render('all', { Dish });
-  });
+// router.get('/dish', async (req, res) => {
+//     res.render('all', { Dish });
+//   });
   
 //route to get all dishes
-// router.get('/dish', async (req, res) => {
-//     const dishData = await Dish.findAll().catch((err) => { 
-//         res.json(err);
-//       });
-//         const dishe = dishData.map((dishe) => dishe.get({ plain: true }));
-//         res.render('all', { Dish });
-//       });
+router.get('/api/dish', async (req, res) => {
+  console.log(Dish, "err here");
+    //const dishData = await Dish.findAll().catch((err) => { 
+    const dishesData = await Dish.findAll().catch((err) => { 
+      console.log(dishesData, "looking for dD");
+        res.json(err);
+      });
+        const dishe = dishesData.map((dishe) => dishe.get({ plain: true }));
+        console.log("looking for dishe", dishe);
+        res.render('dish', { dishe });
+      });
 
   // get one dish
   // router.get('/dish/:num', async (req, res) => {
