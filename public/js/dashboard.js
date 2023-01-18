@@ -18,7 +18,7 @@ const createPotluckFormHandler = async (event) => {
   const joinPotluckFormHandler = async (event) => {
     event.preventDefault();
 
-      //CHECK
+    //CHECK
     console.log('line 22 in dashboard.js'); 
     //get code data from document
     const eventCode=document.getElementById("event-code").value.trim();
@@ -30,16 +30,13 @@ const createPotluckFormHandler = async (event) => {
         body: JSON.stringify({eventCode}),
         headers: { 'Content-Type': 'application/json' },
       });
-
-      if (response.ok) {
-        //view event
-        document.location.replace(`/api/event/${eventCode}`);
-      } else {
-        alert('Failed to create event.');
+      if (response.ok){
+        document.location.replace(`/event/${eventCode}`);
       }
-
+      else{
+        alert('Failed to join potluck');
+      };
     }
-   
   };
   
 const joinBtn=document.querySelector(".join-event");
