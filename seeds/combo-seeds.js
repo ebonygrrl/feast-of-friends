@@ -22,6 +22,11 @@ const comboData = [
     dishID: '2',
     eventID: uuidValue2
   },
+  {
+    userID: '3',
+    dishID: '3',
+    eventID: uuidValue2
+  },
 ];
 
 const seedCombo = () => Combo.bulkCreate(comboData);

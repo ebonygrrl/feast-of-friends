@@ -1,5 +1,5 @@
 const { Dish } = require('../models');
-const { uuidValue } = require('./uuid-seeds');
+const { uuidValue, uuidValue2 } = require('./uuid-seeds');
 
 const dishesData = [
   {
@@ -17,6 +17,27 @@ const dishesData = [
     //nuts: false
     dishtype: "appetizer",
     dishallergy: "gluten"
+  },
+  {
+    dishname: 'Goulash',
+    preparedby: '3',
+    eventid: uuidValue,
+    //nuts: false
+    dishtype: "entree"
+  },
+  {
+    dishname: 'Chips and Salsa',
+    preparedby: '2',
+    eventid: uuidValue2,
+    //nuts: false
+    dishtype: "appetizer"
+  },
+  {
+    dishname: 'Goulash',
+    preparedby: '3',
+    eventid: uuidValue2,
+    //nuts: false
+    dishtype: "entree"
   },
  
 ];
