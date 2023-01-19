@@ -299,4 +299,19 @@ router.get('/dashboard',withAuth, async (req,res)=>{
 
 });
 
+
+//get dish
+// get all dishes- goes to homeroutes
+// router.get('/dish', async (req, res) => {
+//     return res.render('dish', { Dish });
+//   });
+
+
+//   // get one dish - this goes to homeroutes
+//   router.get('/dish/:num', async (req, res) => {
+//     return res.render('dish', Dish[req.params.num - 1]);
+//   });
+
+
+
 module.exports = router;

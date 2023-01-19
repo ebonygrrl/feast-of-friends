@@ -139,10 +139,7 @@ router.put('/:id', (req, res) => {
 
 
 
-// get all dishes- goes to homeroutes
-// router.get('/dish', async (req, res) => {
-//     ('all', { Dish });
-//   });
+
   
 //route to get all dishes
 // router.get('/', async (req, res) => {
@@ -157,10 +154,7 @@ router.put('/:id', (req, res) => {
 //         res.render('dish', { dishe });
 //       });
 
-  // get one dish - this goes to homeroutes
-  // router.get('/dish/:num', async (req, res) => {
-  //   return res.render('dish', Dish[req.params.num - 1]);
-  // });
+
   
 // route to get one dish
 // router.get('/dish/:id', async (req, res) => {
