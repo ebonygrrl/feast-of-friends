@@ -50,7 +50,10 @@ User.init(
         type: DataTypes.STRING,
         allowNull: true,
     },
-
+    avatar: {
+      type: DataTypes.BLOB('long'),
+      allowNull: true,
+    }
   },
   {
     hooks: {

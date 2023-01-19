@@ -78,6 +78,26 @@ router.post('/', withAuth, (req, res) => {
 // });
 
 
+router.put('/:id', (req, res) => {
+  // update a category by its `id` value
+  const dishe= dishe.findByPk(req.params.id);
+  Dish.update(dishe)
+  .then(dishData => {
+    console.log(dishData, "dish data works?")
+    if (!dishData){
+      res.status(404).json({ message: 'No Category found, Error in ID'});
+      return;
+    }
+    res.json(dishData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
+
+
 
 //delete withAuth and id
 // router.delete('/:id', withAuth, (req, res) => {
