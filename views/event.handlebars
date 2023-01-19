@@ -1,4 +1,4 @@
-
+<div>
 <div class=" container jumbotron theme-title">
 <h3 id="eventTheme">{{event.theme}}</h3>
 <p><span>Invite Code: </span><span id="event-id">{{event.id}}</span> 
@@ -10,11 +10,18 @@
 <p><span>Date: </span><span id="event-date">{{ moment event.eventDate format="dddd hh:mm A MMM DD, YYYY"}}</span></p>
 <p><span>Location: </span><span id="event-location">{{event.where}}</span></p>
 <p><span>Total Attendees: </span><span id="event-attendee">{{data}} </span></p>
-<p><span>Group Allergen Profile: </span><span id="event-attendee">Use combo and user to find allergens</span></p>
-<p><span>Potluck Profile: </span><span id="event-food">Use combo to find how many starters, entree, dessert</span></p>
-<p>&emsp; &emsp; starters:</p>
-<p>&emsp; &emsp; entree:</p>
-<p>&emsp; &emsp; dessert:</p>
+<p><span>Group Allergen Profile (An Attendee Can Have More Than 1 Allergy): </span></p>
+<p>&emsp; &emsp; {{#each allergenSummary as |allergen|}}
+    {{allergen}} <br>&emsp; &emsp; 
+    {{/each}}
+</p>
+<p><span>Potluck Profile: </span></p>
+<p>&emsp; &emsp; {{#each dishSummary as |dishType|}}
+    {{dishType}} <br>&emsp; &emsp; 
+    {{/each}}
+</p>
+</div>
+
 </div>
 
 <div id="dishForm">
