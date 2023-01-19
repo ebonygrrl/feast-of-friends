@@ -10,10 +10,20 @@
 //         method: 'POST',
 //         body: JSON.stringify({ dishname, dishtype, dishallergy }),
 //         headers: { 'Content-Type': 'application/json' },
-//       });
+//       })
+//       .then((data) => data.json()).then((info) => {
+        
+//         console.log('SHOWING INFO CONSOLE',info);
+//         document.location.replace(`/event/${info.id}`);
+//       })
+//       .catch((err) => alert('Failed to create potluck dish', err));
+//     }
+// };
+// const createBtn = document.getElementById("dish-form");
+// createBtn.addEventListener("click", dishFormHandler);
   
 //       if (response.ok) {
-//         document.location.replace('/');
+//         document.location.replace('/api/');
 //       } else {
 //         alert('Failed to add dish.');
 //       }
