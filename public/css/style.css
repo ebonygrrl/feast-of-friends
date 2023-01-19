@@ -12,7 +12,7 @@
 html,body {
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -46,6 +46,7 @@ footer {
     font-size: 12px;
     padding-top: 20px;
     text-align: center;
+    
 }
 
 footer a {
@@ -270,6 +271,37 @@ input[type=checkbox]:checked + label {
     font-size: 80%;
     z-index: 1;
   }
+
+.dang{
+    color:#F28C28 !important ;
+     
+  }
+/* input form for address */
+
+#inputStreet {
+    width: 100%;
+  }
+  
+  #inputCity {
+    width: 50%;
+  }
+  
+  #inputState {
+    width: 15%;
+  }
+  
+  #inputZip {
+    width: 28%;
+  }
+  
+  #inputCounty {
+    width: 45%;
+  }
+  
+  #inputCountry {
+    width: 50%;
+  }
+  
 
 
 /* media queries */
