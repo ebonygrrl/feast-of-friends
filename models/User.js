@@ -50,9 +50,9 @@ User.init(
         allowNull: true,
     },
     avatar: {
-        type: DataTypes.BLOB('long'),
-        allowNull: true,
-    },
+      type: DataTypes.BLOB('long'),
+      allowNull: true,
+    }
   },
   {
     hooks: {
