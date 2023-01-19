@@ -2,6 +2,7 @@ const router = require('express').Router();
 //const { Home } = require('../controllers/');
 const withAuth = require('../utils/auth');
 const {Combo,Dish,Event,User}= require('../models');
+const Op= require('sequelize').Op
 
 //HOMEPAGE
 // only show welcome message on home page
@@ -55,8 +56,8 @@ router.get('/logout', (req, res) => {
 router.get('/event/:id',withAuth, async (req,res)=>{
   //get event info from database
 
-  try{
-      //get data from database
+//   try{
+    //   get data from database
       const eventData = await Event.findOne({
           where:{id:req.params.id},
           attributes: [
@@ -66,15 +67,17 @@ router.get('/event/:id',withAuth, async (req,res)=>{
               'where',
               'organizer',
           ],
-          include: [
-              Combo,{
-              model: User,
-              attributes: ['id','firstName','lastName','email','allergy','fdish'],
+          include: [{
+            model:Combo,
+            include: [{model:User,
+                  attributes: ['allergy'],
               }],
+            
+            }],
       });
       //find dishes committed to the event
       const comboData = await Combo.findAll({
-          where: {eventID:req.params.id},
+          where: {eventID:req.params.id, dishID:{[Op.ne]:null}},
           include: [{
               model:Dish,
               include: User
@@ -90,38 +93,138 @@ router.get('/event/:id',withAuth, async (req,res)=>{
           // group: ['userID'],
       });
 
-      console.log ('line 44 event-routes',attendance);
-      console.log (typeof attendance);
 
       //if data is empty
       //render dashboard with no Events
       if (eventData.length==0 && comboData.length==0){
-          console.log('line 38 event-routes')
-          res.redirect('/dashboard')
+        console.log('line 38 event-routes')
+        res.redirect('/dashboard')
       }
       //dashboard with event data but no participants
       else if(eventData.length && result2.length==0 ){
-          const event = eventData.map(events => events.get({plain: true}));
-          res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName, data:attendance});
+        const event = eventData.map(events => events.get({plain: true}));
+        res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName, data:attendance});
 
       }
       else{
-          const event = eventData.get({plain: true});
-          const dishes = comboData.map(dish => dish.get({plain: true}));
-          const view = JSON.stringify(eventData);
-          const view2 = JSON.stringify(comboData);
+        const event = eventData.get({plain: true});
+        const dishes = comboData.map(dish => dish.get({plain: true}));
 
-          //check
-          console.log('line 54 at event-routes ', view, view2);
+        console.log('line 113 in home-routes',event);
 
-          console.log('line 70 at event-routes', attendance);
+        console.log('line 115',event.combos[0].user.allergy);
+        
+        //ALLERGEN PROFILE
+        //parse through separated by commas, allergy is a string
+        //count allergen
+        //initialize variables
+        let eggs=0;
+        let dairy=0;
+        let peanuts=0;
+        let treeNuts=0; 
+        let fish=0;
+        let shellfish=0;
+        let gluten=0;
+        let soy=0;
+        let sesame=0;
+        let noAllergy=0;
 
-          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance});   
+        for (let j=0, l=event.combos.length; j<l; j++){
+            //create temp array to go through allergens
+            let allergen=event.combos[j].user.allergy;
+            // console.log(event.combos[j].user.allergy);
+            if(allergen){
+                let allergenArray=allergen.split(',');
+                console.log('line 136',allergenArray);
+                //go trough array
+                for (let m=0;m<allergenArray.length;m++){
+                    let allergenHolder=allergenArray[m].toLowerCase();
+                    if (allergenHolder=='eggs'){eggs++;};
+                    if (allergenHolder=='milk/dairy'){dairy++;};
+                    if (allergenHolder=='peanuts'){peanuts++;};
+                    if (allergenHolder=='tree nuts'){treeNuts++;};
+                    if (allergenHolder=='fish'){fish++;};
+                    if (allergenHolder=='shellfish'){shellfish++;};
+                    if (allergenHolder=='gluten'){gluten++;};
+                    if (allergenHolder=='soy'){soy++;};
+                    if (allergenHolder=='sesame'){sesame++;};
+                }
+            }
+            else{ //null
+                console.log('line 146',allergen);
+                noAllergy++;
+            };
+        };
+
+        //create array of strings to pass to handlebars
+        let allergenSummary=[];
+        if(eggs>0){
+            eggs=Math.round((eggs / attendance) * 100) + '%';
+            allergenSummary.push(`Eggs ${eggs} of attendee`);
+        };
+        if(dairy>0){
+            dairy=Math.round((dairy / attendance) * 100) + '%';
+            allergenSummary.push(`Dairy/Milk ${dairy} of attendee`);};
+        if(peanuts>0){
+            peanuts=Math.round((peanuts / attendance) * 100) + '%';
+            allergenSummary.push(`Peanuts ${peanuts} of attendee`);};
+        if(treeNuts>0){
+            treeNuts=Math.round((treeNuts / attendance) * 100) + '%';
+            allergenSummary.push(`Tree Nuts ${treeNuts} of attendee`);};
+        if(fish>0){
+            fish=Math.round((fish / attendance) * 100) + '%';
+            allergenSummary.push(`Fish ${fish} of attendee`);};
+        if(shellfish>0){
+            shellfish=Math.round((shellfish / attendance) * 100) + '%';
+            allergenSummary.push(`Shellfish ${shellfish} of attendee`);};
+        if(gluten>0){
+            gluten=Math.round((gluten/ attendance) * 100) + '%';
+            allergenSummary.push(`Gluten ${gluten} of attendee`);};
+        if(soy>0){
+            soy=Math.round((soy/ attendance) * 100) + '%';
+            allergenSummary.push(`Soy ${soy} of attendee`);};
+        if(sesame>0){
+            sesame=Math.round((sesame / attendance) * 100) + '%';
+            allergenSummary.push(`Sesame ${sesame} of attendee`);};
+        if(noAllergy>0){
+            noAllergy=Math.round((noAllergy / attendance) * 100) + '%';
+            allergenSummary.push(`No indicated allergy ${noAllergy} of attendee`);};
+        console.log('line 190 allergen summary', allergenSummary);
+        //POTLUCK PROFILE
+        //count dishtypes from combo data
+        let appetizer=0;
+        let entree=0;
+        let sides=0;
+        let dessert=0;
+
+        //loop through combo data and count the instances
+        for (let i=0; i<dishes.length;i++){
+            let dishType=dishes[i].dish.dishtype;
+            if (dishType==='appetizer'){
+                appetizer++;
+            };
+            if (dishType==='entree'){
+                entree++;
+            };
+            if (dishType==='sides'){
+                sides++;
+            };
+            if (dishType==='dessert'){
+                dessert++;
+            };
+        };
+
+        //create array of objects to pass to handlebars
+        let dishSummary=[`appetizer: ${appetizer}`,`entree: ${entree}`,`sides: ${sides}`,`dessert: ${dessert}`];
+
+        console.log('line 196 in home-routes');
+
+          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary});   
       }
       
-  }catch (err) {
-      res.status(500).json(err);
-  }
+//   }catch (err) {
+//       res.status(500).json(err);
+//   }
 });
 
 
@@ -155,7 +258,6 @@ router.get('/dashboard',withAuth, async (req,res)=>{
               include: User
           }]
       });
-
 
       //if data is empty
       //render dashboard with no Events
