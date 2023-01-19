@@ -32,13 +32,6 @@ const dishesData = [
     //nuts: false
     dishtype: "appetizer"
   },
-  {
-    dishname: 'Goulash',
-    preparedby: '3',
-    eventid: uuidValue2,
-    //nuts: false
-    dishtype: "entree"
-  },
  
 ];
 
