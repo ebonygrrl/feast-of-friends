@@ -1,5 +1,4 @@
-<div class="container-fluid">
-
+    <div class="container-fluid">
 <div class="row justify-content-around ">
     <div class-" col-md-6  col-xs-12  eventContain  ">
         <div class="jumbotron">
@@ -29,25 +28,33 @@
             {{/each}}
         </p>
         
-        <div class="row edit-del justify-content-center">
+        <div class="row m-5 edit-del justify-content-around">
+            <div>
             <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-warning col" type="submit" id="editEvent">Edit Potluck</button>
             </div> &emsp; 
              <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-success col" type="submit" id="backDashboard">To Dashboard</button>
+                <button class="btn btn-info col" type="submit" id="backDashboard">To Dashboard</button>
             </div> &emsp; 
+            </div>
+            <div>
+            {{#if isAttendee}}
+             <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-dark col" type="submit" id="leavePotluck">Leave Potluck</button> 
+            </div> &emsp;
+            {{else}}
+                <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-success col" type="submit" id="joinPotluck">RSVP To This Potluck</button>
+            </div> &emsp;
+            {{/if}}
+
             {{#if isOrganizer}}
             <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-danger col" type="submit" id="delEvent">Delete Potluck</button>
+                <button class="btn btn-danger col" type="submit" id="delEvent" >Delete Potluck</button>
             </div> &emsp;
-             <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-dark col" type="submit" id="leavePotluck">Leave Potluck</button>
-            </div> 
-            {{else}}
-             <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-dark col" type="submit" id="leavePotluck">Leave Potluck</button>
-            </div> 
             {{/if}}
+            </div>
+
         </div>
         </div>
         </div>
@@ -64,6 +71,7 @@
             </div>
             <!-- close dish summary title -->
             {{!-- dished is intentional and it works --}}
+            {{#if dishes}}
             {{#each dishes as |dished|}}
 
     <div class="card">
@@ -85,9 +93,8 @@
 
 
     </div>
-    {{!-- close eventContain --}}
-
-    {{/each}}
+            {{/each}}
+            {{/if}}
     
 
     {{>#dish-form}}
@@ -95,7 +102,7 @@
     <div class="form-group d-flex justify-content-center">
         <button class="btn btn-info col-3" type="submit" id="addDish"><a class="text-warning" href=""><h3>Dish +</h3></a></button>
     </div>  
-</div>
+    </div>
 
 
     </div>
@@ -108,7 +115,6 @@
 {{!-- for clipboard --}}
 {{!-- https://www.npmjs.com/package/clipboard --}}
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
-<script src="/js/event.js"></script>
 
 {{!-- instantiate clipboard --}}
 <script>
