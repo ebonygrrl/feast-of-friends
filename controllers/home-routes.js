@@ -88,7 +88,7 @@ router.get('/event/:id',withAuth, async (req,res)=>{
                   attributes: ['allergy'],
               }],
             
-            }],
+            },User],
       });
       //find dishes committed to the event
       const comboData = await Combo.findAll({
@@ -107,6 +107,11 @@ router.get('/event/:id',withAuth, async (req,res)=>{
           // attributes:['userID'],
           // group: ['userID'],
       });
+
+      //check is organizer of event is the currentUser
+      const isOrganizer = (req.session.userID==eventData.organizer)? true : false;
+      //check
+      console.log('line 114 at home-routes.js', isOrganizer);
 
 
       //if data is empty
@@ -238,7 +243,7 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
         console.log('line 196 in home-routes');
 
-          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary});   
+          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer});   
       }
       
   }catch (err) {
