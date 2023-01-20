@@ -5,23 +5,25 @@ const saveEditHandler = async (event) => {
     const theme = document.querySelector('#theme').value.trim();
     const when = document.querySelector('#event-Date').value;
     const where = document.querySelector('#location').value.trim();
-    const id = window.location.toString().split('/')[
+    //get id from the url
+    const eventID = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
       ];
     
-    console.log('line 7 editDeleteArticle.js : ',content,title);
+         console.log('line 13 edit-delete-event.js : ',theme, when, where, eventID);
 
-    if (content && title) {
+    if (theme && when && where && eventID) {
 
-        const editURL='/api/edit/'+articleID;
-        const newarticle = await fetch(editURL, {
+        const editURL='/api/event';
+        const newEvent = await fetch(editURL, {
             method: 'PUT',
-            body: JSON.stringify({ content, title }),
+            body: JSON.stringify({ theme, when, where, eventID }),
             headers: { 'Content-Type': 'application/json' },
         }).then(response=> response.json())
         .then(data=> {
-            console.log('article republished');
-            document.location.replace('/api/dashboard');
+            console.log('event changed');
+            //redirect to event page
+            document.location.replace(`/event/${eventID}`);
             
         }).catch((err)=>{
             console.error(err);
@@ -29,8 +31,27 @@ const saveEditHandler = async (event) => {
     };
 }; //closes republish function
 
-//save button
-const saveBtn=document.getElementById(save);
+// //save button
+const saveBtn=document.getElementById('save');
 saveBtn.addEventListener("click",saveEditHandler);
 
-// const backPotluckBtn = 
+
+//GO BACK TO POTLUCK EVENT PAGE
+
+const goBackHandler = (event) =>{
+    event.preventDefault();
+    //get data from the url
+    const eventID = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+      ];
+
+    if(eventID){
+        document.location.replace(`/event/${eventID}`);
+    }
+    else{
+        document.location.replace(`/dashboard`);
+    };
+
+};
+const backPotluckBtn = document.getElementById('backPotluck');
+backPotluckBtn.addEventListener("click",goBackHandler);

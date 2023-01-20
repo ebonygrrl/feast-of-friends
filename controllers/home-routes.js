@@ -43,6 +43,20 @@ router.get('/create',withAuth,(req, res) => {
   res.render('create-event');
 });
 
+//EDIT EVENT LANDING PAGE
+router.get('/edit/:id',withAuth,async (req,res)=>{
+    //get the event from database
+    const editData= Event.findOne({
+        where:{id:req.params.id},
+    }).then(data=>{
+        const event= data.get({plain:true});
+        //check
+        console.log('line 54 ', event);
+        //render it to the edit page
+        res.render('edit-event',{event,loggedIn: req.session.loggedIn, userName: req.session.userName});
+    });
+});
+
 //LOGOUT PAGE
 // logout route - WORKS!
 router.get('/logout', (req, res) => {
@@ -57,7 +71,7 @@ router.get('/logout', (req, res) => {
 router.get('/event/:id',withAuth, async (req,res)=>{
   //get event info from database
 
-//   try{
+  try{
     //   get data from database
       const eventData = await Event.findOne({
           where:{id:req.params.id},
@@ -223,9 +237,9 @@ router.get('/event/:id',withAuth, async (req,res)=>{
           res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary});   
       }
       
-//   }catch (err) {
-//       res.status(500).json(err);
-//   }
+  }catch (err) {
+      res.status(500).json(err);
+  }
 });
 
 
