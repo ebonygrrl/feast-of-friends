@@ -4,13 +4,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-var helpers = require('handlebars-helpers')();
+//const helpers = require('handlebars-helpers')();
 
 // routes / database
 const routes = require('./controllers');
 
 // // import sequelize connection
 const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,13 +39,24 @@ app.use(session(sess));
 // const helpers1 = require('./utils/helpers'); 
 
 // get handlebars
-const hbs = exphbs.create({}); // { helpers }
+// create custom helpers
+const hbs = exphbs.create({
+  /*config*/ 
+  extname:"handlebars", 
+  helpers: { equal:function(a,b, options){return (a==b)?options.fn(this):options.inverse(this)} }
+}); 
+
+// location for partials
 app.engine('handlebars', hbs.engine);
+
 app.set('view engine', 'handlebars');
+
+// register new handlebar function
+//hbs.handlebars.registerHelper('whichPartial', function(context, options) { return 'dynamicPartial' });
 
 // express data parsing
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 // points to public/index.html
 app.use(express.static(path.join(__dirname, 'public')));
