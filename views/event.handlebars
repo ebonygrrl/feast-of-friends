@@ -24,11 +24,7 @@
 
 </div>
 
-<div id="dishForm">
-    <div class="form-group d-flex justify-content-center">
-        <button class="btn btn-info col-3" type="submit" id="addDish"><a class="text-warning" href=""><h3>Dish +</h3></a></button>
-    </div>  
-</div>
+
 <!--close div event input  -->
 <div class="container" id="dishSummary">
     
@@ -58,6 +54,14 @@
     </div>
 
     {{/each}}
+    
+
+    {{>#dish-form}}
+    <div id="dishForm">
+    <div class="form-group d-flex justify-content-center">
+        <button class="btn btn-info col-3" type="submit" id="addDish"><a class="text-warning" href=""><h3>Dish +</h3></a></button>
+    </div>  
+</div>
 
 </div>
 
