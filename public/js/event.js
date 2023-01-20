@@ -1,16 +1,20 @@
+//get eventID
+const potluckID=document.querySelector('#event-id').innerHTML;
 
-// //edit potluck 
-// const editPotluckFormHandler = async (event) => {
-//     event.preventDefault();
+//edit potluck 
+const editPotluckFormHandler = async (event) => {
+    event.preventDefault();
 
-//     //CHECK
-//     console.log('line 7 in event.js');
-//     //navigate to create Potluck Page
-//     document.location.replace('/create');
-//   };
+
+    // console.log(potluckID);
+    //CHECK
+    console.log('line 7 in event.js');
+    //navigate to create Potluck Page
+    document.location.replace(`/edit/${potluckID}`);
+};
   
-//   const signupBtn=document.getElementById("editEvent");
-//   signupBtn.addEventListener("click", editPotluckFormHandler);
+const signupBtn=document.getElementById("editEvent");
+signupBtn.addEventListener("click", editPotluckFormHandler);
 
 
 
