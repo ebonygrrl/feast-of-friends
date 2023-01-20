@@ -1,9 +1,30 @@
 const router = require('express').Router();
+const multer = require('multer');
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
+const path = require("path");
+
+const storage = multer.diskStorage({
+  destination: '/avatars',
+  filename: (req, file, cb) => {
+    return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+      if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+          req.fileValidationError = 'Only image files are allowed!';
+          return cb(new Error('Only image files are allowed!'), false);
+      }
+      cb(null, true);
+  },
+}).single('avatar');
 
 // create new user
-router.post('/signup', async (req, res) => {
+router.post('/signup', upload, async (req, res) => {
+  console.log(req.body);
 
     await User.create({
       firstName: req.body.firstName,
@@ -11,7 +32,8 @@ router.post('/signup', async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       allergy: req.body.allergy,
-      fdish: req.body.fdish
+      fdish: req.body.fdish,
+      avatar: req.body.avatar
     })
     .then(dbUserData => {
       //get the user logged in after sign up
@@ -38,8 +60,7 @@ router.post('/login', async (req, res) => {
       return;
     } 
 
-    // const validPassword = dbUserData.checkPassword(req.body.password);
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    const validPassword = dbUserData.checkPassword(req.body.password);
     
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect email or password. Please try again!' });  
@@ -51,16 +72,6 @@ router.post('/login', async (req, res) => {
     req.session.userName=dbUserData.dataValues.firstName;
     req.session.save();
     
-    // req.session.save(() => {
-    //   req.session.loggedIn = true;
-    //   req.session.userID = dbUserData.dataValues.id;
-    //   req.session.userName = dbUserData.dataValues.firstName;
-    //   res.json({ user: dbUserData, message: 'You are now logged in!' });
-    // });
-
-    // res.send('main', { firstName: req.session.userName });
-
-    // req.session.loggedIn, req.session.userID, req.session.userName);
     res.status(200).json(dbUserData);
     })
     .catch(err => {
