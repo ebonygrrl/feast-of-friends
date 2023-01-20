@@ -125,9 +125,9 @@ router.get('/event/:id',withAuth, async (req,res)=>{
         const event = eventData.get({plain: true});
         const dishes = comboData.map(dish => dish.get({plain: true}));
 
-        console.log('line 113 in home-routes',event);
+        console.log('line 128 in home-routes',event);
 
-        console.log('line 115',event.combos[0].user.allergy);
+        // console.log('line 115',event.combos[0].user.allergy);
         
         //ALLERGEN PROFILE
         //parse through separated by commas, allergy is a string
@@ -144,13 +144,15 @@ router.get('/event/:id',withAuth, async (req,res)=>{
         let sesame=0;
         let noAllergy=0;
 
+        console.log('line 147 in home-routes');
+
         for (let j=0, l=event.combos.length; j<l; j++){
             //create temp array to go through allergens
             let allergen=event.combos[j].user.allergy;
             // console.log(event.combos[j].user.allergy);
             if(allergen){
                 let allergenArray=allergen.split(',');
-                console.log('line 136',allergenArray);
+                console.log('line 155',allergenArray);
                 //go trough array
                 for (let m=0;m<allergenArray.length;m++){
                     let allergenHolder=allergenArray[m].toLowerCase();
@@ -166,10 +168,12 @@ router.get('/event/:id',withAuth, async (req,res)=>{
                 }
             }
             else{ //null
-                console.log('line 146',allergen);
+                console.log('line 171',allergen);
                 noAllergy++;
             };
         };
+
+        console.log('line 176 in home-routes');
 
         //create array of strings to pass to handlebars
         let allergenSummary=[];
@@ -280,18 +284,18 @@ router.get('/dashboard',withAuth, async (req,res)=>{
           console.log('line 45 dashboard-routes')
           res.render('dashboard');
       }
-      //dashboard with one organized event
+      //dashboard with organized potluck but not rsvped to any
       else if(result.length && result2.length==0 ){
           const event1 = result.map(event => event.get({plain: true}));
           res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
       }
-      //dashboard with one participating event
+      //dashboard with one rsvped to potluck but not organized event
       else if(result.length==0 && result2.length){
           const event2 = result2.map(event => event.get({plain: true}));
           res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
-      }
+      } //dashboard with both organized and rsvped events
       else{
           const event1 = result.map(event => event.get({plain: true}));
           const event2 = result2.map(event => event.get({plain: true}));
