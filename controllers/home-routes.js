@@ -19,7 +19,8 @@ router.get('/', async (req, res) => {
 //SIGNUP PAGE
 // sign up route
 router.get('/signup', (req, res) => {
-    res.render('authentication', { authType: register });
+
+    res.render('authentication', { whichPartial: function() { return 'signup' } });
 });
 
 //LOGIN PAGE
@@ -30,7 +31,8 @@ router.get('/login', (req, res) => {
     res.redirect('/dashboard');
     return;
   }
-  res.render('authentication', { authType: login });
+
+  res.render('authentication', { whichPartial: function() { return 'login' } });
 });
 
 
