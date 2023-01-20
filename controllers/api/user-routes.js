@@ -5,7 +5,9 @@ const withAuth = require('../../utils/auth');
 const path = require("path");
 
 const storage = multer.diskStorage({
-  destination: '/avatars',
+  destination: function (req,file,cb) {
+    cb(null, __dirname+'/public/avatars')
+  },
   filename: (req, file, cb) => {
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }

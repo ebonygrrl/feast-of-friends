@@ -27,6 +27,34 @@ const toDashboardFormHandler = (event) => {
 const toDashBtn=document.getElementById("backDashboard");
 toDashBtn.addEventListener("click", toDashboardFormHandler);
 
+//leave Potluck Button
+const leavePotluckFormHandler = async (event) => {
+    event.preventDefault();
+
+        //ask if user is sure to leave event
+        let leavePrompt=confirm('Are you sure you want to leave this potluck?');
+
+        if(potluckID && leavePrompt){
+            const response = await fetch(`/api/combo/`,{
+                method: 'DELETE',
+                body: JSON.stringify({ potluck_ID: potluckID }),
+                headers: { 'Content-Type': 'application/json' },
+              }).then((data)=>data.json()).then((info)=>{
+                
+                console.log('line 41 event.js',info);
+                //after delete navigate to dashboard
+                document.location.replace(`/dashboard`);
+              }).catch((err)=>alert('Failed to leave potluck.', err));
+        }
+
+};
+
+const leaveBtn=document.getElementById('leavePotluck');
+leaveBtn.addEventListener("click", leavePotluckFormHandler);
+
+
+
+
 //delete potluck
 const deletePotluckFormHandler = async (event) => {
     event.preventDefault();

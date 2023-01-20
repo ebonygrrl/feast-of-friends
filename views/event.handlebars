@@ -15,6 +15,7 @@
         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
         </svg></i>
         </p>
+         <p><span class="text-primary">Organized By: </span><span id="event-location">{{event.user.firstName}} {{event.user.lastName}}</span></p>
         <p><span class="text-primary">Date: </span><span id="event-date">{{ moment event.eventDate format="dddd hh:mm A MMM DD, YYYY"}}</span></p>
         <p><span class="text-primary">Location: </span><span id="event-location">{{event.where}}</span></p>
         <p><span class="text-primary">Total Attendees: </span><span id="event-attendee">{{data}} </span></p>
@@ -33,9 +34,21 @@
             <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-warning col" type="submit" id="editEvent">Edit Potluck</button>
             </div> &emsp; 
+             <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-success col" type="submit" id="backDashboard">To Dashboard</button>
+            </div> &emsp; 
+            {{#if isOrganizer}}
             <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-danger col" type="submit" id="delEvent">Delete Potluck</button>
+            </div> &emsp;
+             <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-dark col" type="submit" id="leavePotluck">Leave Potluck</button>
             </div> 
+            {{else}}
+             <div class="form-group d-flex justify-content-center">
+                <button class="btn btn-dark col" type="submit" id="leavePotluck">Leave Potluck</button>
+            </div> 
+            {{/if}}
         </div>
         </div>
 
