@@ -6,7 +6,7 @@ const Op= require('sequelize').Op
 
 //HOMEPAGE
 // only show welcome message on home page
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   // If a session exists, redirect the request to the dashboard
   if (req.session.loggedIn) {
     res.redirect('/dashboard');
@@ -19,19 +19,18 @@ router.get('/', withAuth, async (req, res) => {
 //SIGNUP PAGE
 // sign up route
 router.get('/signup', (req, res) => {
-  res.render('signup');
+    res.render('authentication', { authType: register });
 });
 
 //LOGIN PAGE
 // // login route
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the dashboard
-  // if (req.session.loggedIn) {
-  //   res.redirect('/dashboard');
-  //   return;
-  // }
-
-  res.render('login');
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+  res.render('authentication', { authType: login });
 });
 
 
