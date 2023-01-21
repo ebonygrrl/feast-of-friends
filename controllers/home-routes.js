@@ -43,6 +43,20 @@ router.get('/create',withAuth,(req, res) => {
   res.render('create-event');
 });
 
+//EDIT EVENT LANDING PAGE
+router.get('/edit/:id',withAuth,async (req,res)=>{
+    //get the event from database
+    const editData= Event.findOne({
+        where:{id:req.params.id},
+    }).then(data=>{
+        const event= data.get({plain:true});
+        //check
+        console.log('line 54 ', event);
+        //render it to the edit page
+        res.render('edit-event',{event,loggedIn: req.session.loggedIn, userName: req.session.userName});
+    });
+});
+
 //LOGOUT PAGE
 // logout route - WORKS!
 router.get('/logout', (req, res) => {
@@ -57,7 +71,7 @@ router.get('/logout', (req, res) => {
 router.get('/event/:id',withAuth, async (req,res)=>{
   //get event info from database
 
-//   try{
+  try{
     //   get data from database
       const eventData = await Event.findOne({
           where:{id:req.params.id},
@@ -74,7 +88,7 @@ router.get('/event/:id',withAuth, async (req,res)=>{
                   attributes: ['allergy'],
               }],
             
-            }],
+            },User],
       });
       //find dishes committed to the event
       const comboData = await Combo.findAll({
@@ -94,6 +108,11 @@ router.get('/event/:id',withAuth, async (req,res)=>{
           // group: ['userID'],
       });
 
+      //check is organizer of event is the currentUser
+      const isOrganizer = (req.session.userID==eventData.organizer)? true : false;
+      //check
+      console.log('line 114 at home-routes.js', isOrganizer);
+
 
       //if data is empty
       //render dashboard with no Events
@@ -111,9 +130,9 @@ router.get('/event/:id',withAuth, async (req,res)=>{
         const event = eventData.get({plain: true});
         const dishes = comboData.map(dish => dish.get({plain: true}));
 
-        console.log('line 113 in home-routes',event);
+        console.log('line 128 in home-routes',event);
 
-        console.log('line 115',event.combos[0].user.allergy);
+        // console.log('line 115',event.combos[0].user.allergy);
         
         //ALLERGEN PROFILE
         //parse through separated by commas, allergy is a string
@@ -130,13 +149,15 @@ router.get('/event/:id',withAuth, async (req,res)=>{
         let sesame=0;
         let noAllergy=0;
 
+        console.log('line 147 in home-routes');
+
         for (let j=0, l=event.combos.length; j<l; j++){
             //create temp array to go through allergens
             let allergen=event.combos[j].user.allergy;
             // console.log(event.combos[j].user.allergy);
             if(allergen){
                 let allergenArray=allergen.split(',');
-                console.log('line 136',allergenArray);
+                console.log('line 155',allergenArray);
                 //go trough array
                 for (let m=0;m<allergenArray.length;m++){
                     let allergenHolder=allergenArray[m].toLowerCase();
@@ -152,10 +173,12 @@ router.get('/event/:id',withAuth, async (req,res)=>{
                 }
             }
             else{ //null
-                console.log('line 146',allergen);
+                console.log('line 171',allergen);
                 noAllergy++;
             };
         };
+
+        console.log('line 176 in home-routes');
 
         //create array of strings to pass to handlebars
         let allergenSummary=[];
@@ -220,12 +243,12 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
         console.log('line 196 in home-routes');
 
-          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary});   
+          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer});   
       }
       
-//   }catch (err) {
-//       res.status(500).json(err);
-//   }
+  }catch (err) {
+      res.status(500).json(err);
+  }
 });
 
 
@@ -266,18 +289,18 @@ router.get('/dashboard',withAuth, async (req,res)=>{
           console.log('line 45 dashboard-routes')
           res.render('dashboard');
       }
-      //dashboard with one organized event
+      //dashboard with organized potluck but not rsvped to any
       else if(result.length && result2.length==0 ){
           const event1 = result.map(event => event.get({plain: true}));
           res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
       }
-      //dashboard with one participating event
+      //dashboard with one rsvped to potluck but not organized event
       else if(result.length==0 && result2.length){
           const event2 = result2.map(event => event.get({plain: true}));
           res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
-      }
+      } //dashboard with both organized and rsvped events
       else{
           const event1 = result.map(event => event.get({plain: true}));
           const event2 = result2.map(event => event.get({plain: true}));

@@ -29,13 +29,17 @@ const createPotluckFormHandler = async (event) => {
         method: 'POST',
         body: JSON.stringify({eventCode}),
         headers: { 'Content-Type': 'application/json' },
+      }).then((data)=>{
+        console.log('line 34 dashboard.js response: ', data.json());
+        if (data.ok){
+          document.location.replace(`/event/${eventCode}`);
+        }
+        else{
+          alert("You already RSVPed to this potluck.", data);
+        };
       });
-      if (response.ok){
-        document.location.replace(`/event/${eventCode}`);
-      }
-      else{
-        alert('Failed to join potluck');
-      };
+
+ 
     }
   };
   

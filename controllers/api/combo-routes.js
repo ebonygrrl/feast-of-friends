@@ -3,26 +3,73 @@ const { Combo } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //add user to event via combo
-router.post('/',withAuth,(req,res)=>{
+router.post('/',withAuth,async (req,res)=>{
     try{
          //check
-        console.log('line 8 at combo-route', req.body);
+        console.log('line 9 at combo-route', req.body);
 
-        //create combo
-        Combo.create({
-            userID: req.session.userID,
-            // dishID may not be necessary
-            eventID: req.body.eventCode
-        }).then(data=>{
+        //first find if the combo already exist
+        const rsvp=await Combo.findOne({
+            where: {
+                userID: req.session.userID,
+                eventID: req.body.eventCode
+            }
+        });
 
-            res.status(200).json(data);
+        console.log('line 19 at combo-route', rsvp);
 
-        })
+        //if rsvp exist alert user that user already rsvped
+        if (rsvp){
+            res.status('401').send({error:`${req.session.userName}, you already RSVPed to this event.`});
+        
+        } else { //create rsvp through combo
+
+                    //create combo
+            Combo.create({
+                userID: req.session.userID,
+                // dishID may not be necessary
+                eventID: req.body.eventCode
+            }).then(data=>{
+
+                res.status(200).json(data);
+
+        });
+
+        };
+
 
     } catch (err) {
-    res.status(400).json(err);
+
+        res.status(400).json(err);
   }
 });
+
+//leave potluck by deleting combo 
+router.delete('/',withAuth,(req,res)=>{
+
+    //check
+    console.log('line 51 combo-routes.js', req.body.potluck_ID);
+    
+    Combo.destroy({
+      where:{
+        userID: req.session.userID,
+        eventID: req.body.potluck_ID
+      }
+    }).then(deletedRSVP=>{
+  
+      //check if deleted
+      if(!deletedRSVP){
+        res.status(404).json({message: 'No rsvp record found.'});
+        return;
+      }
+      //check
+      console.log('line 66 combo-routes.js', deletedRSVP);
+  
+      res.json(deletedRSVP);
+    }).catch (err=>{
+      res.status(500).json(err);
+    });
+  });
 
 //router get all combo
 // router.get('/', async (req,res)=>{
