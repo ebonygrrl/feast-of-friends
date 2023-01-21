@@ -27,32 +27,68 @@ const toDashboardFormHandler = (event) => {
 const toDashBtn=document.getElementById("backDashboard");
 toDashBtn.addEventListener("click", toDashboardFormHandler);
 
+
+  //join potluck
+const joinPotluckFormHandler = async (event) => {
+    event.preventDefault();
+
+    //CHECK
+    console.log('line 36 in event.js'); 
+    
+    if (potluckID){
+        let eventCode=potluckID;
+        const response=await fetch('/api/combo',{
+        method: 'POST',
+        body: JSON.stringify({eventCode}),
+        headers: { 'Content-Type': 'application/json' },
+         }).then((data)=>{
+         console.log('line 47 event.js response: ', data.json());
+            if (data.ok){
+            document.location.replace(`/event/${potluckID}`);
+            }
+            else{
+            alert("You already RSVPed to this potluck.", data);
+            };
+        });
+    }
+  };
+  
+const joinBtn=document.getElementById("joinPotluck");
+if(joinBtn){
+    joinBtn.addEventListener("click", joinPotluckFormHandler);
+};
+
+
+
 //leave Potluck Button
 const leavePotluckFormHandler = async (event) => {
     event.preventDefault();
+    
+    console.log('line 67 event.js leave potluck');
 
-        //ask if user is sure to leave event
-        let leavePrompt=confirm('Are you sure you want to leave this potluck?');
+    //ask if user is sure to leave event
+    let leavePrompt=confirm('Are you sure you want to leave this potluck?');
 
-        if(potluckID && leavePrompt){
-            const response = await fetch(`/api/combo/`,{
-                method: 'DELETE',
-                body: JSON.stringify({ potluck_ID: potluckID }),
-                headers: { 'Content-Type': 'application/json' },
-              }).then((data)=>data.json()).then((info)=>{
-                
-                console.log('line 41 event.js',info);
-                //after delete navigate to dashboard
-                document.location.replace(`/dashboard`);
-              }).catch((err)=>alert('Failed to leave potluck.', err));
-        }
+    if(potluckID && leavePrompt){
+        const response = await fetch(`/api/combo/`,{
+            method: 'DELETE',
+            body: JSON.stringify({ potluckID }),
+            headers: { 'Content-Type': 'application/json' },
+            }).then((data)=>data.json()).then((info)=>{
+            
+            console.log('line 41 event.js',info);
+            //after delete navigate to dashboard
+            document.location.replace(`/dashboard`);
+
+            }).catch((err)=>alert('Failed to leave potluck.', err));
+    };
 
 };
-
-const leaveBtn=document.getElementById('leavePotluck');
-leaveBtn.addEventListener("click", leavePotluckFormHandler);
-
-
+const leaveBtn=document.querySelector("#leavePotluck");
+   
+if(leaveBtn){
+    leaveBtn.addEventListener("click", leavePotluckFormHandler);
+};
 
 
 //delete potluck
@@ -83,38 +119,13 @@ const deletePotluckFormHandler = async (event) => {
 };
 
 
-
-const delBtn= document.getElementById("delEvent");
-delBtn.addEventListener("click", deletePotluckFormHandler);
-
-
-
+const delBtn= document.getElementById('delEvent');
+if(delBtn){
+delBtn.addEventListener('click', deletePotluckFormHandler);
+};
 
 
-//   //join potluck
-//   const joinPotluckFormHandler = async (event) => {
-//     event.preventDefault();
 
-//     //CHECK
-//     console.log('line 22 in dashboard.js'); 
-//     //get code data from document
-//     const eventCode=document.getElementById("event-code").value.trim();
-//     console.log('line 25 at dashboard.js ', eventCode );
-    
-//     if (eventCode){
-//       const response=await fetch('/api/combo',{
-//         method: 'POST',
-//         body: JSON.stringify({eventCode}),
-//         headers: { 'Content-Type': 'application/json' },
-//       });
-//       if (response.ok){
-//         document.location.replace(`/event/${eventCode}`);
-//       }
-//       else{
-//         alert('Failed to join potluck');
-//       };
-//     }
-//   };
-  
-// const joinBtn=document.querySelector(".join-event");
-// joinBtn.addEventListener("submit", joinPotluckFormHandler);
+
+
+

@@ -110,29 +110,50 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
       //check is organizer of event is the currentUser
       const isOrganizer = (req.session.userID==eventData.organizer)? true : false;
-      //check
-      console.log('line 114 at home-routes.js', isOrganizer);
 
+      let isAttendee = false;
 
       //if data is empty
       //render dashboard with no Events
-      if (eventData.length==0 && comboData.length==0){
+      if (eventData.length==0){
         console.log('line 38 event-routes')
         res.redirect('/dashboard')
       }
       //dashboard with event data but no participants
-      else if(eventData.length && result2.length==0 ){
-        const event = eventData.map(events => events.get({plain: true}));
-        res.render('event', {event, loggedIn: req.session.loggedIn, userName: req.session.userName, data:attendance});
+    //   else if(eventData.length && attendance==0 ){
+    //     const event = eventData.map(events => events.get({plain: true}));
+    //     const dishes = false;
+    //     let allergenSummary=['No Attendees',];
+    //     let dishSummary=[`appetizer: 0`,`entree: 0`,`sides: 0`,`dessert: 0`];
 
-      }
+    //     res.render('event', {event, dishes, loggedIn: req.session.loggedIn, userName: req.session.userName, data:attendance, dishSummary,allergenSummary,isOrganizer, isAttendee});
+
+
+    //   }
       else{
         const event = eventData.get({plain: true});
-        const dishes = comboData.map(dish => dish.get({plain: true}));
+        
+        //if combo data empty
+        if(comboData.length ==0){
+            var dishes =[];
+        }
+        else{
+            var dishes = comboData.map(dish => dish.get({plain: true}));
+        };
 
-        console.log('line 128 in home-routes',event);
+        console.log('line 144 in home-routes',event);
 
-        // console.log('line 115',event.combos[0].user.allergy);
+        //check if user is attendee of event
+        //loop through combos
+
+        for (let m=0, k=event.combos.length; m<k ;m++){
+            console.log('line 137 at home-routes',event.combos[m].userID);
+            //if user is found in combo data then user rsvped
+            if (event.combos[m].userID==req.session.userID){
+                isAttendee=true;
+            }
+        };
+
         
         //ALLERGEN PROFILE
         //parse through separated by commas, allergy is a string
@@ -243,7 +264,7 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
         console.log('line 196 in home-routes');
 
-          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer});   
+          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer,isAttendee});   
       }
       
   }catch (err) {

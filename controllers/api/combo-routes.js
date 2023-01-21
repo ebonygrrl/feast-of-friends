@@ -53,7 +53,7 @@ router.delete('/',withAuth,(req,res)=>{
     Combo.destroy({
       where:{
         userID: req.session.userID,
-        eventID: req.body.potluck_ID
+        eventID: req.body.potluckID
       }
     }).then(deletedRSVP=>{
   
