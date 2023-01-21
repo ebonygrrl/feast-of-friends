@@ -22,18 +22,18 @@ const dishData = require('../../seeds/dishes-seeds');
 // });
 
 //find one dish item by id
-router.get('/:id', (req, res) => {
-  Dish.findAll({
-          where: {
-              id: req.params.id
-          }
-      })
-      .then(dishData => res.json(dishData))
-      .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-      })
-});
+// router.get('/:id', (req, res) => {
+//   Dish.findAll({
+//           where: {
+//               id: req.params.id
+//           }
+//       })
+//       .then(dishData => res.json(dishData))
+//       .catch(err => {
+//           console.log(err);
+//           res.status(500).json(err);
+//       })
+// });
 
 
 //POst dish with Auth

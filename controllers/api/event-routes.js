@@ -78,4 +78,3 @@ router.delete('/',withAuth,(req,res)=>{
 });
 
 module.exports = router;
-
