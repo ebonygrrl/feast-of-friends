@@ -22,18 +22,18 @@ const dishData = require('../../seeds/dishes-seeds');
 // });
 
 //find one dish item by id
-router.get('/:id', (req, res) => {
-  Dish.findAll({
-          where: {
-              id: req.params.id
-          }
-      })
-      .then(dishData => res.json(dishData))
-      .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-      })
-});
+// router.get('/:id', (req, res) => {
+//   Dish.findAll({
+//           where: {
+//               id: req.params.id
+//           }
+//       })
+//       .then(dishData => res.json(dishData))
+//       .catch(err => {
+//           console.log(err);
+//           res.status(500).json(err);
+//       })
+// });
 
 
 //POst dish with Auth
@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   console.log(req.session)
   console.log(req.body)
-  // if (req.session) {
+   //if (req.session) {
     Dish.create({
        dishname: req.body.dishname,
        //static
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(400).json(err);
     })
-  // }
+   //}
 });
 
 
@@ -88,23 +88,23 @@ router.post('/', (req, res) => {
 // });
 
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
-  const dishe= dishe.findByPk(req.params.id);
-  Dish.update(dishe)
-  .then(dishData => {
-    console.log(dishData, "dish data works?")
-    if (!dishData){
-      res.status(404).json({ message: 'No Category found, Error in ID'});
-      return;
-    }
-    res.json(dishData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-  });
+// router.put('/:id', (req, res) => {
+//   // update a category by its `id` value
+//   const dishe= dishe.findByPk(req.params.id);
+//   Dish.update(dishe)
+//   .then(dishData => {
+//     console.log(dishData, "dish data works?")
+//     if (!dishData){
+//       res.status(404).json({ message: 'No Category found, Error in ID'});
+//       return;
+//     }
+//     res.json(dishData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+//   });
 
 
 
