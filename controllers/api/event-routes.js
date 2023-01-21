@@ -25,7 +25,6 @@ router.post('/', withAuth,(req,res)=>{
 
 })
 
-
 //edit event
 router.put('/', withAuth,(req,res)=>{
   try{
@@ -46,10 +45,7 @@ router.put('/', withAuth,(req,res)=>{
    res.status(500).json(err);
  }
 
-});
-
-
-
+})
 
 //delete event
 router.delete('/',withAuth,(req,res)=>{

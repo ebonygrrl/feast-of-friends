@@ -6,7 +6,17 @@ const dishFormHandler = async (event) => {
     const dishname = document.querySelector('#famous-dish').value.trim();
     const dishtype = document.querySelector('#dish-type').value.trim();
     const dishallergy = document.querySelector('#dish-allergies').value.trim();
+    const dishname = document.querySelector('#famous-dish').value.trim();
+    const dishtype = document.querySelector('#dish-type').value.trim();
+    const dishallergy = document.querySelector('#dish-allergies').value.trim();
   
+    if (dishname && dishtype && dishallergy) {
+      const response = await fetch('/api/dish', {
+        method: 'POST',
+        body: JSON.stringify({ dishname, dishtype, dishallergy }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then((data) => data.json()).then((info) => {
     if (dishname && dishtype && dishallergy) {
       const response = await fetch('/api/dish', {
         method: 'POST',
