@@ -22,7 +22,7 @@ const dishFormHandler = async (event) => {
     }
 };
 
-document.querySelector('dishform').addEventListener('submit', dishFormHandler);
+document.querySelector("#dishform").addEventListener('click', dishFormHandler);
 
 // const createBtn = document.getElementById("dish-form");
 // createBtn.addEventListener("click", dishFormHandler);
