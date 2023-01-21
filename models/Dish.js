@@ -37,10 +37,6 @@ Dish.init(
         type: DataTypes.STRING,
         allowNull: true,
       }
-    
-    // nuts: {
-    //   type: DataTypes.BOOLEAN
-    // }
   },
   {
     sequelize,
