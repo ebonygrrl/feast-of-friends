@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Dish } = require('../../models');
+const { Dish, Combo } = require('../../models');
 const withAuth = require('../../utils/auth')
 //const sequelize = require('../config/connection');
 //const Dish = require('../../models/Dish');
@@ -11,15 +11,15 @@ const dishData = require('../../seeds/dishes-seeds');
 //res.render - RESERVED FOR HOME ROUTES ONLY
 //API ROUTES ARE ONLY INTERFACING THROUGH DATA
 
-//find all dishes
-router.get('/', (req, res) => {
-    Dish.findAll({})
-        .then(dishData => res.json(dishData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        })
-});
+// //find all dishes
+// router.get('/', (req, res) => {
+//     Dish.findAll({})
+//         .then(dishData => res.json(dishData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         })
+// });
 
 //find one dish item by id
 router.get('/:id', (req, res) => {
@@ -37,24 +37,34 @@ router.get('/:id', (req, res) => {
 
 
 //POst dish with Auth
-router.post('/', withAuth, (req, res) => {
-  if (req.session) {
+//need to find the correct field input for prepared by and eventid for it to work 
+//correctly with the designated user signing up their dish
+//router.post('/', withAuth, (req,res) => {
+router.post('/', (req, res) => {
+  console.log(req.session)
+  console.log(req.body)
+  // if (req.session) {
     Dish.create({
        dishname: req.body.dishname,
-       preparedby: req.body.preparedby,
-       eventid: req.body.eventid,
+       //static
+       //change preparedby userID
+       preparedby: 1,
+       //static
+       //change eventid ID to corresponding field/id number this is from a logged in user
+       eventid: "7063254f-79bc-49f6-947f-798c6b588852",
        dishtype: req.body.dishtype,
+       dishallergy: req.body.dishallergy
     })
     .then(dishData => res.json(dishData))
     .catch(err => {
       console.log(err);
       res.status(400).json(err);
     })
-  }
+  // }
 });
 
 
-//PUT 
+//PUT - on events 
 // router.put('/:id', withAuth, (req, res) => {
 //   Dish.update({
 //     dishname: req.body.dishname 
