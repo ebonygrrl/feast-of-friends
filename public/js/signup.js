@@ -37,7 +37,9 @@ const updateImageDisplay = () => {
   }
 };
 
+if(profileImg){
 profileImg.addEventListener('change', updateImageDisplay);
+};
 
 const fileTypes = [
   "image/gif",
@@ -104,5 +106,6 @@ const signupFormHandler = async e => {
     }
   }
 };
-
+if(document.querySelector('.signup-form')){
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+};

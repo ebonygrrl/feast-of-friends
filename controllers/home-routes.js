@@ -308,7 +308,7 @@ router.get('/dashboard',withAuth, async (req,res)=>{
       //render dashboard with no Events
       if (result.length==0 && result2.length==0){
           console.log('line 45 dashboard-routes')
-          res.render('dashboard');
+          res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName});
       }
       //dashboard with organized potluck but not rsvped to any
       else if(result.length && result2.length==0 ){
