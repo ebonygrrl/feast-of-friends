@@ -301,17 +301,40 @@ router.get('/dashboard',withAuth, async (req,res)=>{
 });
 
 
-//get dish
-// get all dishes- goes to homeroutes
-// router.get('/dish', async (req, res) => {
-//     return res.render('dish', { Dish });
-//   });
+
+// // get all dishes-  homeroutes
+// router.get('/api/dish', (req, res) => {
+//     Dish.findAll({})
+//         .then(dishData => res.json(dishData))
+//         .catch(err => {
+//             console.log(err);
+//             res.render('dish',{ Dish });
+//         })
+// });
+
+//get dish - renders js file, form shows up to fill out info , event is created when
+//button is clicked and dish is added, then table with added dish will show?
+//create-event
+router.get('/dish', (req, res) => {
+
+    res.render('authentication', { whichPartial: function() { return 'dish-form' } });
+});
 
 
 //   // get one dish - this goes to homeroutes
-//   router.get('/dish/:num', async (req, res) => {
-//     return res.render('dish', Dish[req.params.num - 1]);
+//   router.get('/dish/:id',withAuth, async (req, res) => {
+//     return res.render('dish', Dish [req.params.id]);
 //   });
+
+
+
+
+
+
+//   router.get('/dish/:num', async (req, res) => {
+//     return res.render('dish', Dish [req.params.num - 1]);
+//   });
+
 
 
 

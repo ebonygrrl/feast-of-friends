@@ -1,3 +1,5 @@
+//gets data the user puts in the dish-form.handlebars form to create an event
+//the event created should be a dish being added 
 const dishFormHandler = async (event) => {
     event.preventDefault();
   
@@ -20,17 +22,9 @@ const dishFormHandler = async (event) => {
     }
 };
 
-const createBtn = document.getElementById("dish-form");
-createBtn.addEventListener("click", dishFormHandler);
+document.querySelector('dishform').addEventListener('submit', dishFormHandler);
+
+// const createBtn = document.getElementById("dish-form");
+// createBtn.addEventListener("click", dishFormHandler);
   
-//       if (response.ok) {
-//         document.location.replace('/api/');
-//       } else {
-//         alert('Failed to add dish.');
-//       }
-//     }
-//   };
   
-//   document
-//     .querySelector('.dish-form')
-//     .addEventListener('submit', dishFormHandler);

@@ -11,29 +11,29 @@ const dishData = require('../../seeds/dishes-seeds');
 //res.render - RESERVED FOR HOME ROUTES ONLY
 //API ROUTES ARE ONLY INTERFACING THROUGH DATA
 
-//find all dishes
-router.get('/', (req, res) => {
-    Dish.findAll({})
-        .then(dishData => res.json(dishData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        })
-});
+// //find all dishes
+// router.get('/', (req, res) => {
+//     Dish.findAll({})
+//         .then(dishData => res.json(dishData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         })
+// });
 
 //find one dish item by id
-router.get('/:id', (req, res) => {
-  Dish.findAll({
-          where: {
-              id: req.params.id
-          }
-      })
-      .then(dishData => res.json(dishData))
-      .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-      })
-});
+// router.get('/:id', (req, res) => {
+//   Dish.findAll({
+//           where: {
+//               id: req.params.id
+//           }
+//       })
+//       .then(dishData => res.json(dishData))
+//       .catch(err => {
+//           console.log(err);
+//           res.status(500).json(err);
+//       })
+// });
 
 
 //POst dish with Auth
@@ -54,7 +54,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 
-//PUT 
+//PUT - on events 
 // router.put('/:id', withAuth, (req, res) => {
 //   Dish.update({
 //     dishname: req.body.dishname 
