@@ -1,5 +1,6 @@
 <div class="container-fluid">
 
+<<<<<<< HEAD
 <div class="row justify-content-around ">
     <div class-" col-md-6  col-xs-12  eventContain  ">
         <div class="jumbotron">
@@ -7,6 +8,36 @@
         <div class="theme-title text-center dang">
          
         <h3 id="eventTheme" >{{event.theme}} </h3>
+=======
+</div>
+
+
+<!--close div event input  -->
+<div class="container" id="dishSummary">
+    
+    <div class="container" id="summaryTitle">
+        <h4>Food Signed Up</h4>
+    </div>
+    <!-- close dish summary title -->
+    {{!-- dished is intentional and it works --}}
+    {{#each dishes as |dished|}}
+
+    <div class="card">
+        <div class="row ">
+            <div class="col-sm-9">
+                <div class="card-header" style="height:200px">
+                    <h5><a class="link" href="">{{dish.dishname}}</a></h5>
+                        <p>Contributed by {{dish.user.firstName}} {{dish.user.lastName}}</p>
+                        <p>Food Type: {{dish.dishtype}}</p>
+                        <p>Food Description: ingredients and allergens here</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card-img no-gutters text-center align-middle " style="height:200px">
+                    <img class=" rounded-circle img-thumbnail img-fluid " style="width: auto; height: 175px;" id="{{user.email}}"src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" alt="picture of {{user.firstName}}">
+                </div>
+            </div>
+>>>>>>> 3451c44 (handlebar changes for dish, moved button on events.handlebars)
         </div>
 
         <p><span class="text-primary">Invite Code: </span><span id="event-id">{{event.id}}</span> 
@@ -55,6 +86,7 @@
     </div>
     {{!-- close eventContain --}}
 
+<<<<<<< HEAD
     <div class="col-md-6  col-xs-12  dishContain">
         
         <div class="" id="dishSummary" style="overflow-y:scroll">
@@ -65,6 +97,17 @@
             <!-- close dish summary title -->
             {{!-- dished is intentional and it works --}}
             {{#each dishes as |dished|}}
+=======
+    {{/each}}
+    
+
+    {{>#dish-form}}
+    <div id="dishForm">
+    <div class="form-group d-flex justify-content-center">
+        <button class="btn btn-info col-3" type="submit" id="addDish"><a class="text-warning" href=""><h3>Dish +</h3></a></button>
+    </div>  
+</div>
+>>>>>>> 3451c44 (handlebar changes for dish, moved button on events.handlebars)
 
             <div class="card shadow-lg mb-2 p-1 bg-white rounded ">
                 <div class="row ">
