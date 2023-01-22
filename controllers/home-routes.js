@@ -4,6 +4,13 @@ const withAuth = require('../utils/auth');
 const {Combo,Dish,Event,User}= require('../models');
 const Op= require('sequelize').Op
 
+//PDF generation food label
+//Required package
+const pdf = require("pdf-creator-node");
+var fs = require("fs");
+const path = require("path");
+const {options} =require('../utils/pdfoptions');
+
 //HOMEPAGE
 // only show welcome message on home page
 router.get('/', async (req, res) => {
@@ -371,14 +378,72 @@ router.get('/dish', (req, res) => {
 //   });
 
 
-
-
-
-
 //   router.get('/dish/:num', async (req, res) => {
 //     return res.render('dish', Dish [req.params.num - 1]);
 //   });
 
+
+//PRINT PDF FOR FOOD LABEL
+router.get('/download/:id',withAuth, async (req, res) => {
+    //check
+    console.log("LINE 389 HOME-ROUTES PDF PRINT");
+    
+    const html = fs.readFileSync(path.join(__dirname, '../views/food-label-template.html'), 'utf-8');
+    const filename = req.params.id+ '_doc' + '.pdf';
+    
+    console.log("LINE 394 HOME-ROUTES PDF PRINT");
+
+    //get dishes info through combo
+    const comboData = await Combo.findAll({
+        where: {eventID:req.params.id, dishID:{[Op.ne]:null}},
+        include: [{
+            model:Dish,
+            include: User
+        }]
+    });
+
+    console.log("LINE 405 HOME-ROUTES PDF PRINT");
+
+    if (comboData.length==0){
+        var dishes =[];
+    } else {
+        var dishes = comboData.map(dish => dish.get({plain: true}));
+    };
+
+    console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
+
+    var document = {
+        html: html,
+        data: {
+          dishes: dishes,
+        },
+        path: './public/img/' + filename
+    };
+
+    console.log("LINE 423 HOME-ROUTES PDF PRINT");
+
+    pdf.create(document, options)
+    .then(data => {
+        console.log(data);
+        res.download(path.join(__dirname,`../public/img/${filename}`));
+    }).catch(error => {
+        console.log(error);
+    });
+
+    // pdf.create(document, options)
+    // .then(res => {
+    //     console.log(res);
+    // }).catch(error => {
+    //     console.log(error);
+    // });
+
+    // const filepath = path.join(__dirname,`../public/img/`, filename);
+
+    // res.render('download', {
+    //     path: filepath
+    // });
+
+});
 
 
 
