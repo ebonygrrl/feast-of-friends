@@ -1,12 +1,10 @@
 const router = require('express').Router();
 const multer = require('multer');
-const { User } = require('../../models');
-const withAuth = require('../../utils/auth');
 const path = require("path");
+const { User } = require('../../models');
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname,'/avatars'),
-  // destination: '/avatars',
+  destination: 'user/upload',
   filename: (req, file, cb) => {
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
@@ -34,7 +32,7 @@ router.post('/signup', upload, async (req, res) => {
       password: req.body.password,
       allergy: req.body.allergy,
       fdish: req.body.fdish,
-      avatar: req.body.avatar
+      avatar: req.file.filename
     })
     .then(dbUserData => {
       //get the user logged in after sign up
@@ -80,5 +78,30 @@ router.post('/login', async (req, res) => {
       res.json(err);
     });
 });
+
+// call logged in user data to dashboard
+// router.get('/:id', async (req, res) => {
+//   const userId = req.params.id;
+//   console.log(userId);
+
+//   await User.findByPk(userId, { raw: true })
+//   .then(data => {
+//       console.log(data);
+//       const user = {
+//         userId: req.session.userID,
+//         userName: `${req.body.firstName} ${req.body.lastName}`,
+//         email: req.body.email,
+//         allergy: req.body.allergy,
+//         fdish: req.body.fdish,
+//         avatar: req.body.avatar
+//       };
+  
+//       res.render('dashboard', user);
+//   })
+//   .catch(err => {
+//     res.status(500).json(err);
+//   }); 
+  
+//   });
 
 module.exports = router;
