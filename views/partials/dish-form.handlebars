@@ -1,11 +1,12 @@
 <!-- DISH SIGN-UP FORM -->
 {{#> content-block}}
-<h1 style="text-align: center;">Tasty is coming your way</h1>
+<h2 style="text-align: center;">Tasty is coming your way</h2>
     <form class="form dish-form">
         <div class="form-group">
             <label for="name-of-dish">What tasty dish will you bring?</label>
             <input class="form-control" id="famous-dish" type="text" name="dishname">
         </div>
+        <div>
         <label for="dish-category">What kind of dish is it?</label>
         <select name="dishtype" id="dish-type">
             <option value="appetizer">appetizer</option>
@@ -13,6 +14,7 @@
             <option value="side">side</option>
             <option value="dessert">dessert</option>
         </select>
+        </div>
         {{!-- <div class="form-group">
             <label for="type-of-dish">Dish type:</label><br>
             <input class="form-control" id="dish-type" type="text" name="dtype">
@@ -30,8 +32,11 @@
             <option value="soy">Soy</option>
             <option value="sesame">Sesame</option>
         </select>
-        <button class="btn btn-fof-primary" id="dishform" type="submit">Dish+</button>
+        <div class="text-center">
+        <br><button class="btn btn-fof-primary col-3" id="dishform" type="submit">Dish+</button>
+        </div>
     </form>
+    
 
     <script src="/js/dish.js"></script>
 
