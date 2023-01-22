@@ -27,38 +27,6 @@ const dishesData = [
     dishallergy: "gluten"
 
   },
-  {
-    dishname: 'Chips and Salsa',
-    preparedby: '2',
-    eventid: uuidValue2,
-    //nuts: false
-    dishtype: "appetizer",
-    dishallergy: null
-  },
-  {
-    dishname: 'Goulash',
-    preparedby: '3',
-    eventid: uuidValue,
-    //nuts: false
-    dishtype: "entree",
-    dishallergy: "gluten"
-  },
-  {
-    dishname: 'Chips and Salsa',
-    preparedby: '2',
-    eventid: uuidValue2,
-    //nuts: false
-    dishtype: "appetizer",
-    dishallergy: null
-  },
-  {
-    dishname: 'Goulash',
-    preparedby: '3',
-    eventid: uuidValue2,
-    //nuts: false
-    dishtype: "entree",
-    dishallergy: "egg"
-  },
  
 ];
 

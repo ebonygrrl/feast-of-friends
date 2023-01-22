@@ -48,19 +48,36 @@ router.post('/', (req, res) => {
        dishname: req.body.dishname,
        //static
        //change preparedby userID
-       preparedby: 1,
+       preparedby: req.session.userID,
        //static
        //change eventid ID to corresponding field/id number this is from a logged in user
-       eventid: "7063254f-79bc-49f6-947f-798c6b588852",
+       eventid: req.body.eventID,
        dishtype: req.body.dishtype,
        dishallergy: req.body.dishallergy
     })
-    .then(dishData => res.json(dishData))
+    .then((dishData) =>{
+      console.log('line 59 dish-routes', dishData);
+
+      //update combo on this dish
+
+      const comboUpdate=  Combo.update({
+        dishID: dishData.dataValues.id,},
+        {
+        where: {
+          userID: req.session.userID,
+          eventID: dishData.dataValues.eventid
+        },
+      });
+      
+      res.status(200).json(dishData);
+    })
     .catch(err => {
+     
       console.log(err);
       res.status(400).json(err);
-    })
-   //}
+    });
+
+
 });
 
 
