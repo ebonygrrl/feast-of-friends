@@ -24,9 +24,11 @@ Combo.init(
         references: {
           model: 'dish',
           key: 'id',
-          unique: false
+          // unique: false
         },
         allowNull: true,
+        constraints: false,
+        
     },
     eventID: {
         type: DataTypes.UUID,

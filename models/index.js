@@ -19,6 +19,12 @@ Dish.belongsTo(Event,{
     foreignKey: 'preparedby'
 });
 
+//Dish belongs to one Combo
+Dish.hasOne(Combo,{
+    foreignKey: 'dishID',
+    constraints: false,
+
+});
 //defining Combo table
 //Event has many contributors
 User.belongsToMany(Event,{
@@ -45,6 +51,13 @@ Event.hasMany(Dish,{
 Combo.belongsTo(Event,{
     constraints: false,
     foreignKey:'eventID',
+
+});
+
+//combo id is linked to one event
+Combo.belongsTo(Dish,{
+    constraints: false,
+    foreignKey:'dishID',
 
 });
 
