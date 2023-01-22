@@ -317,10 +317,6 @@ input[type=checkbox]:checked + label {
     .container {
         width: 95%;
     }
-
-    html,body {
-        font-size: 20px;
-    }
 }
 
 @media screen and (max-width: 640px) {
