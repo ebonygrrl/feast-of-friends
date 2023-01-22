@@ -40,20 +40,21 @@ const dishData = require('../../seeds/dishes-seeds');
 //need to find the correct field input for prepared by and eventid for it to work 
 //correctly with the designated user signing up their dish
 //router.post('/', withAuth, (req,res) => {
-router.post('/', (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   console.log(req.session)
   console.log(req.body)
-   //if (req.session) {
+
+  //if (req.session) {
     Dish.create({
-       dishname: req.body.dishname,
-       //static
-       //change preparedby userID
-       preparedby: req.session.userID,
-       //static
-       //change eventid ID to corresponding field/id number this is from a logged in user
-       eventid: req.body.eventID,
-       dishtype: req.body.dishtype,
-       dishallergy: req.body.dishallergy
+      dishname: req.body.dishname,
+      //static
+      //change preparedby userID
+      preparedby: req.session.userID,
+      //static
+      //change eventid ID to corresponding field/id number this is from a logged in user
+      eventid: req.body.eventID,
+      dishtype: req.body.dishtype,
+      dishallergy: req.body.dishallergy
     })
     .then((dishData) =>{
       console.log('line 59 dish-routes', dishData);
@@ -72,12 +73,10 @@ router.post('/', (req, res) => {
       res.status(200).json(dishData);
     })
     .catch(err => {
-     
+    
       console.log(err);
       res.status(400).json(err);
     });
-
-
 });
 
 
@@ -127,24 +126,24 @@ router.post('/', (req, res) => {
 
 
 //delete withAuth and id
-// router.delete('/:id', withAuth, (req, res) => {
-//   Dish.destroy({
-//     where: {
-//       id: req.params.id
-//     }
-//   })
-//   .then(dishData => {
-//     if (!dishData) {
-//       res.status(404).json({message: 'No dish found with id'});
-//       return;
-//     }
-//     res.json(dishData);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     res.status(500).json(err);
-//   });
-// });
+router.delete('/:id', withAuth, (req, res) => {
+  Dish.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dishData => {
+    if (!dishData) {
+      res.status(404).json({message: 'No dish found with id'});
+      return;
+    }
+    res.json(dishData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 
 
