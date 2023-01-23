@@ -411,24 +411,25 @@ router.get('/download/:id',withAuth, async (req, res) => {
     };
 
     console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
+    res.render('label',{dishes});
 
-    var document = {
-        html: html,
-        data: {
-          dishes: dishes,
-        },
-        path: './public/img/' + filename
-    };
+    // var document = {
+    //     html: html,
+    //     data: {
+    //       dishes: dishes,
+    //     },
+    //     path: './public/img/' + filename
+    // };
 
-    console.log("LINE 423 HOME-ROUTES PDF PRINT");
+    // console.log("LINE 423 HOME-ROUTES PDF PRINT");
 
-    pdf.create(document, options)
-    .then(data => {
-        console.log(data);
-        res.download(path.join(__dirname,`../public/img/${filename}`));
-    }).catch(error => {
-        console.log(error);
-    });
+    // pdf.create(document, options)
+    // .then(data => {
+    //     console.log(data);
+    //     res.download(path.join(__dirname,`../public/img/${filename}`));
+    // }).catch(error => {
+    //     console.log(error);
+    // });
 
     // pdf.create(document, options)
     // .then(res => {
