@@ -1,61 +1,79 @@
-<div class="row">
+
+<section class="container-fluid">
     <div class="dashboard-header" style="background-image: url('./user/upload/{{avatar}}');">
-        <h1>Dashboard</h1>
-        <div id="eventInput">
-            <form class="form join-event">
-                <div class="form-group d-flex justify-content-center">
+        <div class="card-body text-center">
+            <div class="avatar" style="background-image: url('./user/upload/{{avatar}}');"></div>
+        </div>
+    </div>
+    </section>
 
-                    <input class="form-input col-5" placeholder="Enter Potluck Code" type="text" id="event-code" />
+    <section class="container dashboard-main">
+        <div class="row">
+            <h2 class="mb-3">{{name}}</h2>
+
+            {{!-- event input --}}
+            <div id="eventInput">
+                <form class="form join-event mb-3">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="event-code" type="text" name="event-code"
+                            placeholder="Enter Potluck Code" />
+                        <label for="event-code">Enter Potluck Code</label>
+                        <div class="invalid-feedback">
+                            Please enter your first name.
+                        </div>
+                    </div>
+                    <div class="form-group join d-flex justify-content-center">
+                        <button class="btn-fof-primary" id="joinPotluck">Join Potluck</button>
+                    </div>
+                </form>
+                <button class="btn-fof-primary" id="createPotluck">
+                    <a href="/create">Create Potluck</a>
+                </button>
+            </div>
+            {{!-- end event input --}}
+        </div>
+
+        <!--close div event input  -->
+        <div class="row" id="eventSummary">
+            <div class="col col-sm-12 col-md-6">
+                {{!-- events user organized --}}
+                <div id="upcomingEvents">
+                    <h4>Events You Organized</h4>
                 </div>
-                <div class="form-group join d-flex justify-content-center">
-                    <button class="btn btn-success col-3" type="submit" id="joinPotluck">Join Potluck</button>
+                <!-- close upcoming Events -->
+                {{#each event1 as |event|}}
+                <div class="card">
+                    <div class="card-header">
+                        <h5><a class="link" href="/event/{{id}}">{{theme}} on {{moment eventDate format="dddd hh:mm A
+                                MMM
+                                DD,
+                                YYYY"}}</a></h5>
+                        <p>Organized by {{user.firstName}} {{user.lastName}}</p>
+                    </div>
                 </div>
-            </form>
-
-            <div class="form-group d-flex justify-content-center">
-                <button class="btn btn-info col-3" type="submit" id="createPotluck">Create Potluck</button>
+                {{/each}}
+            </div>
+            <div class="col col-sm-12 col-md-6">
+                {{!-- <div class="container" id="pastEvents">
+                    <h4>Past Events</h4>
+                </div> --}}
+                <!-- close past events -->
+                {{!-- events user is contributing in --}}
+                <div id="upcomingEvents">
+                    <h4>Events You Are Part Of</h4>
+                </div>
+                {{#each event2 as |events|}}
+                <div class="card">
+                    <div class="card-header">
+                        <h5><a class="link" href="/event/{{eventID}}" /a>{{event.theme}} on {{moment event.eventDate
+                                format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
+                        <p>Organized by {{event.user.firstName}} {{event.user.lastName}}</p>
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
-    </div>
-</div>
-<!--close div event input  -->
-<div class="row" id="eventSummary">
-    <div class="col col-sm-12 col-md-6">
-        {{!-- events user organized --}}
-        <div id="upcomingEvents">
-            <h4>Events You Organized</h4>
-        </div>
-        <!-- close upcoming Events -->
-        {{#each event1 as |event|}}
-        <div class="card">
-            <div class="card-header">
-                <h5><a class="link" href="/event/{{id}}">{{theme}} on {{moment eventDate format="dddd hh:mm A MMM DD,
-                        YYYY"}}</a></h5>
-                <p>Organized by {{user.firstName}} {{user.lastName}}</p>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-    <div class="col col-sm-12 col-md-6">
-        {{!-- <div class="container" id="pastEvents">
-            <h4>Past Events</h4>
-        </div> --}}
-        <!-- close past events -->
-        {{!-- events user is contributing in --}}
-        <div id="upcomingEvents">
-            <h4>Events You Are Part Of</h4>
-        </div>
-        {{#each event2 as |events|}}
-        <div class="card">
-            <div class="card-header">
-                <h5><a class="link" href="/event/{{eventID}}" /a>{{event.theme}} on {{moment event.eventDate
-                        format="dddd hh:mm A MMM DD, YYYY"}}</a></h5>
-                <p>Organized by {{event.user.firstName}} {{event.user.lastName}}</p>
-            </div>
-        </div>
-        {{/each}}
-    </div>
-
-</div>
+    </section>
+</section>
 
 <script src="/js/dashboard.js"></script>
