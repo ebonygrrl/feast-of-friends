@@ -27,7 +27,7 @@ What are the steps required to install your project? Provide a step-by-step desc
 
 You can find the repo for this application on GitHub: https://github.com/A-Tribu/feast-of-friends
 
-This app is also deployed on Heroku and you can access it through this link:
+This app is also deployed on Heroku and you can access it through this link: https://feast-of-friends.herokuapp.com/
 
 <!-- 1. Clone GitHub repo 
 2. Make sure npm packages are downloaded and are up to date, otherwise run npm install to get everything going.
