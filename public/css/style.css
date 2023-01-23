@@ -7,12 +7,10 @@
   --black: #222;
 }
 
-
 /* element styles */
 html, body {
   margin: 0;
   padding: 0;
-  width: 100vw;
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -83,11 +81,6 @@ header {
   -webkit-box-shadow: 0px 12px 20px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 12px 20px 0px rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
-
-main {
-  flex: 1 0 auto;
-  margin-bottom: 30px;
 }
 
 nav a {
@@ -260,6 +253,11 @@ input[type=checkbox]:checked + label {
   font-weight: bold;
 }
 
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
 /* register */
 .preview .avatar-container {
   width: 100%;
@@ -314,8 +312,12 @@ input[type=checkbox]:checked + label {
 
 /* user dashboard */
 .dashboard-header {
+  background-color: var(--darklava);
   background-size: cover;
-  height: 200px;
+  background-blend-mode: luminosity;
+  background-position: center;
+  background-attachment: fixed;
+  height: 250px;
 }
 
 .dashboard-main {
@@ -343,25 +345,79 @@ input[type=checkbox]:checked + label {
 .avatar {
   background-size: cover;
   background-position: center;
-  margin: 100px auto 0;
-  width: 150px;
-  height: 150px;
+  margin: 50px auto 0;
+  width: 250px;
+  height: 250px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
   border: 5px solid #fff;
 }
 
+.home .main {
+  background-image: url(../img/friends-food.jpg);
+  background-color: var(--darklava);
+  background-size: cover;
+  background-blend-mode:  luminosity;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .card {
+  padding: 10px 10px 25px;
+
+}
+
+.navbar .nav-link {
+  color: #fff;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
 /* media queries */
+@media screen and (min-width: 768px) { 
+  .home .welcome {
+    padding: 0 3em;
+  }  
+  
+  .home .welcome:after {
+    content: '';
+    margin-left: -20px;
+    padding: 0 3em;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: calc(75% - 65%);
+    border-left: 2px solid #ececec;
+  }  
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 95%;
     }
-
-    html,body {
-        font-size: 20px;
-    }
 }
 
 @media screen and (max-width: 640px) {
+  body {
+    min-width: 467px;
+  }
+}
+
+/*  Print */
+@media print {
+  body *:not(.printable, .printable *) {
+     /* hide everything but printable elements and their children */
+    display: none;
+  }
+}
+@page {
+  size: 100%;
+  size:portrait;
+  margin: 20px;
 }
