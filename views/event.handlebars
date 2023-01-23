@@ -1,13 +1,9 @@
+<div class="dashboard-header"></div>
 <section class="container">
-
-
+    <h1>{{event.theme}} Potluck</h1>
     <div class="row justify-content-around ">
-        <div class=" col-md-6  col-xs-12 eventContain ">
+        <div class="col-md-6 col-xs-12 eventContain ">
             {{!-- <div class=" col"> --}}
-                <h2>Potluck:</h2>
-                <div class="theme-title text-center dang font-weight-bold">
-                    <h1 id="eventTheme">{{event.theme}} </h1>
-                </div>
 
                 <p><span class="text-primary">Invite Code: </span><span id="event-id">{{event.id}}</span>
                     <i id="copyID" data-clipboard-target="#event-id" data-descr="copy"><svg
@@ -84,7 +80,7 @@
 
             {{!-- close eventContain --}}
 
-            <div class=" col-md-6  col-xs-12 dishContain ">
+            <div class="col-md-6 col-xs-12 dishContain">
 
                 <div class="" id="dishSummary">
                     <div>
@@ -177,36 +173,3 @@
 <script src="/js/delete-dish.js"></script>
 <script src="/js/viewLabel.js"></script>
 
-{{!--
-<script src="/js/login.js"></script>
-<script src="/js/signup.js"></script> --}}
-
-
-
-{{!-- instantiate clipboard --}}
-<script>
-    var btn = document.getElementById('copyID');
-    var clipboard = new ClipboardJS(btn);
-    clipboard.on('success', function (e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-    });
-    clipboard.on('error', function (e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-    });
-    var btnWhere = document.getElementById('copyWhere');
-    var clipboard2 = new ClipboardJS(btnWhere);
-    clipboard2.on('success', function (e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-    });
-    clipboard2.on('error', function (e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-    });
-</script>

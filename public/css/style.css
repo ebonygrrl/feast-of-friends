@@ -253,11 +253,6 @@ input[type=checkbox]:checked + label {
   font-weight: bold;
 }
 
-.row {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
 /* register */
 .preview .avatar-container {
   width: 100%;
@@ -320,8 +315,16 @@ input[type=checkbox]:checked + label {
   height: 250px;
 }
 
+.dashboard .main {
+  background-color: #eee;
+}
+
 .dashboard-main {
   margin-top: 4em;
+}
+
+.dashcard {
+  padding: 2.5em 0;
 }
 
 .card-img-top{
@@ -355,7 +358,7 @@ input[type=checkbox]:checked + label {
 }
 
 .home .main {
-  background-image: url(../img/friends-food.jpg);
+  background-image: url('../img/friends-food.jpg');
   background-color: var(--darklava);
   background-size: cover;
   background-blend-mode:  luminosity;
@@ -369,6 +372,34 @@ input[type=checkbox]:checked + label {
 .home .card {
   padding: 10px 10px 25px;
 
+}
+
+.create .dashboard-header {
+  background-image: url('/img/office-potluck.jpg');
+}
+
+.create .bg-img-left {
+  background-image: url('../img/food-salad-dinner-eating.jpg');
+  background-color: var(--darklava);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.create #create-form {
+  display: none;
+}
+
+.card.create {
+  margin-left: -100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  border: none;
+}
+
+.event .dashboard-header {
+  background-image: url('/img/table-spread.jpeg');
 }
 
 .navbar .nav-link {
@@ -401,11 +432,21 @@ input[type=checkbox]:checked + label {
     .container {
         width: 95%;
     }
+
+    .card.create {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding: 20px 30px;
+      width: 100%;
+      border: none;
+    }  
 }
 
 @media screen and (max-width: 640px) {
   body {
-    min-width: 467px;
+    min-width: 375px;
   }
 }
 

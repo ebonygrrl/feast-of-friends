@@ -1,6 +1,7 @@
 // app modules
 const path = require('path');
 const express = require('express');
+const favicon = require('serve-favicon')
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -36,8 +37,8 @@ const sess = {
 
 app.use(session(sess));
 
-// format time for handlebars
-// const helpers1 = require('./utils/helpers'); 
+// favicon middlware
+app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 
 // get handlebars
 // create custom helpers

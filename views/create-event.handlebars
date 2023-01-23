@@ -1,34 +1,12 @@
-<div class="dashboard-header" style="background-image: url('./img/event-planning-concept-events-word-notebook-clock-notepad-computer-desk-98974101.jpg');"></div>
-<section class="container">
-    <h1>Create Potluck</h1>
-    <div>
-        <form class="form event-form">
-            <div class="form-floating mb-3">
-                <input class="form-control" id="event-theme" type="text" name="theme" placeholder="Event Name/Theme" required>
-                <label for="theme">Event Name/Theme</label>
-                <div class="invalid-feedback">
-                    Please enter your first name.
-                </div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="event-date" type="datetime-local" name="date" required>
-                <label for="date">Date of Potluck</label>
-                <div class="invalid-feedback">
-                    Please enter your first name.
-                </div>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" id="event-location" type="text" name="location"
-                    placeholder="ex. office, my home" required>
-                <label for="location">Potluck Venue</label>
-                <div class="invalid-feedback">
-                    Please enter your first name.
-                </div>
-            </div>
-        <div class="form-floating mb-3">
-            <button class="btn-fof-primary mt-3" id="create-potluck" type="submit">Create</button>
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6 hidden-sm bg-img-left"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6" style="background-color: #eee;">
+            <div class="card create">
+                <h1>Create Potluck</h1>
+                {{>create-form}}
+            </div><!-- end card -->
         </div>
-        </form>
     </div>
 </section>
-<script src="./js/create-event.js"></script>

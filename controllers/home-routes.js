@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 //SIGNUP PAGE
 // sign up route
 router.get('/signup', (req, res) => {
-    res.render('authentication', { whichPartial: function () { return 'signup' } });
+    res.render('signup');
 });
 
 //LOGIN PAGE
@@ -41,7 +41,9 @@ router.get('/login', (req, res) => {
 //CREATE EVENT PAGE
 //create potluck route
 router.get('/create', withAuth, (req, res) => {
-    res.render('create-event');
+    res.render('create-event', {loggedIn: req.session.loggedIn, userName: req.session.userName});
+
+
 });
 
 //EDIT EVENT LANDING PAGE
@@ -334,7 +336,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
             //toDo withAut 1/13: 
             // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            res.render('dashboard', { event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar, name: fullName });
+            res.render('dashboard', { event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar, name: fullName, userInfo});
 
             res.status(200);
         }
@@ -380,7 +382,7 @@ router.get('/download/:id', withAuth, async (req, res) => {
     };
 
     console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
-    res.render('label',{dishes, eventID,loggedIn: req.session.loggedIn, userName: req.session.userName});
+    res.render('label',{dishes, eventID, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
 });
 
