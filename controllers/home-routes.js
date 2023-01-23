@@ -275,12 +275,20 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
 //DASHBOARD PAGE
 //route for viewing dashboard and one's own posts
-router.get('/dashboard',withAuth, async (req,res)=>{
+router.get('/dashboard',withAuth, async (req, res)=>{
+
   try {
+    const user_id = req.session.userID;
+
+    // user personalized dashboard
+    const user = await User.findByPk(user_id, {raw: true});
+    const fullName = `${user.firstName} ${user.lastName}`;
+
+      // event handler  
       console.log('line 10 at dashboard-routes');
       // console.log('line 12 at dashboard-routes : '+req.session.user_id);
       //get user id from sessions make sure it is stored in the log in
-      const user_id = req.session.userID;
+      //const user_id = req.session.userID;
       console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
       // const dummyID=1;
       //get data from database of user organized events
@@ -304,11 +312,12 @@ router.get('/dashboard',withAuth, async (req,res)=>{
           }]
       });
 
+
       //if data is empty
       //render dashboard with no Events
       if (result.length==0 && result2.length==0){
           console.log('line 45 dashboard-routes')
-          res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName});
+          res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar, name: fullName});
       }
       //dashboard with organized potluck but not rsvped to any
       else if(result.length && result2.length==0 ){

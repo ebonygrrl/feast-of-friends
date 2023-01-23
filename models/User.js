@@ -49,7 +49,7 @@ User.init(
         return this.getDataValue('allergy').split(',')
       },
       set(val) {
-        this.setDataValue('allergy',val.join(','));
+        this.setDataValue('allergy',val.join(', '));
       },
     },
     fdish: {

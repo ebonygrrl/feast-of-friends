@@ -4,7 +4,7 @@ const path = require("path");
 const { User } = require('../../models');
 
 const storage = multer.diskStorage({
-  destination: 'user/upload',
+  destination: 'public/user/upload',
   filename: (req, file, cb) => {
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
