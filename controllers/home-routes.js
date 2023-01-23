@@ -379,8 +379,8 @@ router.get('/download/:id', withAuth, async (req, res) => {
         var dishes = comboData.map(dish => dish.get({ plain: true }));
     };
 
-    console.log("LINE 413 HOME-ROUTES PDF PRINT", dishes);
-    res.render('label', { dishes, eventID });
+    console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
+    res.render('label',{dishes, eventID,loggedIn: req.session.loggedIn, userName: req.session.userName});
 
 });
 
