@@ -495,7 +495,7 @@ router.get('/download/:id',withAuth, async (req, res) => {
     };
 
     console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
-    res.render('label',{dishes, eventID});
+    res.render('label',{dishes, eventID,loggedIn: req.session.loggedIn, userName: req.session.userName});
 
     // var document = {
     //     html: html,
