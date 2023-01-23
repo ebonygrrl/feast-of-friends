@@ -1,30 +1,34 @@
-<div class="container bg-light edit-event rounded">
+<div class="container bg-light edit-event rounded" style="margin:auto; padding:2rem">
     <form class="form article-form ">
         <div class="form-group">
             <label for="theme" class="form-label text-primary">Potluck Theme</label>
-            <input class="form-input w-100" type="text" id="theme" value="{{event.theme}}"/>
+            <input class="form-input w-100" type="text" id="theme" value="{{event.theme}}" />
         </div>
+        <br>
         <div class="form-group">
             <label class="text-primary" for="date">Date of Potluck:</label>
-            <input class="form-control" id="event-Date"  placeholder="{{event.eventDate}}"type="datetime-local" name="date">
+            <input class="form-control " id="event-Date" placeholder="{{event.eventDate}}" type="datetime-local"
+                name="date">
         </div>
+        <br>
         <div class="form-group">
-            <label for="location" class="form-label text-primary">Location</label>
-            <input class="form-input w-100" type="text" id="location" value="{{event.where}}"/>
+            <label for="location" class="form-label text-primary">Location (Or Address)</label>
+            <input class="form-input w-100" type="text" id="location" value="{{event.where}}" />
         </div>
-        <div class="container row justify-content-around">
-        <div class="form-group save">
-            <button class="btn btn-success" type="submit" id="save">Save Changes</button>
-        </div>
-        <div class="form-group goBack">
-            <button class="btn btn-dark" type="submit" id="backPotluck">Back To Potluck Page</button>
-        </div>
-        <div class="form-group delete">
-            <button class="btn btn-danger" type="submit" id="delete">Delete</button>
-        </div>
+        <br>
+        <div class="container row justify-content-around w-100  ">
+            <div class="form-group col-3 save">
+                <button class="btn  btn-success" type="submit" id="save">Save Changes</button>
+            </div>
+            <div class="form-group col-3 goBack">
+                <button class="btn btn-dark" type="submit" id="backPotluck">Back To Potluck Page</button>
+            </div>
+            <div class="form-group col-3  delete">
+                <button class="btn btn-danger" type="submit" id="delete">Delete</button>
+            </div>
         </div>
     </form>
 </div>
 
-<script src="/js/edit-delete-event.js"></script>
 
+<script src="/js/edit-delete-event.js"></script>

@@ -38,8 +38,8 @@ router.get('/login', (req, res) => {
     res.redirect('/dashboard');
     return;
   }
-
-  res.render('authentication', { whichPartial: function() { return 'login' } });
+  res.render('homepage');
+//   res.render('authentication', { whichPartial: function() { return 'login' } });
 });
 
 
@@ -328,14 +328,15 @@ router.get('/dashboard',withAuth, async (req, res)=>{
         //dashboard with organized potluck but not rsvped to any
         else if(result.length && result2.length==0 ){
             const event1 = result.map(event => event.get({plain: true}));
-            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
+            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName,avatar: user.avatar,});
   
         }
         //dashboard with one rsvped to potluck but not organized event
         else if(result.length==0 && result2.length){
             const event2 = result2.map(event => event.get({plain: true}));
-            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,});
   
+            
         } //dashboard with both organized and rsvped events
         else{
             const event1 = result.map(event => event.get({plain: true}));
@@ -347,10 +348,10 @@ router.get('/dashboard',withAuth, async (req, res)=>{
   
             //toDo withAut 1/13: 
             // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,});
   
             res.status(200);
-        }
+        }   
   
    
     } catch (err) {
@@ -472,6 +473,7 @@ router.get('/download/:id',withAuth, async (req, res) => {
     
     const html = fs.readFileSync(path.join(__dirname, '../views/food-label-template.html'), 'utf-8');
     const filename = req.params.id+ '_doc' + '.pdf';
+    const eventID= req.params.id;
     
     console.log("LINE 394 HOME-ROUTES PDF PRINT");
 
@@ -493,7 +495,7 @@ router.get('/download/:id',withAuth, async (req, res) => {
     };
 
     console.log("LINE 413 HOME-ROUTES PDF PRINT",dishes);
-    res.render('label',{dishes});
+    res.render('label',{dishes, eventID});
 
     // var document = {
     //     html: html,
