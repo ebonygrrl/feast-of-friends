@@ -7,7 +7,11 @@
 
     </div>
     <div class="col-sm-12 col-md-6">
-      {{>login}}
+      {{#if loggedIn}}
+        {{>create-form}}
+      {{else}}
+        {{>login}}
+      {{/if}}
     </div>
   </div>
 </section>
