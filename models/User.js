@@ -2,8 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-//const queryInterface = sequelize.getQueryInterface();
-//queryInterface.changeColumn('User', 'avatar', { type: DataTypes.STRING });
+const queryInterface = sequelize.getQueryInterface();
+queryInterface.changeColumn('User', 'avatar', { type: DataTypes.STRING });
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -49,7 +49,7 @@ User.init(
         return this.getDataValue('allergy').split(',')
       },
       set(val) {
-        this.setDataValue('allergy',val.join(','));
+        this.setDataValue('allergy',val.join(', '));
       },
     },
     fdish: {

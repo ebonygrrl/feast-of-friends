@@ -1,6 +1,1 @@
--- DROP DATABASE
-DROP DATABASE IF EXISTS fof_potluck;
-
--- CREATE DATABASE
-CREATE DATABASE fof_potluck;
-
+SELECT * FROM fof_potluck.user;

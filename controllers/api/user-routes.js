@@ -4,7 +4,7 @@ const path = require("path");
 const { User } = require('../../models');
 
 const storage = multer.diskStorage({
-  destination: 'user/upload',
+  destination: 'public/user/upload',
   filename: (req, file, cb) => {
     return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
   }
@@ -78,30 +78,5 @@ router.post('/login', async (req, res) => {
       res.json(err);
     });
 });
-
-// call logged in user data to dashboard
-// router.get('/:id', async (req, res) => {
-//   const userId = req.params.id;
-//   console.log(userId);
-
-//   await User.findByPk(userId, { raw: true })
-//   .then(data => {
-//       console.log(data);
-//       const user = {
-//         userId: req.session.userID,
-//         userName: `${req.body.firstName} ${req.body.lastName}`,
-//         email: req.body.email,
-//         allergy: req.body.allergy,
-//         fdish: req.body.fdish,
-//         avatar: req.body.avatar
-//       };
-  
-//       res.render('dashboard', user);
-//   })
-//   .catch(err => {
-//     res.status(500).json(err);
-//   }); 
-  
-//   });
 
 module.exports = router;

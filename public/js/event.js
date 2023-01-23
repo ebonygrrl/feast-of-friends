@@ -12,8 +12,10 @@ const editPotluckFormHandler = async (event) => {
 };
   
 const signupBtn=document.getElementById("editEvent");
-signupBtn.addEventListener("click", editPotluckFormHandler);
-
+if(signupBtn)
+{
+    signupBtn.addEventListener("click", editPotluckFormHandler);
+};
 //go back to dashboard
 const toDashboardFormHandler = (event) => {
     event.preventDefault();
@@ -25,8 +27,9 @@ const toDashboardFormHandler = (event) => {
 };
   
 const toDashBtn=document.getElementById("backDashboard");
+if(toDashBtn){
 toDashBtn.addEventListener("click", toDashboardFormHandler);
-
+};
 
   //join potluck
 const joinPotluckFormHandler = async (event) => {
@@ -97,6 +100,7 @@ const deletePotluckFormHandler = async (event) => {
 
     //ask if user is sure to delete event
     let deletePrompt=confirm('Are you sure you want to delete this potluck?');
+    
     console.log('line 36 in event.js', deletePrompt, potluckID);
 
     if(potluckID && deletePrompt){

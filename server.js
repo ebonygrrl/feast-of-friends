@@ -4,12 +4,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+//const helpers = require('handlebars-helpers')();
 
 // routes / database
 const routes = require('./controllers');
 
 // // import sequelize connection
 const sequelize = require('./config/connection');
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,7 +49,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // express data parsing
-app.use(express.urlencoded({ extended: true, limit: "2mb" }));
+app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 app.use(express.json()); 
 
 // points to public/index.html
