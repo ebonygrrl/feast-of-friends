@@ -9,18 +9,13 @@ const Op= require('sequelize').Op
 const pdf = require("pdf-creator-node");
 var fs = require("fs");
 const path = require("path");
-const {options} =require('../utils/pdfoptions');
+const {options} = require('../utils/pdfoptions');
 
 //HOMEPAGE
 // only show welcome message on home page
 router.get('/', async (req, res) => {
-  // If a session exists, redirect the request to the dashboard
-  if (req.session.loggedIn) {
-    res.redirect('/dashboard');
-    return;
-  }
-  res.render('homepage');
-    // res.render('homepage', { loggedIn: req.session.loggedIn });
+    const bodyClass = req.path;
+    res.render('homepage', { bodyClass, loggedIn: req.session.loggedIn });
 });
 
 //SIGNUP PAGE
