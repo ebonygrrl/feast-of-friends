@@ -328,13 +328,13 @@ router.get('/dashboard',withAuth, async (req, res)=>{
         //dashboard with organized potluck but not rsvped to any
         else if(result.length && result2.length==0 ){
             const event1 = result.map(event => event.get({plain: true}));
-            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName,avatar: user.avatar,});
+            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName,avatar: user.avatar,name: fullName});
   
         }
         //dashboard with one rsvped to potluck but not organized event
         else if(result.length==0 && result2.length){
             const event2 = result2.map(event => event.get({plain: true}));
-            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,});
+            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,name: fullName});
   
             
         } //dashboard with both organized and rsvped events
@@ -348,7 +348,7 @@ router.get('/dashboard',withAuth, async (req, res)=>{
   
             //toDo withAut 1/13: 
             // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,});
+            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar,name: fullName});
   
             res.status(200);
         }   
