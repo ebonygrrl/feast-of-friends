@@ -29,6 +29,7 @@ You can find the repo for this application on GitHub: https://github.com/A-Tribu
 
 This app is also deployed on Heroku and you can access it through this link: https://feast-of-friends.herokuapp.com/
 
+
 <!-- 1. Clone GitHub repo 
 2. Make sure npm packages are downloaded and are up to date, otherwise run npm install to get everything going.
 3. You can start the application by running node server.js from the backend. The application will listen on a port -->
