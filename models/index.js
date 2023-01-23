@@ -11,12 +11,14 @@ Event.belongsTo(User,{
 
 //Dish brought by a user
 Dish.belongsTo(User,{
-    foreignKey: 'preparedby'
+    foreignKey: 'preparedby',
+    constraints: false,
 });
 
 //Dish belongs to Event
 Dish.belongsTo(Event,{
-    foreignKey: 'preparedby'
+    foreignKey: 'preparedby',
+    constraints: false,
 });
 
 //Dish belongs to one Combo
@@ -44,7 +46,8 @@ Event.belongsToMany(User,{
 
 //Event has many dishes
 Event.hasMany(Dish,{
-    foreignKey:'eventid'
+    foreignKey:'eventid',
+    constraints: false,
 });
 
 //combo id is linked to one event
