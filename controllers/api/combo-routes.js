@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Combo } = require('../../models');
+const { Combo, Dish } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -72,6 +72,39 @@ router.delete('/',withAuth,(req,res)=>{
       res.status(500).json(err);
     });
   });
+
+  //remove dish from potluck
+router.put('/:id', withAuth, async (req,res)=>{
+  try{
+
+    Combo.update({
+      dishID: null,
+    },{
+    where: {
+      userID:req.session.userID,
+      eventID: req.params.id
+    }}).then((delDish)=>
+    console.log('line 87 combo-routes', delDish));
+    await db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+    const deleteDish = Dish.destroy({
+      where:{
+        preparedby: req.session.userID,
+        eventid: req.params.id
+      }
+    }).then(deletedDish=>{
+      if (!deletedDish){
+        res.status(404).json({message: 'No dish found.'});
+        return;
+      };
+      db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+      res.json(deleteDish);
+    })
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 //router get all combo
 // router.get('/', async (req,res)=>{
