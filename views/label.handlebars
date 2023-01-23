@@ -1,0 +1,28 @@
+<div class="container" style="margin:auto;padding: 50px;" >
+      <h5>Food Labels: cut along red line and fold on black middle line</h5>
+      
+      <div class="row justify-content-center" >
+        <div class="row" style="padding:10px;">
+          <span style="width:300px">
+        {{#each dishes as |dish|}}
+
+        <div class="col" style="margin:auto;border: thin solid red; width:300px; padding:2px;">
+              <div style="border: thin solid black;height: 110px;width:300px;"id="back">
+              </div>
+              <div style="border: thin solid black; height: 110px;width:300px;"id="back">
+                <div id="content" style=" text-align: center;">
+                
+                  <h2 style="font-family: 'Yellowtail', cursive; font-size:1.5rem ; padding:1px;" id="dish" >{{dish.dish.dishname}}</h2>
+                  <h4 style="color:#F28C28; font-size:.75rem">allergens: {{dish.dish.dishallergy}}</h4>
+                  <h6 style="font-size:.75rem">Dish by: {{dish.dish.user.firstName}} {{dish.dish.user.lastName}}</h6>
+                  <h6 style="font-size:.5rem">printed by: feast-of-friends.herokuapp.com</h6>
+                </div>
+              </div>
+          </div>
+
+        {{/each}}
+      </span>
+        </div>
+      </div>
+    </div>
+    <br>

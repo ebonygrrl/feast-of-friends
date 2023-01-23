@@ -37,9 +37,11 @@
         
         <div class="row m-5 edit-del justify-content-around">
             <div>
+            {{#if isOrganizer}}
             <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-warning col" type="submit" id="editEvent">Edit Potluck</button>
             </div> &emsp; 
+            {{/if}}
              <div class="form-group d-flex justify-content-center">
                 <button class="btn btn-info col" type="submit" id="backDashboard">To Dashboard</button>
             </div> &emsp; 
