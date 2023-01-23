@@ -365,3 +365,16 @@ input[type=checkbox]:checked + label {
 
 @media screen and (max-width: 640px) {
 }
+
+/*  Print */
+@media print {
+  body *:not(.printable, .printable *) {
+     /* hide everything but printable elements and their children */
+    display: none;
+  }
+}
+@page {
+  size: 100%;
+  size:portrait;
+  margin: 20px;
+}

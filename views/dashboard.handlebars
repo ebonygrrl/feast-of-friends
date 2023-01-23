@@ -1,9 +1,17 @@
 <section class="container-fluid">
+    {{#if avatar}}
     <div class="dashboard-header" style="background-image: url('./user/upload/{{avatar}}');">
         <div class="card-body text-center">
             <div class="avatar" style="background-image: url('./user/upload/{{avatar}}');"></div>
         </div>
     </div>
+    {{else}}
+        <div class="dashboard-header" style="background-image: url('./img/food-salad-dinner-eating.jpg');">
+        <div class="card-body text-center">
+            <div class="avatar" style="background-image: url('./img/friends-food.jpg');"></div>
+        </div>
+    </div>
+    {{/if}}
     </section>
 
     <section class="container dashboard-main">

@@ -2,7 +2,7 @@
 
 
     <div class="row justify-content-around ">
-        <div class-" col-md-6  col-xs-12 eventContain " style="width:50%">
+        <div class=" col-md-6  col-xs-12 eventContain " >
         {{!-- <div class=" col"> --}}
             <h2>Potluck:</h2>
             <div class="theme-title text-center dang font-weight-bold" >
@@ -23,7 +23,7 @@
                     {{event.user.lastName}}</span></p>
             <p><span class="text-primary">Date: </span><span id="event-date">{{ moment event.eventDate format="dddd
                     hh:mm A MMM DD, YYYY"}}</span></p>
-            <p><span class="text-primary">Location: </span><span id="event-location">{{event.where}}</span>
+            <p><span class="text-primary">Location: </span><span id="event-location"><a href="https://maps.google.com/maps?q={{event.where}}">{{event.where}}</a></span>
                 <i id="copyWhere" data-clipboard-target="#event-location" data-descr="copy"><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -83,7 +83,7 @@
 
         {{!-- close eventContain --}}
 
-        <div class="col-md-6  dishContain">
+        <div class=" col-md-6  col-xs-12 dishContain">
 
             <div class="" id="dishSummary">
                 <div>
@@ -95,7 +95,7 @@
                                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
                                     <path
                                         d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
-                                </svg>Print Food Label</button>
+                                </svg>View and Print Food Label</button>
                         </div>
                     </div>
                     <br>
@@ -126,10 +126,22 @@
                             </div>
                             <div class="col-sm-5">
                                 <div class="card-img no-gutters text-center align-middle " style="height:200px">
+                                    {{#if dish.user.avatar}}
+
                                     <img class=" rounded-circle img-thumbnail img-fluid "
                                         style="width: auto; height: 175px;" id="{{user.email}}"
-                                        src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+                                        src="/user/upload/{{dish.user.avatar}}"
                                         alt="picture of {{user.firstName}}">
+                                    </img>
+
+                                    {{else}}
+
+                                    <img class=" rounded-circle img-thumbnail img-fluid "
+                                        style="width: auto; height: 175px;" id="{{user.email}}"
+                                        src="/img/fof-logo-300.png"
+                                        alt="picture of {{user.firstName}}">
+                                    </img>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -162,8 +174,8 @@
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
 <script src="/js/event.js"></script>
 <script src="/js/pdfgenerator.js"></script>
-<script src="/js/login.js"></script>
-<script src="/js/signup.js"></script>
+{{!-- <script src="/js/login.js"></script>
+<script src="/js/signup.js"></script> --}}
 
 
 
