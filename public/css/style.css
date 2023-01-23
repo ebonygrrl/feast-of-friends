@@ -375,5 +375,6 @@ input[type=checkbox]:checked + label {
 }
 @page {
   size: 100%;
+  size:portrait;
   margin: 20px;
 }
