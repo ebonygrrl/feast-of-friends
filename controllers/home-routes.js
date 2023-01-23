@@ -271,7 +271,7 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 
         console.log('line 196 in home-routes');
 
-          res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer,isAttendee});   
+        res.render('event',{event,dishes,loggedIn: req.session.loggedIn, userName: req.session.userName,data:attendance, dishSummary,allergenSummary,isOrganizer,isAttendee});   
       }
       
   }catch (err) {
@@ -279,77 +279,159 @@ router.get('/event/:id',withAuth, async (req,res)=>{
   }
 });
 
-
 //DASHBOARD PAGE
 //route for viewing dashboard and one's own posts
-router.get('/dashboard',withAuth, async (req,res)=>{
-  try {
-      console.log('line 10 at dashboard-routes');
-      // console.log('line 12 at dashboard-routes : '+req.session.user_id);
-      //get user id from sessions make sure it is stored in the log in
+router.get('/dashboard',withAuth, async (req, res)=>{
+
+    try {
       const user_id = req.session.userID;
-      console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
-      // const dummyID=1;
-      //get data from database of user organized events
-      const result=await Event.findAll({
-          where:{organizer:user_id},
-          attributes: [
-              'id',
-              'theme',
-              'eventDate',
-              'where',
-              'organizer'
-          ],
-          include: User,
-      });
-      //find data of events where user is part of
-      const result2=await Combo.findAll({
-          where:{userID:user_id},
-          include: [{
-              model: Event,
-              include: User
-          }]
-      });
+  
+      // user personalized dashboard
+      const user = await User.findByPk(user_id, {raw: true});
+      const fullName = `${user.firstName} ${user.lastName}`;
+  
+        // event handler  
+        console.log('line 10 at dashboard-routes');
+        // console.log('line 12 at dashboard-routes : '+req.session.user_id);
+        //get user id from sessions make sure it is stored in the log in
+        //const user_id = req.session.userID;
+        console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
+        // const dummyID=1;
+        //get data from database of user organized events
+        const result=await Event.findAll({
+            where:{organizer:user_id},
+            attributes: [
+                'id',
+                'theme',
+                'eventDate',
+                'where',
+                'organizer'
+            ],
+            include: User,
+        });
+        //find data of events where user is part of
+        const result2=await Combo.findAll({
+            where:{userID:user_id},
+            include: [{
+                model: Event,
+                include: User
+            }]
+        });
+  
+  
+        //if data is empty
+        //render dashboard with no Events
+        if (result.length==0 && result2.length==0){
+            console.log('line 45 dashboard-routes')
+            res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName, avatar: user.avatar, name: fullName});
+        }
+        //dashboard with organized potluck but not rsvped to any
+        else if(result.length && result2.length==0 ){
+            const event1 = result.map(event => event.get({plain: true}));
+            res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
+  
+        }
+        //dashboard with one rsvped to potluck but not organized event
+        else if(result.length==0 && result2.length){
+            const event2 = result2.map(event => event.get({plain: true}));
+            res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+  
+        } //dashboard with both organized and rsvped events
+        else{
+            const event1 = result.map(event => event.get({plain: true}));
+            const event2 = result2.map(event => event.get({plain: true}));
+            const view = JSON.stringify(result);
+            const view2 = JSON.stringify(result2);
+            //check
+            console.log('line 51 at dashboardRoutes ', view, view2);
+  
+            //toDo withAut 1/13: 
+            // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
+            res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+  
+            res.status(200);
+        }
+  
+   
+    } catch (err) {
+        res.status(500).json(err);
+    }
+  
+  });
+// //DASHBOARD PAGE
+// //route for viewing dashboard and one's own posts
+// router.get('/dashboard',withAuth, async (req,res)=>{
+//   try {
+//       console.log('line 10 at dashboard-routes');
+//       // console.log('line 12 at dashboard-routes : '+req.session.user_id);
+//       //get user id from sessions make sure it is stored in the log in
+//       const user_id = req.session.userID;
+//       console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
+//       // const dummyID=1;
+//       //get data from database of user organized events
+//       const result=await Event.findAll({
+//           where:{organizer:user_id},
+//           attributes: [
+//               'id',
+//               'theme',
+//               'eventDate',
+//               'where',
+//               'organizer'
+//           ],
+//           include:[User, Dish], 
+//       });
+//       //find data of events where user has rsvped to
+//       const result2=await Combo.findAll({
+//           where:{userID:user_id},
+//           include: [{
+//               model: Event,
+//               include: User
+//           }]
+//       });
 
-      //if data is empty
-      //render dashboard with no Events
-      if (result.length==0 && result2.length==0){
-          console.log('line 45 dashboard-routes')
-          res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName});
-      }
-      //dashboard with organized potluck but not rsvped to any
-      else if(result.length && result2.length==0 ){
-          const event1 = result.map(event => event.get({plain: true}));
-          res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
+//       //if data is empty
+//       //render dashboard with no Events
+//       if (result.length==0 && result2.length==0){
+//         console.log('line 45 dashboard-routes')
+//         res.render('dashboard',{loggedIn: req.session.loggedIn, userName: req.session.userName});
+//       }
+//       //dashboard with organized potluck but not rsvped to any
+//       else if(result.length && result2.length==0 ){
+//         const event1 = result.map(event => event.get({plain: true}));
+//         res.render('dashboard', {event1, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
-      }
-      //dashboard with one rsvped to potluck but not organized event
-      else if(result.length==0 && result2.length){
-          const event2 = result2.map(event => event.get({plain: true}));
-          res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+//       }
+//       //dashboard with one rsvped to potluck but not organized event
+//       else if(result.length==0 && result2.length){
+//         const event2 = result2.map(event => event.get({plain: true}));
+//         console.log('line 329 home-routes', event2);
+//         //if statement to check which rsvp to one 
 
-      } //dashboard with both organized and rsvped events
-      else{
-          const event1 = result.map(event => event.get({plain: true}));
-          const event2 = result2.map(event => event.get({plain: true}));
-          const view = JSON.stringify(result);
-          const view2 = JSON.stringify(result2);
-          //check
-          console.log('line 51 at dashboardRoutes ', view, view2);
+//         res.render('dashboard', {event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
 
-          //toDo withAut 1/13: 
-          // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
-          res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+//       } //dashboard with both organized and rsvped events
+//       else{
+//           const event1 = result.map(event => event.get({plain: true}));
+//           const event2 = result2.map(event => event.get({plain: true}));
+//           const view = JSON.stringify(result);
+//           const view2 = JSON.stringify(result2);
+//           //check
+//           console.log('line 338 at home-routes ', event1[0].dishes);
+//           console.log('line 341 home-routes', event2);
 
-          res.status(200);
-      }
+//           //toDo withAut 1/13: 
+//           // res.render('dashboard', {events, loggedIn: req.session.loggedIn});
+//           res.render('dashboard', {event1, event2, loggedIn: req.session.loggedIn, userName: req.session.userName});
+
+//           res.status(200);
+//       }
 
  
-  } catch (err) {
-      res.status(500).json(err);
-  }
+//   } catch (err) {
+//       res.status(500).json(err);
+//   }
 
-});
+// });
 
 
 

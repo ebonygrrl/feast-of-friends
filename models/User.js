@@ -2,7 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-
+const queryInterface = sequelize.getQueryInterface();
+queryInterface.changeColumn('User', 'avatar', { type: DataTypes.STRING });
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -50,7 +51,7 @@ User.init(
         allowNull: true,
     },
     avatar: {
-        type: DataTypes.BLOB('long'),
+        type: DataTypes.STRING,
         allowNull: true,
     },
   },
