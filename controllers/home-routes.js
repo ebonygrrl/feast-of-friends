@@ -276,15 +276,11 @@ router.get('/event/:id',withAuth, async (req,res)=>{
 //DASHBOARD PAGE
 //route for viewing dashboard and one's own posts
 router.get('/dashboard',withAuth, async (req,res)=>{
-
   try {
-    const user_id = req.session.userID;
-
-      // event handler  
       console.log('line 10 at dashboard-routes');
       // console.log('line 12 at dashboard-routes : '+req.session.user_id);
       //get user id from sessions make sure it is stored in the log in
-      //const user_id = req.session.userID;
+      const user_id = req.session.userID;
       console.log('line 14 at dashboard-routes ',req.session,req.session.userID);
       // const dummyID=1;
       //get data from database of user organized events
