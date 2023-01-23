@@ -38,7 +38,7 @@ const updateImageDisplay = () => {
   }
 };
 
-profileImg.addEventListener('change', updateImageDisplay, false);
+//profileImg.addEventListener('change', updateImageDisplay, false);
 
 const fileTypes = [
   "image/gif",
