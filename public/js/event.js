@@ -12,8 +12,10 @@ const editPotluckFormHandler = async (event) => {
 };
   
 const signupBtn=document.getElementById("editEvent");
-signupBtn.addEventListener("click", editPotluckFormHandler);
-
+if(signupBtn)
+{
+    signupBtn.addEventListener("click", editPotluckFormHandler);
+};
 //go back to dashboard
 const toDashboardFormHandler = (event) => {
     event.preventDefault();
@@ -25,8 +27,9 @@ const toDashboardFormHandler = (event) => {
 };
   
 const toDashBtn=document.getElementById("backDashboard");
+if(toDashBtn){
 toDashBtn.addEventListener("click", toDashboardFormHandler);
-
+};
 
   //join potluck
 const joinPotluckFormHandler = async (event) => {

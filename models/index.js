@@ -63,6 +63,7 @@ Combo.belongsTo(Dish,{
 
 //Event has many combo ids
 Event.hasMany(Combo,{
+    constraints: false,
     foreignKey:'eventID'
 });
 
