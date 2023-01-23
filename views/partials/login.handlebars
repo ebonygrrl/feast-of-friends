@@ -1,18 +1,24 @@
- {{#>content-block}}
-    <h2 id="login" style="text-align: center;">Login</h2>
+{{#>content-block}}
 
-    <form class="form login-form">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input class="form-control" id="login-email" type="text" name="email">
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label><br>
-            <input class="form-control" id="login-password" type="password" name="password">
-        </div>
-        <button class="btn btn-fof-primary" id="loginBtn" type="submit">Login</button>
-    </form>
+
+<h2 id="login" style="text-align: center;">Login</h2>
+
+<form class="form login-form needs-validation">
+  <div class="form-floating mb-3">
+    <input class="form-control" id="login-email" type="text" name="email" placeholder="Email" required>
+    <label for="email">Email</label>
+    <div class="invalid-feedback">
+      Please enter your email address.
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input class="form-control" id="login-password" type="password" name="password" placeholder="Password" required>
+    <label for="password">Password</label>
+    <div class="invalid-feedback">
+      Please enter a password.
+    </div>
+  </div>
+  <button class="btn-fof-primary" id="loginBtn" type="submit">Login</button>
+</form>
+<script src="./js/login.js"></script>
 {{/content-block}}
-
-
-    

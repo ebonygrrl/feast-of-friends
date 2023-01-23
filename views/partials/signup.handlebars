@@ -1,47 +1,78 @@
- {{#>content-block}}
-    <h1 style="text-align: center;">Sign Up</h1>
+{{#>content-block}}
 
-    <form class="form signup-form">
-        <div class="form-group">
-            <label for="fname">First Name:</label>
-            <input class="form-control" id="signup-fname" type="text" name="fname">
-        </div>
-        <div class="form-group">
-            <label for="lname">Last Name:</label>
-            <input class="form-control" id="signup-lname" type="text" name="lname">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input class="form-control" id="signup-email" type="text" name="email" placeholder="name@example.com">
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label><br>
-            <input class="form-control" id="signup-password" type="password" name="password"><br>
-        </div>
+<section class="container">
+<h1 style="text-align: center;">Sign Up</h1>
 
-        <h3>Allergies</h3>
+<form class="form signup-form needs-validation novalidate">
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating mb-3 has-validation">
+                <input class="form-control" id="signup-fname" type="text" name="firstName" placeholder="First Name" required>
+                <label for="signup-fname">First Name</label>
+                <div class="invalid-feedback">
+                    Please enter your first name.
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="signup-lname" type="text" name="lastName" placeholder="Last Name" required>
+                <label for="signup-lname">Last Name</label>
+                <div class="invalid-feedback">
+                    Please enter your last name.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-2">
+        <div class="col-md">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="signup-email" type="text" name="email" placeholder="name@example.com" required>
+                <label for="signup-email">Email</label>
+                <div class="invalid-feedback">
+                    Please enter your email address.
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating mb-3">
+                <input class="form-control" id="signup-password" type="password" name="password" placeholder="Password" required>
+                <label for="signup-password">Password</label>
+                <div class="invalid-feedback">
+                    Please enter a password.
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Allergies</h3>
+    <div class=" allergy-block mb-3">
         <div class="form-check form-check-inline user-option">
             <input id="eggs" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Eggs">
             <label class="form-check-label allergy-label" for="eggs">Eggs</label>
         </div>
         <div class="form-check form-check-inline">
-            <input id="milk-dairy" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Milk/Dairy">
+            <input id="milk-dairy" class="form-check-input signup-allergies" type="checkbox" name="allergy"
+                value="Milk/Dairy">
             <label class="form-check-label allergy-label" for="milk-dairy">Milk/Dairy</label>
         </div>
         <div class="form-check form-check-inline">
-            <input id="peanuts" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Peanuts">
+            <input id="peanuts" class="form-check-input signup-allergies" type="checkbox" name="allergy"
+                value="Peanuts">
             <label class="form-check-label allergy-label" for="peanuts">Peanuts</label>
         </div>
         <div class="form-check form-check-inline">
-            <input id="tree-nuts" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Tree Nuts">
-            <label class="form-check-label allergy-label" for="tree-nuts"><span style="white-space: nowrap">Tree Nuts</span></label>
+            <input id="tree-nuts" class="form-check-input signup-allergies" type="checkbox" name="allergy"
+                value="Tree Nuts">
+            <label class="form-check-label allergy-label" for="tree-nuts"><span style="white-space: nowrap">Tree
+                    Nuts</span></label>
         </div>
         <div class="form-check form-check-inline">
             <input id="fish" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Fish">
             <label class="form-check-label allergy-label" for="fish">Fish</label>
         </div>
         <div class="form-check form-check-inline">
-            <input id="shellfish" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Shellfish">
+            <input id="shellfish" class="form-check-input signup-allergies" type="checkbox" name="allergy"
+                value="Shellfish">
             <label class="form-check-label allergy-label" for="shellfish">Shellfish</label>
         </div>
         <div class="form-check form-check-inline">
@@ -53,20 +84,24 @@
             <label class="form-check-label allergy-label" for="soy">Soy</label>
         </div>
         <div class="form-check form-check-inline">
-            <input id="sesame"  class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Sesame">
+            <input id="sesame" class="form-check-input signup-allergies" type="checkbox" name="allergy" value="Sesame">
             <label class="form-check-label allergy-label" for="sesame">Sesame</label>
         </div>
-        <br><br>
-        <div class="form-group">
-            <label for="allergies">Famous Dish</label>
-            <input class="form-control" id="signup-favdish" type="text" name="favdish">
-        </div>        
-        <div class="form-group">
-            <div class="preview"></div>
-            <label for="profile-img">Profile image</label>
-            <input class="form-control-file" id="avatar" type="file" name="avatar" accept="image/*">
-        </div>
-        <button class="btn btn-fof-primary">Sign Up</button>
-    </form>
-{{/content-block}}
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="signup-favdish" type="text" name="fdish" placeholder="Famous Dish">
+        <label for="signup-favdish">Famous Dish</label>
+    </div>
+    <div class="mb-3">
+        <div class="preview"></div>
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Profile image (max: 2MB)</label>
+        <input class="form-control" id="formFile" type="file" name="avatar" accept="image/*">
+    </div>
+    <button class="btn-fof-primary mt-3">Sign Up</button>
+</form>
+</section>
+<script src="./js/signup.js"></script>
 
+{{/content-block}}

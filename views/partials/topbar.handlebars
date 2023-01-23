@@ -3,9 +3,9 @@
   <!-- menu items -->
   <div class="container">
     {{#if loggedIn}}
-    <ul class="menu">
+    <ul class="menu session">
       <li>
-        <span>Welcome, {{userName}}!</span>
+        <span class="greet">Welcome, {{userName}}!</span>
       </li>
       <li class="bar"></li>
       <li>
@@ -23,7 +23,7 @@
       </li>
       <li class="bar"></li>
       <li>
-        <a href="/login">
+        <a href="/">
           Login
         </a>
       </li>
