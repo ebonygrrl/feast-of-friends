@@ -1,63 +1,12 @@
-<!-- create Potluck form -->
-<div class="container">
-<h1 style="text-align: center;">Create Potluck</h1>
-<div>
-<form class="form event-form">
-    <div class="form-group">
-        <label for="theme">Event Name/Theme</label>
-        <input class="form-control" id="event-theme" type="text" name="theme">
-    </div>
-    <div class="form-group">
-        <label for="date">Date of Potluck:</label>
-        <input class="form-control" id="event-date" type="datetime-local" name="date">
-    </div>
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6 hidden-sm bg-img-left"></div>
 
-      
-    <div class="form-group">
-        <label for="location">Potluck Venue:</label>
-        <input class="form-control" id="event-location" type="text" name="location" placeholder="ex. office, my home">
+        <div class="col-xs-12 col-sm-12 col-md-6" style="background-color: #eee;">
+            <div class="card create">
+                <h1>Create Potluck</h1>
+                {{>create-form}}
+            </div><!-- end card -->
+        </div>
     </div>
-</form>
-
-<div class="form-group d-flex justify-content-center">
-    <button class="btn btn-info" style="width: 25vw"type="submit" id="create-potluck">CREATE</button>
-</div>  
-</div>
-</div>
-<script src="/js/create-event.js"></script>
-
-  <!-- <label for="address-field">Location of Potluck</label>
-        <div>
-            <div class="form-group" name="address-field">
-            
-                <input type="street" 
-                       class="form-control" 
-                       id="autocomplete" 
-                       placeholder="Street">
-                
-                <input type="city" 
-                       class="form-control" 
-                       id="inputCity" 
-                       placeholder="City">
-                
-                <input type="state" 
-                       class="form-control" 
-                       id="inputState" 
-                       placeholder="State">
-                
-                <input type="zip" 
-                       class="form-control" 
-                       id="inputZip" 
-                       placeholder="Zip">
-                
-                <input type="county" 
-                       class="form-control" 
-                       id="inputCounty" 
-                       placeholder="County">
-                
-                <input type="country" 
-                       class="form-control" 
-                       id="inputCountry" 
-                       placeholder="Country">
-            </div>
-        </div> -->
+</section>

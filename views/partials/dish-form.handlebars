@@ -1,27 +1,24 @@
 <!-- DISH SIGN-UP FORM -->
 {{#> content-block}}
 <h2 style="text-align: center;">Tasty is coming your way</h2>
-    <form class="form dish-form">
-        <div class="form-group">
-            <label for="name-of-dish">What tasty dish will you bring?</label>
-            <input class="form-control" id="famous-dish" type="text" name="dishname">
-        </div>
-        <div>
-        <label for="dish-category">What kind of dish is it?</label>
-        <select name="dishtype" id="dish-type">
-            <option value="appetizer">appetizer</option>
-            <option value="entree">entree</option>
-            <option value="side">side</option>
-            <option value="dessert">dessert</option>
+<form class="form dish-form">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="famous-dish" type="text" name="dishname" required>
+        <label for="name-of-dish">What tasty dish would you like to bring?</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select name="dishtype" id="dish-type" class="form-select" required>
+            <option selected>Choose an option</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="entree">Entrée</option>
+            <option value="side">Side</option>
+            <option value="dessert">Dessert</option>
         </select>
-        </div>
-        {{!-- <div class="form-group">
-            <label for="type-of-dish">Dish type:</label><br>
-            <input class="form-control" id="dish-type" type="text" name="dtype">
-        </div> --}}
-        <label for="dish-related-allergy">Dish related allergies:</label>
-        <select name="dishallergy" id="dish-allergies">
-            <option value="none">None</option>
+        <label for="dish-category">Please select type of dish.</label>
+    </div>
+    <div class="form-floating mb-3">
+        <select name="dishallergy" id="dish-allergies" class="form-select" required>
+            <option selected>Choose an option</option>
             <option value="eggs">Eggs</option>
             <option value="milk/dairy">Milk/Dairy</option>
             <option value="peanuts">Peanuts</option>
@@ -31,15 +28,16 @@
             <option value="wheatgluten">Wheat/Gluten</option>
             <option value="soy">Soy</option>
             <option value="sesame">Sesame</option>
+            <option value="sesame">None, based on list above</option>
         </select>
-        <div class="text-center">
-        <br><button class="btn btn-fof-primary col-3" id="dishform" type="submit">Dish+</button>
-        </div>
-    </form>
-    
+        <label for="dish-related-allergy">Does your dish have any known allergens?</label>
+    </div>
+    <div class="text-center">
+        <button class="btn-fof-primary" id="dishform">Add Your Dish</button>
+    </div>
+</form>
 
-    <script src="/js/dish.js"></script>
 
-    {{/content-block}}
+<script src="/js/dish.js"></script>
 
-   
+{{/content-block}}

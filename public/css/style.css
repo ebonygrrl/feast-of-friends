@@ -7,12 +7,10 @@
   --black: #222;
 }
 
-
 /* element styles */
 html, body {
   margin: 0;
   padding: 0;
-  width: 100vw;
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -83,11 +81,6 @@ header {
   -webkit-box-shadow: 0px 12px 20px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 12px 20px 0px rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
-
-main {
-  flex: 1 0 auto;
-  margin-bottom: 30px;
 }
 
 nav a {
@@ -314,12 +307,24 @@ input[type=checkbox]:checked + label {
 
 /* user dashboard */
 .dashboard-header {
+  background-color: var(--darklava);
   background-size: cover;
-  height: 200px;
+  background-blend-mode: luminosity;
+  background-position: center;
+  background-attachment: fixed;
+  height: 250px;
+}
+
+.dashboard .main {
+  background-color: #eee;
 }
 
 .dashboard-main {
   margin-top: 4em;
+}
+
+.dashcard {
+  padding: 2.5em 0;
 }
 
 .card-img-top{
@@ -343,27 +348,119 @@ input[type=checkbox]:checked + label {
 .avatar {
   background-size: cover;
   background-position: center;
-  margin: 100px auto 0;
-  width: 150px;
-  height: 150px;
+  margin: 50px auto 0;
+  width: 250px;
+  height: 250px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
   border: 5px solid #fff;
 }
 
+.home .main {
+  background-image: url('../img/friends-food.jpg');
+  background-color: var(--darklava);
+  background-size: cover;
+  background-blend-mode:  luminosity;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .card {
+  padding: 10px 10px 25px;
+
+}
+
+.create .dashboard-header {
+  background-image: url('/img/office-potluck.jpg');
+}
+
+.create .bg-img-left {
+  background-image: url('../img/food-salad-dinner-eating.jpg');
+  background-color: var(--darklava);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.create #create-form {
+  display: none;
+}
+
+.card.create {
+  margin-left: -100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px 30px;
+  border: none;
+}
+
+.event .dashboard-header {
+  background-image: url('/img/table-spread.jpeg');
+}
+
+.navbar .nav-link {
+  color: #fff;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
 /* media queries */
+@media screen and (min-width: 768px) { 
+  .home .welcome {
+    padding: 0 3em;
+  }  
+  
+  .home .welcome:after {
+    content: '';
+    margin-left: -20px;
+    padding: 0 3em;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: calc(75% - 65%);
+    border-left: 2px solid #ececec;
+  }  
+}
+
 @media screen and (max-width: 767px) {
     .container {
         width: 95%;
     }
 
-    html,body {
-        font-size: 20px;
-    }
+    .card.create {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding: 20px 30px;
+      width: 100%;
+      border: none;
+    }  
 }
 
 @media screen and (max-width: 640px) {
+  body {
+    min-width: 375px;
+  }
+}
+
+/*  Print */
+@media print {
+  body *:not(.printable, .printable *) {
+     /* hide everything but printable elements and their children */
+    display: none;
+  }
+}
+@page {
+  size: 100%;
+  size:portrait;
+  margin: 20px;
 }
 
 /*  Print */

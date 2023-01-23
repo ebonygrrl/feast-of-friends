@@ -1,9 +1,7 @@
-{{#>content-block}}
-
 <section class="container">
 <h1 style="text-align: center;">Sign Up</h1>
 
-<form class="form signup-form needs-validation novalidate">
+<form class="form signup-form needs-validation" novalidate>
     <div class="row g-2">
         <div class="col-md">
             <div class="form-floating mb-3 has-validation">
@@ -96,12 +94,10 @@
         <div class="preview"></div>
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Profile image (max: 2MB)</label>
+        <label for="formFile" class="form-label">Profile image (max: 1MB)</label>
         <input class="form-control" id="formFile" type="file" name="avatar" accept="image/*">
     </div>
     <button class="btn-fof-primary mt-3">Sign Up</button>
 </form>
 </section>
 <script src="./js/signup.js"></script>
-
-{{/content-block}}

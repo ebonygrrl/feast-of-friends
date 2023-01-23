@@ -1,0 +1,32 @@
+{{#>content-block}}
+<h2 id="create-form" style="text-align: center;">Create an Event</h2>
+
+<form class="form event-form">
+  <div class="form-floating mb-3">
+    <input class="form-control" id="event-theme" type="text" name="theme" placeholder="Event Name/Theme" required>
+    <label for="theme">Event Name/Theme</label>
+    <div class="invalid-feedback">
+      Please enter your first name.
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input class="form-control" id="event-date" type="datetime-local" name="date" required>
+    <label for="date">Date of Potluck</label>
+    <div class="invalid-feedback">
+      Please enter your first name.
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <input class="form-control" id="event-location" type="text" name="location" placeholder="ex. office, my home"
+      required>
+    <label for="location">Potluck Venue</label>
+    <div class="invalid-feedback">
+      Please enter your first name.
+    </div>
+  </div>
+  <div class="form-floating mb-3">
+    <button class="btn-fof-primary mt-3" id="create-potluck" type="submit">Create</button>
+  </div>
+</form>
+<script src="./js/create-event.js"></script>
+{{/content-block}}
