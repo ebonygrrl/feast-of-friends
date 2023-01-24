@@ -250,7 +250,7 @@ router.get('/event/:id', withAuth, async (req, res) => {
                 if (dishType === 'entree') {
                     entree++;
                 };
-                if (dishType === 'sides') {
+                if (dishType === 'side') {
                     sides++;
                 };
                 if (dishType === 'dessert') {
