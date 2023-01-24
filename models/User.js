@@ -2,8 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-const queryInterface = sequelize.getQueryInterface();
-queryInterface.changeColumn('User', 'allergy', { type: DataTypes.TEXT });
+//const queryInterface = sequelize.getQueryInterface();
+//queryInterface.changeColumn('User', 'allergy', { type: DataTypes.TEXT });
 
 class User extends Model {
   checkPassword(loginPw) {

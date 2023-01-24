@@ -25,15 +25,14 @@ const upload = multer({
 
 // create new user
 router.post('/signup', upload, async (req, res) => {
-  console.log(req.body);
-
-
-    // const allergies = req.body.allergy;
-    // const str = allergies.join();    
-
-    const allergies = req.body.allergy;
-    const str = allergies;    
-
+  
+  // the snare!!!
+  let avatar;
+  if (req.file) {
+    avatar = req.file.filename;
+  } else {
+    avatar = null;
+  }
 
     await User.create({
       firstName: req.body.firstName,
@@ -42,7 +41,7 @@ router.post('/signup', upload, async (req, res) => {
       password: req.body.password,
       allergy: req.body.allergy,
       fdish: req.body.fdish,
-      avatar: req.file.filename
+      avatar: avatar
     })
     .then(dbUserData => {
       //get the user logged in after sign up
@@ -52,6 +51,9 @@ router.post('/signup', upload, async (req, res) => {
         req.session.userName = dbUserData.firstName;
         res.json({ user: dbUserData, message: 'You are now logged in!' });
       });
+    })
+    .catch(err => {
+      console.log(err);
     });
 });
 
