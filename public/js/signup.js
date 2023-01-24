@@ -67,8 +67,8 @@ const signupFormHandler = async (event) => {
   event.preventDefault();
 
   const formData = new FormData(signupForm);
-
-  //formData.set('avatar', profileImg.files[0]);
+  const allergies = formData.getAll('allergy');  
+  formData.set('allergy', allergies.toString());
 
   const result = await fetch('/api/user/signup', {
     method: 'POST',

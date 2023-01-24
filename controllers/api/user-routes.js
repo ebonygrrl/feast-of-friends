@@ -34,6 +34,8 @@ router.post('/signup', upload, async (req, res) => {
     avatar = null;
   }
 
+  let allergies = [];
+
     await User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
