@@ -85,7 +85,10 @@ const signupFormHandler = async (event) => {
 
 };
 
-signupForm.addEventListener('submit', signupFormHandler, false);
+};
+if(signupForm){
+  signupForm.addEventListener('submit', signupFormHandler, false);
+};
 
 
 
