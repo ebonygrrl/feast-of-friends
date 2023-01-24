@@ -235,6 +235,7 @@ input[type=checkbox]:checked + label {
 .menu .bar {
   flex-basis: 0px;
 }
+
 .menu .bar:after {
   content:'';
   border-left: 1px solid #fff;
