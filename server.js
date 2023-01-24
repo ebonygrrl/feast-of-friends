@@ -37,9 +37,6 @@ const sess = {
 
 app.use(session(sess));
 
-// favicon middlware
-app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
-
 // get handlebars
 // create custom helpers
 const hbs = exphbs.create({
@@ -69,11 +66,7 @@ app.use(require('./controllers'));
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {
-  // Heroku, play nice...
-  app.listen(process.env.PORT || 3000, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
   });
-  // app.listen(PORT, () => {
-  //   console.log(`App listening on port ${PORT}!`);
-  // });
 });

@@ -36,7 +36,6 @@
     "pdf-creator-node": "^2.3.5",
     "qrcode": "^1.5.1",
     "sequelize": "^6.28.0",
-    "serve-favicon": "^2.5.0",
     "sqlite3": "^5.1.4",
     "uuid": "^9.0.0"
   },
