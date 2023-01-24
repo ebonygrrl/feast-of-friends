@@ -54,7 +54,7 @@ This project could not have happened without these contributors:
 - Ivy Wirsing 
 https://github.com/iwirsing
 
--Aletoria Booker
+- Aletoria Booker
 https://github.com/ebonygrrl
 
 - Fiama Gaitan
