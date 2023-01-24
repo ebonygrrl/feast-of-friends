@@ -12,7 +12,7 @@ We built this application because we wanted to create something useful and somet
 "Feast of friends" solves organizational events that could be centered around an office audience. But what if you're not involved in an office environment? This potluck application is geared towards anyone who benefits from its use. It is meant to help you organize your potluck events. The user has the ability to join a potluck or create their own potluck event. You can use this application for any event, Christmas parties and holidays, Friendsgiving, Galentines parties, camping, tailgating, and much more. 
 
 - What did you learn?
-This project has taught us that the possibilities are truly endless. As we dive deeper into the making of the application, we have recognized the need for more features which create more opportunities for the user to have a better experience utilzing this application. At the same time, we continuously become aware of the opportunities to make the application better by listening to the feedback of other's when using our application. We have a working deployment but it is not a complete application yet. There are more features that could be explored and implemented in the future and that would make this project prodigious. The features that were implemented for this submission were not shy of obstcales and challenges. From knowing what the code is doing, how the user's feedback is being captured and how it is being used within the application was the first challenge that we efficiently solved. We knew the user feedback builds onto the next event in our application. We knew it was important to capture user customization , so as developers we had to look and find ways and new technologies like Mutler to help us make our visions come to fruition, or at least to get them started since we are looking to grow this app. We also used a QRcode npm package as a new technology to capture the QR code that kicks off the application's distinctiveness. The QR code can be used to join a potluck when the user scans it. Features like this is what we wanted in order to make our application unqiue and different from the rest. These are also the kind of details that will allow us to market this application on a much larger scale.
+This project has taught us that the possibilities are truly endless. As we dive deeper into the making of the application, we have recognized the need for more features which create more opportunities for the user to have a better experience utilzing this application. At the same time, we continuously become aware of the opportunities to make the application better by listening to the feedback of other's when using our application. We have a working deployment but it is not a complete application yet. There are more features that could be explored and implemented in the future and that would make this project prodigious. The features that were implemented for this submission were not shy of obstcales and challenges. From knowing what the code is doing, how the user's feedback is being captured and how it is being used within the application was the first challenge that we efficiently solved. We knew the user feedback builds onto the next event in our application. We knew it was important to capture user customization , so as developers we had to look and find ways and new technologies like Mutler to help us make our visions come to fruition, or at least to get them started since we are looking to grow this app. We also used a code technology to capture the code that kicks off the application's distinctiveness. It is a unique code generated that the user can copy and paste for other to join that specific potluck event that was created. The QR code implementation to this feature will be done in future development so it can be used to join a potluck when the user scans it. Features like this is what we want in order to make our application different from the rest. These are also the kind of details that will allow us to market this application on a much larger scale.
 
 ## Table of Contents (Optional)
 
@@ -27,18 +27,24 @@ Currently this app is deployed through Heroku. You can find the link to Heroku a
 
 You can find the repo for this application on GitHub: https://github.com/A-Tribu/feast-of-friends
 
+- Clone repo and install to your devide ($git clone "repo link")
+- Create a .env file 
+- Perform a npm install
+- Perform a npm run seed commands, or command equivalent to run the seeds in the database.
+- Running a nodemon server.js command will open the app to the listening port 3000.
+- You may view the app running through localhost:3000 on your server
+
+
 This app is also deployed on Heroku and you can access it through this link: https://feast-of-friends.herokuapp.com/
 
 ## Usage
 
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.00.58%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.14.24%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.15.38%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.15.49%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.16.24%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.16.37%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.17.07%20PM.png)
-![alt text](./screenshots/Screenshot%202023-01-23%20at%206.17.18%20PM.png)
+![alt text](./assets/feast-of-friends%20home.png)
+![alt text](./assets/signup.png)
+![alt text](./assets/log-in.png)
+![alt text](./assets/loggedin.png)
+![alt text](./assets/create%20potluck1.png)
+![alt text](./assets/dashboard.png)
 
 
 ## Credits
@@ -48,7 +54,7 @@ This project could not have happened without these contributors:
 - Ivy Wirsing 
 https://github.com/iwirsing
 
--Aletoria Booker
+- Aletoria Booker
 https://github.com/ebonygrrl
 
 - Fiama Gaitan
@@ -78,6 +84,7 @@ Our projects features:
 - handlebars-helper
 - uuid
 - Multer (as new technology)
+- PDF implementation (as new technology)
 
 
 ## How to Contribute
@@ -89,7 +96,7 @@ this application could benefit from more personalized demographics, sort of like
 you can also implement any special features to this application through a feature branch and demonstrating how the feature enhances the application. All changes must be approved.
 
 ## Tests
-VIDEO SUBMISSION LINK: https://drive.google.com/file/d/1p2SdTIq0ASacJHY0SlaDSEkNCGPMhwsP/view
+VIDEO SUBMISSION LINK: https://drive.google.com/file/d/1SukuYLiiAi7eYXy3TLVcK6PwaDl4rnoF/view
 
 Currently we are testing the improvement of this application thorugh Heroku.
 Future test can be done through deployment and performance of Heroku compatibility.
