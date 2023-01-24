@@ -49,9 +49,6 @@ app.engine('handlebars', hbs.engine);
 
 app.set('view engine', 'handlebars');
 
-// register new handlebar function
-//hbs.handlebars.registerHelper('whichPartial', function(context, options) { return 'dynamicPartial' });
-
 // express data parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
