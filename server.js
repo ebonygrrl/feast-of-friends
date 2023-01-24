@@ -69,7 +69,11 @@ app.use(require('./controllers'));
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}!`);
+  // Heroku, play nice...
+  app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
+  // app.listen(PORT, () => {
+  //   console.log(`App listening on port ${PORT}!`);
+  // });
 });
