@@ -15,7 +15,7 @@ const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 
 const app = express();
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3000;
 
 const expiryDate = new Date(Date.now + 60 * 60 * 100);
 
