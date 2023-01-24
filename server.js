@@ -1,7 +1,6 @@
 // app modules
 const path = require('path');
 const express = require('express');
-const favicon = require('serve-favicon')
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -37,9 +36,6 @@ const sess = {
 
 app.use(session(sess));
 
-// favicon middlware
-app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
-
 // get handlebars
 // create custom helpers
 const hbs = exphbs.create({
@@ -52,9 +48,6 @@ const hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 
 app.set('view engine', 'handlebars');
-
-// register new handlebar function
-//hbs.handlebars.registerHelper('whichPartial', function(context, options) { return 'dynamicPartial' });
 
 // express data parsing
 app.use(express.json());

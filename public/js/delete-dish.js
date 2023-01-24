@@ -26,8 +26,7 @@ const deleteDishHandler = async (event) => {
 };
 
 const delDishBtn=document.querySelector("#deleteDish");
-   
+
 if(delDishBtn){
     delDishBtn.addEventListener("click", deleteDishHandler);
-   
 };
