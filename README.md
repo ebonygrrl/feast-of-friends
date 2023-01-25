@@ -2,19 +2,19 @@
 
 ## Description
 
-- What was your motivation?
+
 The motivation behind a "Feast of friends" is to create a useful, handy application that allows a user to create potluck events. We took the inspiration from every day needs, but especifically in this case, what are our office needs? What could we use while working and spending time in the office? What could be helpful, or how could we make organizing office events better? This application is that.
 
-- Why did you build this project? 
+
 We built this application because we wanted to create something useful and something that would be beneficial to many. We created something marketable that has some real use . Modt of all, this idea was fun and we wanted to explore what it could be. 
 
-- What problem does it solve?
+
 "Feast of friends" solves organizational events that could be centered around an office audience. But what if you're not involved in an office environment? This potluck application is geared towards anyone who benefits from its use. It is meant to help you organize your potluck events. The user has the ability to join a potluck or create their own potluck event. You can use this application for any event, Christmas parties and holidays, Friendsgiving, Galentines parties, camping, tailgating, and much more. 
 
-- What did you learn?
+
 This project has taught us that the possibilities are truly endless. As we dive deeper into the making of the application, we have recognized the need for more features which create more opportunities for the user to have a better experience utilzing this application. At the same time, we continuously become aware of the opportunities to make the application better by listening to the feedback of other's when using our application. We have a working deployment but it is not a complete application yet. There are more features that could be explored and implemented in the future and that would make this project prodigious. The features that were implemented for this submission were not shy of obstcales and challenges. From knowing what the code is doing, how the user's feedback is being captured and how it is being used within the application was the first challenge that we efficiently solved. We knew the user feedback builds onto the next event in our application. We knew it was important to capture user customization , so as developers we had to look and find ways and new technologies like Mutler to help us make our visions come to fruition, or at least to get them started since we are looking to grow this app. We also used a code technology to capture the code that kicks off the application's distinctiveness. It is a unique code generated that the user can copy and paste for other to join that specific potluck event that was created. The QR code implementation to this feature will be done in future development so it can be used to join a potluck when the user scans it. Features like this is what we want in order to make our application different from the rest. These are also the kind of details that will allow us to market this application on a much larger scale.
 
-## Table of Contents (Optional)
+## Table of Contents 
 
 - [Installation](#installation)
 - [Usage](#usage)
