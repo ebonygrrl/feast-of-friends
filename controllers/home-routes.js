@@ -178,7 +178,7 @@ router.get('/event/:id', withAuth, async (req, res) => {
                         if (allergenHolder == 'tree nuts') { treeNuts++; };
                         if (allergenHolder == 'fish') { fish++; };
                         if (allergenHolder == 'shellfish') { shellfish++; };
-                        if (allergenHolder == 'gluten') { gluten++; };
+                        if (allergenHolder == 'wheat') { gluten++; };
                         if (allergenHolder == 'soy') { soy++; };
                         if (allergenHolder == 'sesame') { sesame++; };
                     }
@@ -250,7 +250,7 @@ router.get('/event/:id', withAuth, async (req, res) => {
                 if (dishType === 'entree') {
                     entree++;
                 };
-                if (dishType === 'sides') {
+                if (dishType === 'side') {
                     sides++;
                 };
                 if (dishType === 'dessert') {
