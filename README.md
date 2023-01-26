@@ -39,12 +39,11 @@ This app is also deployed on Heroku and you can access it through this link: htt
 
 ## Usage
 
-![alt text](./assets/feast-of-friends%20home.png)
-![alt text](./assets/signup.png)
-![alt text](./assets/log-in.png)
-![alt text](./assets/loggedin.png)
-![alt text](./assets/create%20potluck1.png)
-![alt text](./assets/dashboard.png)
+![alt text](./assets/home.jpeg)
+![alt text](./assets/sign-up-new-user.jpeg)
+![alt text](./assets/user-dashboard1.jpeg)
+![alt text](./assets/sign-up-dish1.jpeg)
+![alt text](./assets/signed-up-dish.jpeg)
 
 
 ## Credits
